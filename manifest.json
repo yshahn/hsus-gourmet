@@ -1,0 +1,14 @@
+{
+  "name": "Hsu's Gourmet",
+  "short_name": "Hsu's Gourmet",
+  "description": "Order, Reserve & Rewards — Hsu's Gourmet, Downtown Atlanta",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f0e0c",
+  "theme_color": "#0f0e0c",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
