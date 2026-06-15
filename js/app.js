@@ -1,0 +1,1907 @@
+// ── MENU DATA (Hsu's Gourmet — Official Menu)
+const menuData = {
+  // ─────────── LUNCH ───────────
+  lunch: [
+    // ── APPETIZERS
+    { e:'🌯', n:'Spring Rolls (2)', d:'Ground pork and shrimp wrapped in Shanghai style egg roll wrapper and fried to perfection', p:7.95, img:null, subcat:'apps' },
+    { e:'🥬', n:'Vegetable Spring Rolls (2)', d:'', p:5.95, img:null, subcat:'apps' },
+    { e:'🥟', n:'Shantung Dumplings (4)', d:'Choice of Steamed or Grilled · Pork dumplings with minced vegetables · Served with ginger soy vinaigrette dipping sauce', p:8.95, img:null, subcat:'apps' },
+    { e:'🥟', n:'Fried Chicken Dumplings (4)', d:'', p:8.95, img:null, subcat:'apps' },
+    { e:'🥟', n:'Vegetable Steamed Dumplings (4)', d:'', p:8.95, img:null, subcat:'apps' },
+    { e:'🍢', n:'Beef Satay (4)', d:'', p:9.95, img:null, subcat:'apps' },
+    { e:'🦀', n:'Crab Angels (4)', d:'', p:8.95, img:null, subcat:'apps' },
+    { e:'🦑', n:'Fried Calamari', d:'Served with Chef\'s special dipping sauce', p:10.95, img:null, subcat:'apps' },
+    // ── SOUP
+    { e:'🍜', n:'Wonton Soup', d:'Shrimp & pork', p:5.95, img:null, subcat:'soups' },
+    { e:'🥣', n:'Hot & Sour Soup', d:'Shrimp & pork', p:5.95, img:null, subcat:'soups' },
+    { e:'🥣', n:'Egg Drop Soup', d:'', p:5.95, img:null, subcat:'soups' },
+    // ── NOODLES & RICE
+    { e:'🍜', n:'House Special Lomein', d:'Shrimp, beef, and chicken with soft egg noodles', p:15.95, img:null, subcat:'noodles' },
+    { e:'🍜', n:'Shrimp Lomein', d:'', p:15.95, img:null, subcat:'noodles' },
+    { e:'🍜', n:'Chicken Lomein', d:'', p:14.95, img:null, subcat:'noodles' },
+    { e:'🍜', n:'Vegetable Lomein', d:'', p:14.95, img:null, subcat:'noodles' },
+    { e:'🍜', n:"Spicy Anna's Seafood Noodle Soup", d:'Jjambbong!! Shrimp, scallop and chicken in hearty spicy soup with egg noodles', p:16.95, img:null, subcat:'noodles' },
+    { e:'🍜', n:'Shantung Black Noodles Jajangmyeon', d:'', p:16.95, img:null, subcat:'noodles' },
+    { e:'🍜', n:'Pan Fried Hong Kong Noodles', d:'', p:16.95, img:null, subcat:'noodles' },
+    { e:'🍚', n:'Vegetable Fried Rice', d:'', p:13.95, img:null, subcat:'noodles' },
+    { e:'🍚', n:'Chicken Fried Rice', d:'', p:13.95, img:null, subcat:'noodles' },
+    { e:'🍚', n:'Shrimp Fried Rice', d:'', p:15.95, img:null, subcat:'noodles' },
+    { e:'🍚', n:'Combination Fried Rice', d:'', p:15.95, img:null, subcat:'noodles' },
+    // ── ENTREES
+    { e:'🍛', n:'Curry Chicken', d:'', p:14.95, img:null, subcat:'entrees' },
+    { e:'🌿', n:'Spicy Basil Chicken', d:'Sliced tender chicken sautéed with onion, pepper, carrot, and fresh basil leaves', p:15.95, img:null, subcat:'entrees' },
+    { e:'🌶️', n:'Hot Pepper Chicken', d:'Fried dark meat with vegetables in a Szechuan style spicy sauce', p:14.95, img:null, subcat:'entrees' },
+    { e:'🍗', n:"General Tsu's Favorite Chicken", d:'', p:14.95, img:null, subcat:'entrees' },
+    { e:'🍋', n:'Lemon Chicken', d:'White meat', p:14.95, img:null, subcat:'entrees' },
+    { e:'🍗', n:'Fried Sesame Chicken', d:'', p:14.95, img:null, subcat:'entrees' },
+    { e:'🥦', n:'String Beans Szechwan Style with Ground Pork', d:'', p:14.95, img:null, subcat:'entrees' },
+    { e:'🥦', n:'String Beans Szechwan Style with Chicken', d:'', p:14.95, img:null, subcat:'entrees' },
+    { e:'🦐', n:'String Beans Szechwan Style with Shrimp', d:'', p:16.95, img:null, subcat:'entrees' },
+    { e:'🥩', n:'Spicy Basil Beef', d:'Sliced tender beef marinated in seven spices and wok-tossed with fresh Thai basil leaves · Served with snow peas, carrots and mushroom', p:17.95, img:null, subcat:'entrees' },
+    { e:'🥩', n:'Mongolian Beef', d:'', p:17.95, img:null, subcat:'entrees' },
+    { e:'🥩', n:'Beef with Broccoli', d:'', p:17.95, img:null, subcat:'entrees' },
+    { e:'🦐', n:'Shrimp with Light Garlic Sauce', d:'', p:16.95, img:null, subcat:'entrees' },
+    { e:'🥑', n:'Avocado Shrimp', d:'', p:16.95, img:null, subcat:'entrees' },
+    { e:'🥦', n:'Asparagus with Black Bean Sauce with Shrimp', d:'Cantonese classic', p:16.95, img:null, subcat:'entrees' },
+    { e:'🥦', n:'Asparagus with Black Bean Sauce with Chicken', d:'Cantonese classic', p:14.95, img:null, subcat:'entrees' },
+    { e:'🦐', n:'Walnut Shrimp', d:'Crispy shrimp wok-tossed with honey-coated walnuts in a lemon aioli sauce', p:16.95, img:null, subcat:'entrees' },
+    { e:'🐟', n:'Grilled Fresh Salmon Filet', d:'', p:19.95, img:null, subcat:'entrees' },
+    { e:'🦐', n:'Salt & Pepper Shrimp', d:'', p:16.95, img:null, subcat:'entrees' },
+    { e:'🐟', n:'Fresh Chilean Sea Bass', d:'Steamed Hong Kong style with Chinese vegetables', p:0, img:null, subcat:'entrees' },
+    { e:'🦪', n:'Sea Scallop in Black Pepper Sauce', d:"This diver's select large sea scallop is full of flavor and raised up a notch with black pepper sauce", p:26.95, img:null, subcat:'entrees' },
+    { e:'🌿', n:'Mixed Vegetables with Fried Tofu', d:'', p:14.95, img:null, subcat:'entrees' },
+    { e:'🌿', n:"General Tsu's Tofu with Broccoli", d:'', p:14.95, img:null, subcat:'entrees' },
+    // ── COMBINATION
+    { e:'🍱', n:'Imperial Chicken', d:'Complete with steamed rice or fried rice, egg drop soup and crab angel · No substitution please', p:15.95, img:null, subcat:'combo' },
+    { e:'🍱', n:'Sweet & Sour Chicken', d:'Complete with steamed rice or fried rice, egg drop soup and crab angel · No substitution please', p:15.95, img:null, subcat:'combo' },
+    { e:'🍱', n:'Chicken with Mixed Vegetables', d:'Complete with steamed rice or fried rice, egg drop soup and crab angel · No substitution please', p:15.95, img:null, subcat:'combo' },
+    { e:'🍱', n:'Chicken with Broccoli', d:'Complete with steamed rice or fried rice, egg drop soup and crab angel · No substitution please', p:15.95, img:null, subcat:'combo' },
+    // ── BEVERAGES
+    { e:'☕', n:'Coffee', d:'Regular or decaf', p:3.95, img:null, subcat:'beverages' },
+    { e:'🍵', n:'Jasmine Tea', d:'', p:3.95, img:null, subcat:'beverages' },
+    { e:'🧊', n:'Sweet Iced Tea', d:'', p:3.95, img:null, subcat:'beverages' },
+    { e:'🧊', n:'Unsweet Iced Tea', d:'', p:3.95, img:null, subcat:'beverages' },
+    { e:'🥤', n:'Soft Drinks', d:'', p:3.95, img:null, subcat:'beverages' },
+  ],
+
+  // ─────────── APPETIZERS (Dinner) ───────────
+  appetizers: [
+    { e:'🌯', n:'Spring Rolls (2)', d:'Ground pork and shrimp wrapped in Shanghai style egg roll wrapper and fried to perfection', p:10.95, img:null },
+    { e:'🥬', n:'Vegetable Spring Rolls (2)', d:'', p:9.95, img:null },
+    { e:'🍢', n:'Beef Satay (6)', d:'香煎牛肉串', p:15.95, img:null },
+    { e:'🦀', n:'Crab Angels (6)', d:'蟹角', p:13.95, img:null },
+    { e:'🥬', n:'Stuffed Lettuce (2)', d:'Ground pork with minced vegetables served in lettuce cups · A Hong Kong classic · Extra lettuce $1.00 each', p:13.95, img:null },
+    { e:'🥬', n:'Vegetarian Stuffed Lettuce (2)', d:'Minced vegetables served in lettuce cups · A Hong Kong classic · Extra lettuce $1.00 each', p:13.95, img:null },
+    { e:'🥟', n:'Shantung Dumplings (6)', d:'Steamed or Grilled pork dumplings with minced vegetables · Served with a soy vinaigrette dipping sauce with ginger', p:13.95, img:null },
+    { e:'🥟', n:'Fried Chicken Dumplings (6)', d:'雞肉餃子', p:13.95, img:null },
+    { e:'🥟', n:'Vegetable Steamed Dumplings (6)', d:'蔬菜餃子 · Please allow 10 minutes', p:13.95, img:null },
+    { e:'🦐', n:'Steamed Shrimp Dumplings (6)', d:'Dumpling skin filled with shrimp, Hong Kong style · 港式蝦餃', p:14.95, img:null },
+    { e:'🦑', n:'Fried Calamari', d:'Served with the chef\'s special dipping sauce · 椒鹽鮮魷', p:15.95, img:null },
+    { e:'🍖', n:'BBQ Baby Back Pork Ribs', d:'Cantonese Style, served with cabbage slaw · 中式焗小排骨', p:18.95, img:null },
+  ],
+
+  // ─────────── SOUP (Dinner) ───────────
+  soups: [
+    { e:'🍜', n:'Won Ton Soup', d:'Pork and shrimp · 雲吞湯', p:6.95, img:null },
+    { e:'🌽', n:'Chicken Corn Soup', d:'雞蓉玉米湯', p:6.95, img:null },
+    { e:'🥣', n:'Seafood Hot and Sour Soup', d:'Shrimp and scallops in this classic favorite · 海鮮酸辣羹', p:8.95, img:null },
+    { e:'🦐', n:'San Shan Soup', d:'Shrimp, scallop and vegetables · 海鮮湯', p:8.95, img:null },
+  ],
+
+  // ─────────── NOODLES, RICE & VEGETABLES ───────────
+  noodles: [
+    { e:'🍜', n:'House Special Lomein', d:'Shrimp, beef, and chicken with soft egg noodles · 什錦撈麵', p:20.95, img:null },
+    { e:'🍜', n:"Spicy Anna's Seafood Noodle Soup (Jiambbong)", d:'Shrimp, scallops, and chicken in hearty spicy soup with egg noodles · 山東炒馬湯麵', p:24.95, img:null },
+    { e:'🍜', n:'Pan Fried Noodle, Hong Kong Style', d:'Shrimp, chicken, and vegetables over crispy angel hair like noodles · 什錦兩面黃', p:24.95, img:null },
+    { e:'🍚', n:'Combination Fried Rice', d:'Shrimp, chicken, and beef · 什錦炒飯', p:19.95, img:null },
+    { e:'🍚', n:'Pineapple Fried Rice', d:'With shrimp and pork · 叉燒菠蘿蝦炒飯', p:19.95, img:null },
+    { e:'🌿', n:"Monk's Delight", d:'素什錦', p:22.95, img:null },
+    { e:'🥢', n:'Fried Tofu with Mixed Vegetables', d:'時菜豆腐', p:22.95, img:null },
+    { e:'🥦', n:"General Tsu's Tofu with Broccoli", d:'左宗棠豆腐', p:22.95, img:null },
+    { e:'🥬', n:'Seasonal Chinese Vegetables', d:'新鮮時菜', p:0, img:null },
+  ],
+
+  // ─────────── ENTREES (Dinner) ───────────
+  entrees: [
+    { e:'🍗', n:"General Tsu's Favorite Chicken", d:'左宗棠雞', p:23.95, img:null },
+    { e:'🥦', n:'String Beans Szechwan Style with Ground Pork', d:'干煸四季豆 · 肉碎', p:23.95, img:null },
+    { e:'🥦', n:'String Beans Szechwan Style with Chicken', d:'干煸四季豆 · 雞片', p:23.95, img:null },
+    { e:'🦐', n:'String Beans Szechwan Style with Shrimp', d:'干煸四季豆 · 蝦球', p:27.95, img:null },
+    { e:'🥦', n:'Asparagus Black Bean Sauce with Chicken', d:'Cantonese Classic · 豉汁蘆筍 · 雞片', p:23.95, img:null },
+    { e:'🦐', n:'Asparagus Black Bean Sauce with Shrimp', d:'Cantonese Classic · 豉汁蘆筍 · 蝦球', p:27.95, img:null },
+    { e:'🦆', n:'Peking Duck (3 Courses)', d:'The house signature dish presented in 3 courses: soup, crispy skin in Chinese crepe, and grilled duck meat in honey soy sauce · 北京鴨(三吃)', p:95.95, img:null },
+    { e:'🍛', n:'Curry Chicken', d:'Thick slices of white meat chicken in a coconut smoothened yellow curry sauce · 咖哩雞片', p:23.95, img:null },
+    { e:'🍗', n:'Fried Sesame Chicken', d:'芝麻雞', p:23.95, img:null },
+    { e:'🥦', n:'Chicken with Broccoli', d:'芥藍雞', p:23.95, img:null },
+    { e:'🌿', n:'Spicy Basil Chicken', d:'Sliced tender chicken sautéed with onion, pepper, carrot, and fresh basil leaves · 香葉雞片', p:24.95, img:null },
+    { e:'🥩', n:'Mongolian Beef', d:'蒙古牛肉', p:28.95, img:null },
+    { e:'🌿', n:'Spicy Basil Beef', d:'Sliced tender beef marinated in 7 spices and wok-tossed with fresh basil leaves · Served with snow peas and mushroom · 香葉牛肉', p:28.95, img:null },
+    { e:'🥩', n:'Wok Charred Beef Medallion', d:'In Black Pepper Corn Sauce · 黑椒牛柳', p:37.95, img:null },
+    { e:'🐷', n:'Pork Medallion, Peking Style', d:'Tender center cut pork loins served with a sweet pungent sauce · A classic Mandarin Style · 京都豬扒', p:24.95, img:null },
+    { e:'🦐', n:'Walnut Shrimp', d:'Crispy shrimp wok-tossed with honey-coated walnuts in a lemon aioli sauce · 核桃蝦球', p:27.95, img:null },
+    { e:'🦐', n:'Salt & Pepper Shrimp', d:'Wok-tossed shrimp in salt & pepper, five-spice, with jalapeño · 椒鹽蝦球', p:27.95, img:null },
+    { e:'🥑', n:'Avocado Shrimp', d:'Shrimp sautéed with fresh avocado and vegetables · 牛油果蝦球', p:27.95, img:null },
+    { e:'🦐', n:'Jumbo Shrimp with Ginger & Scallion', d:'薑蔥爆大蝦', p:34.95, img:null },
+    { e:'🦐', n:'Jumbo Shrimp with X.O. Sauce', d:'This classic X.O. sauce is the prestigious Hong Kong Jockey Club\'s favorite · X.O.醬爆大蝦', p:38.95, img:null },
+    { e:'🦪', n:'Sea Scallop in Black Pepper Sauce', d:"This dry pack of diver's select large sea scallop is full of flavor and raised up a notch with black pepper sauce · 黑椒鮮帶子", p:37.95, img:null },
+    { e:'🐟', n:'Grilled Salmon with Ginger & Scallion Sauce', d:'薑蔥三文魚', p:32.95, img:null },
+    { e:'🐟', n:'Sautéed Salmon over Fresh Bok Choy with Black Pepper Corn Sauce', d:'黑椒三文魚', p:32.95, img:null },
+    { e:'🐟', n:'Chilean Sea Bass', d:'Steamed Hong Kong style · Serve with Chinese seasonal vegetables · 清蒸鱈魚片', p:0, img:null },
+    { e:'🐠', n:'Whole Fish of the Day', d:'Steamed or Fried with ginger and scallion sauce, or sweet and sour sauce · 是日海上鮮', p:0, img:null },
+  ],
+
+  // ─────────── SIDES ───────────
+  sides: [
+    { e:'🍚', n:'Fried Rice', d:'炒飯', p:5.00, img:null },
+    { e:'🌶️', n:'Kim Chi', d:'韓國泡菜', p:5.00, img:null },
+    { e:'🥬', n:'Vegetable Plate', d:'蔬菜小炒', p:13.95, img:null },
+  ],
+
+  // ─────────── BEVERAGES ───────────
+  drinks: [
+    { e:'☕', n:'Coffee', d:'Regular or decaf', p:3.95, img:null },
+    { e:'🍵', n:'Jasmine Tea', d:'', p:3.95, img:null },
+    { e:'🧊', n:'Sweet Iced Tea', d:'', p:3.95, img:null },
+    { e:'🧊', n:'Unsweet Iced Tea', d:'', p:3.95, img:null },
+    { e:'🥤', n:'Soft Drinks', d:'', p:3.95, img:null },
+  ],
+};
+
+// ── CART STATE
+let cart = [];
+let guestCount = 2;
+let usePoints = false;
+let pickupType = 'instore'; // 'instore' or 'curbside'
+
+function openDoorDash() {
+  // DoorDash link - update with Hsu's Gourmet delivery link
+  const url = 'https://www.doordash.com/store/hsu-s-gourmet-atlanta/';
+  window.open(url, '_blank');
+}
+
+function toggleCurbside(checked) {
+  pickupType = checked ? 'curbside' : 'instore';
+  const info = document.getElementById('curbside-info');
+  if (info) info.style.display = checked ? 'block' : 'none';
+  if (checked) document.getElementById('car-model')?.focus();
+}
+
+function selectPickupType(type) {
+  pickupType = type;
+  const cb = document.getElementById('curbside-checkbox');
+  if (cb) cb.checked = type === 'curbside';
+  toggleCurbside(type === 'curbside');
+}
+let selectedPointsDiscount = 0;
+let tipPercent = 20;
+let tipCustom  = null;
+
+// ─────────────────────────────────
+// AUTH
+// ─────────────────────────────────
+const USER_KEY = 'prb_user';
+
+function getUser() {
+  try { return JSON.parse(localStorage.getItem(USER_KEY)); }
+  catch(e) { return null; }
+}
+
+async function signOut() {
+  localStorage.removeItem(USER_KEY);
+  try {
+    const { getAuth, signOut: fbSignOut } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
+    const auth = getAuth();
+    await fbSignOut(auth);
+  } catch(e) {}
+  updateAuthUI();
+}
+
+function updateAuthUI() {
+  const user      = getUser();
+  const signInBtn = document.getElementById('btn-signin');
+  const greetEl   = document.getElementById('hero-greeting');
+  const ptsEl     = document.getElementById('home-points');
+  const ptsSubEl  = document.getElementById('home-points-sub');
+  const ptsValEl  = document.getElementById('home-points-value');
+  if (!signInBtn) return;
+
+  const ADMIN_EMAILS = ['yshahn@gmail.com', 'ymhahn@gmail.com'];
+  const adminBtn = document.getElementById('btn-admin');
+
+  if (user) {
+    signInBtn.textContent = 'Sign Out';
+    signInBtn.removeAttribute('href');
+    signInBtn.onclick = (e) => { e.preventDefault(); signOut(); };
+    if (greetEl) {
+      greetEl.textContent = 'Welcome back, ' + user.firstName + '!';
+      greetEl.style.cssText = 'color:#fff;font-size:13px;opacity:1;font-weight:500;';
+    }
+    const pts = user.points || 0;
+    if (ptsEl)    ptsEl.textContent    = pts.toLocaleString();
+    if (ptsValEl) ptsValEl.textContent = '$' + (pts / 100).toFixed(2);
+    if (ptsSubEl) ptsSubEl.textContent = 'Welcome back, ' + (user.firstName || '') + '!';
+    const ptLabel = document.getElementById('pt-label');
+    if (ptLabel) ptLabel.textContent = 'Redeem Points';
+    if (adminBtn) adminBtn.style.display = ADMIN_EMAILS.includes(user.email) ? 'block' : 'none';
+  } else {
+    signInBtn.textContent = 'Sign In';
+    signInBtn.href = 'login.html';
+    signInBtn.onclick = null;
+    if (greetEl) {
+      greetEl.textContent = 'Welcome back';
+      greetEl.style.cssText = 'color:#fff;opacity:0.9;';
+    }
+    if (ptsEl)    ptsEl.textContent    = '0';
+    if (ptsValEl) ptsValEl.textContent = '$0.00';
+    if (ptsSubEl) ptsSubEl.textContent = 'Sign in to earn points';
+    if (adminBtn) adminBtn.style.display = 'none';
+  }
+}
+
+function fillUserInfo() {
+  const user    = getUser();
+  const profile = loadProfile();
+  const data    = { ...profile, ...(user || {}) };
+  const fnEl    = document.getElementById('gi-firstname');
+  const lnEl    = document.getElementById('gi-lastname');
+  const phoneEl = document.getElementById('gi-phone');
+  const emailEl = document.getElementById('gi-email');
+  const badge   = document.getElementById('gi-badge');
+
+  if (fnEl)    fnEl.value    = data.firstName || '';
+  if (lnEl)    lnEl.value    = data.lastName  || '';
+  if (phoneEl) phoneEl.value = data.phone      || '';
+  if (emailEl) emailEl.value = data.email      || '';
+  if (badge)   badge.style.display = (user || Object.keys(profile).length) ? 'block' : 'none';
+
+  const isGuest = !user;
+  const reqNote  = document.getElementById('guest-required-note');
+  const reqFn    = document.getElementById('req-firstname');
+  const reqPhone = document.getElementById('req-phone');
+  const reqEmail = document.getElementById('req-email');
+  if (reqNote)  reqNote.style.display  = isGuest ? 'block' : 'none';
+  if (reqFn)    reqFn.style.display    = isGuest ? 'inline' : 'none';
+  if (reqPhone) reqPhone.style.display = isGuest ? 'inline' : 'none';
+  if (reqEmail) reqEmail.style.display = isGuest ? 'inline' : 'none';
+}
+
+// ─────────────────────────────────
+// NAVIGATION
+// ─────────────────────────────────
+function goTo(id, pushState = true) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const ss = document.getElementById('success-screen');
+  if (ss) ss.classList.remove('active');
+  const screen = document.getElementById('screen-' + id);
+  if (screen) screen.classList.add('active');
+  const nav = document.getElementById('bottom-nav');
+  if (nav) nav.style.display = 'flex';
+  updateNav(id);
+  window.scrollTo(0, 0);
+  if (id === 'order') showMenuStep();
+  if (id === 'rewards') buildRewardsScreen();
+  if (id === 'home') buildHomeScreen();
+  if (pushState && id !== 'home') {
+    history.pushState({ screen: id }, '', location.pathname + location.search);
+  } else if (id === 'home' && pushState) {
+    history.replaceState({ screen: 'home' }, '', location.pathname + location.search);
+  }
+  if (id === 'home') {
+    const fbUrl = window.location.origin + '/js/firebase-menu.js';
+    import(fbUrl + '?v=' + Date.now()).then(({ loadPicksFromFirebase }) => {
+      loadPicksFromFirebase().then(picks => {
+        if (picks) { localStorage.setItem('prb_picks', JSON.stringify(picks)); loadTodaysPicks(); }
+      }).catch(() => {});
+    }).catch(() => {});
+  }
+  if (id === 'profile') updateProfileUI();
+  if (id === 'reservation') { buildDates(); prefillReservationForm(); buildMyReservations(); }
+}
+
+function navGo(id) { goTo(id); }
+
+function updateNav(id) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const item = document.getElementById('nav-' + id);
+  if (item) item.classList.add('active');
+}
+
+// ─────────────────────────────────
+// ORDER STEPS
+// ─────────────────────────────────
+function showMenuStep() {
+  document.getElementById('step-menu').style.display = 'flex';
+  document.getElementById('step-checkout').style.display = 'none';
+  document.getElementById('order-screen-title').textContent = 'Order';
+  document.getElementById('order-screen-sub').textContent = 'Select your items';
+  // Default to Appetizers tab when entering order screen
+  const appsTab = [...document.querySelectorAll('.menu-tab')].find(t => t.getAttribute('onclick')?.includes("'appetizers'"));
+  if (appsTab) {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    appsTab.classList.add('active');
+    buildMenu('appetizers');
+    const notice = document.getElementById('lunch-notice');
+    if (notice) notice.style.display = 'none';
+  }
+}
+
+function showArrivedScreen(orderId) {
+  goTo('home');
+  const overlay = document.createElement('div');
+  overlay.id = 'arrived-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:99999;display:flex;align-items:center;justify-content:center;padding:24px;';
+  overlay.innerHTML = `
+    <div style="background:#faf7f2;border-radius:20px;padding:32px 24px;width:100%;max-width:360px;text-align:center;">
+      <div style="font-size:48px;margin-bottom:12px;">🚗</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:8px;">Let us know you're here!</div>
+      <div style="font-size:13px;color:#888;margin-bottom:24px;">Tap the button below and we'll bring your order out.</div>
+      <button onclick="sendArrivedMessage('${orderId}')" id="arrived-confirm-btn"
+        style="width:100%;padding:16px;background:#1a1410;color:#c8a96e;border:none;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;letter-spacing:0.03em;">
+        🚗 I Have Arrived!
+      </button>
+      <button onclick="document.getElementById('arrived-overlay').remove()"
+        style="width:100%;padding:12px;background:none;border:1px solid #ddd;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:13px;color:#888;cursor:pointer;margin-top:10px;">
+        Not yet
+      </button>
+    </div>`;
+  document.body.appendChild(overlay);
+}
+
+async function sendArrivedMessage(passedOrderId) {
+  const order = window._lastOrder || {};
+  const user = getUser();
+  const btn = document.getElementById('arrived-confirm-btn') || document.querySelector('[onclick="sendArrivedMessage()"]');
+  const statusEl = document.getElementById('arrived-status');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+
+  const urlParams = new URLSearchParams(location.search);
+  const carModel = order.carModel || urlParams.get('carModel') || '';
+  const carColor = order.carColor || urlParams.get('carColor') || '';
+  const orderId  = passedOrderId || order.orderId || urlParams.get('order') || '';
+
+  try {
+    const res = await fetch('/api/notify-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        isArrived: true, orderId,
+        customer: order.customer || { name: user?.name || '', phone: user?.phone || '' },
+        carModel, carColor,
+        pickupTime: order.pickupTime || '',
+        notifEmails: getNotifEmails(),
+        notifPhones: getNotifPhones(),
+      }),
+    });
+    const overlay = document.getElementById('arrived-overlay');
+    if (overlay) {
+      overlay.innerHTML = `<div style="background:#faf7f2;border-radius:20px;padding:32px 24px;width:100%;max-width:360px;text-align:center;">
+        <div style="font-size:48px;margin-bottom:12px;">✅</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:8px;">We know you're here!</div>
+        <div style="font-size:13px;color:#888;margin-bottom:24px;">We'll bring your order out shortly. Thank you!</div>
+        <button onclick="document.getElementById('arrived-overlay').remove()" style="width:100%;padding:14px;background:#1a1410;color:#c8a96e;border:none;border-radius:14px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;">OK</button>
+      </div>`;
+    }
+    if (btn) btn.textContent = '✅ Restaurant Notified!';
+    if (statusEl) statusEl.textContent = 'We will bring your order right out!';
+  } catch(e) {
+    if (btn) { btn.disabled = false; btn.textContent = '🚗 I Have Arrived!'; }
+    if (statusEl) statusEl.textContent = 'Please try again or call us at (404) 577-0888';
+    console.error('Arrived error:', e);
+  }
+}
+
+function initPointsRedeem() {
+  const user = getUser();
+  const pts = user ? (user.points || 0) : 0;
+  const section = document.getElementById('points-redeem-section');
+  const btnsEl  = document.getElementById('points-redeem-btns');
+  const subEl   = document.getElementById('pt-sub');
+  if (!section || !btnsEl) return;
+  const maxDiscount = Math.floor(pts / 500) * 5;
+  if (maxDiscount <= 0) { section.style.display = 'none'; return; }
+  section.style.display = 'block';
+  if (subEl) subEl.textContent = pts.toLocaleString() + ' pts available';
+  btnsEl.innerHTML = '';
+  const noneBtn = document.createElement('button');
+  noneBtn.innerHTML = '<div>No discount</div>';
+  noneBtn.style.cssText = 'padding:8px 14px;border:1.5px solid var(--ink);border-radius:20px;font-family:DM Sans,sans-serif;font-size:12px;cursor:pointer;background:var(--ink);color:var(--gold);transition:all 0.15s;';
+  noneBtn.addEventListener('click', () => selectPointsDiscount(0, btnsEl));
+  btnsEl.appendChild(noneBtn);
+  for (let d = 5; d <= maxDiscount; d += 5) {
+    const btn = document.createElement('button');
+    btn.innerHTML = '<div>$' + d + ' off</div><div style="font-size:10px;opacity:0.7;">' + (d * 100) + ' pts</div>';
+    btn.dataset.discount = d;
+    btn.style.cssText = 'padding:8px 14px;border:1.5px solid var(--border);border-radius:20px;font-family:DM Sans,sans-serif;font-size:12px;cursor:pointer;background:var(--card-bg);color:var(--ink);transition:all 0.15s;';
+    btn.addEventListener('click', () => selectPointsDiscount(d, btnsEl));
+    btnsEl.appendChild(btn);
+  }
+  selectedPointsDiscount = 0;
+  usePoints = false;
+}
+
+function selectPointsDiscount(amount, btnsEl) {
+  selectedPointsDiscount = amount;
+  usePoints = amount > 0;
+  const btns = btnsEl.querySelectorAll('button');
+  btns.forEach(btn => {
+    const isSelected = (amount === 0 && btn.textContent.includes('No discount')) ||
+                       (btn.dataset.discount && parseInt(btn.dataset.discount) === amount);
+    btn.style.background = isSelected ? 'var(--ink)' : 'var(--card-bg)';
+    btn.style.color = isSelected ? 'var(--gold)' : 'var(--ink)';
+    btn.style.borderColor = isSelected ? 'var(--ink)' : 'var(--border)';
+  });
+  buildCheckoutSummary();
+}
+
+function goToCheckout() {
+  if (cart.length === 0) return;
+  document.getElementById('step-menu').style.display = 'none';
+  document.getElementById('step-checkout').style.display = 'flex';
+  document.getElementById('order-screen-title').textContent = 'Checkout';
+  document.getElementById('order-screen-sub').textContent = 'Review & pay';
+  tipPercent = 20; tipCustom = null;
+  document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('selected'));
+  const def = document.querySelector('.tip-btn[onclick="selectTip(this, 20)"]');
+  if (def) def.classList.add('selected');
+  const cw = document.getElementById('tip-custom-wrap');
+  if (cw) cw.style.display = 'none';
+  fillUserInfo();
+  buildCheckoutSummary();
+  buildPickupSlots();
+  initPointsRedeem();
+  document.getElementById('screen-order').scrollTop = 0;
+}
+
+function backToMenu() { showMenuStep(); }
+
+function buildCheckoutSummary() {
+  const editList = document.getElementById('cart-edit-list');
+  if (editList) {
+    const groups = [];
+    cart.forEach(item => {
+      const lastGroup = groups[groups.length - 1];
+      const isTopping = lastGroup && item.name.startsWith(lastGroup.name + ' + ');
+      if (isTopping) { lastGroup.toppings.push(item); }
+      else { groups.push({ ...item, toppings: [] }); }
+    });
+    window._cartGroups = groups;
+    editList.innerHTML = '';
+    groups.forEach((item, gi) => {
+      const toppingHtml = item.toppings.map(t =>
+        `<div style="display:flex;align-items:center;gap:6px;padding:3px 0 0 36px;font-size:12px;color:var(--muted);">
+          <span>${t.emoji || '🧂'}</span>
+          <span style="flex:1;">${t.name.replace(item.name + ' + ', '')}</span>
+          <span style="color:var(--gold);">+$${parseFloat(t.price).toFixed(2)}</span>
+        </div>`
+      ).join('');
+      const itemTotal = parseFloat(item.price) + item.toppings.reduce((s,t) => s + parseFloat(t.price), 0);
+      const row = document.createElement('div');
+      row.className = 'cart-edit-row';
+      row.style.alignItems = 'flex-start';
+      row.innerHTML = `
+        <div class="cer-emoji" style="margin-top:2px;">${item.emoji}</div>
+        <div class="cer-name" style="flex:1;min-width:0;"><div>${item.name}</div>${toppingHtml}</div>
+        <div class="cer-controls">
+          <button class="cer-del" onclick="removeCartGroup(${gi})" style="padding:6px 10px;border:1px solid #fde8e8;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;">🗑</button>
+        </div>
+        <div class="cer-price">$${itemTotal.toFixed(2)}</div>`;
+      editList.appendChild(row);
+    });
+  }
+  const el = document.getElementById('checkout-summary');
+  if (!el) return;
+  const subtotal    = cart.reduce((s, i) => s + i.price, 0);
+  const platformFee = 1.00;
+  const tax         = subtotal * 0.089;
+  const tip         = getTipAmount(subtotal);
+  const discount    = selectedPointsDiscount || 0;
+  const total       = Math.max(subtotal + platformFee + tax + tip - discount, 0.50);
+  const tipAmountEl = document.getElementById('tip-amount');
+  if (tipAmountEl) tipAmountEl.textContent = 'Tip: $' + tip.toFixed(2);
+  el.innerHTML =
+    '<div class="os-row os-label"><span>Subtotal</span><span>$' + subtotal.toFixed(2) + '</span></div>' +
+    '<div class="os-row os-label"><span>Platform Fee</span><span>$' + platformFee.toFixed(2) + '</span></div>' +
+    '<div class="os-row os-label"><span>Tax (8.9%)</span><span>$' + tax.toFixed(2) + '</span></div>' +
+    '<div class="os-row os-label"><span>Tip</span><span>$' + tip.toFixed(2) + '</span></div>' +
+    (discount ? '<div class="os-row os-label" style="color:var(--gold)"><span>Points Discount</span><span>−$' + discount.toFixed(2) + '</span></div>' : '') +
+    '<div class="os-row total"><span>Total</span><span>$' + total.toFixed(2) + '</span></div>';
+  const payBtn = document.getElementById('pay-btn');
+  if (payBtn) payBtn.textContent = 'Pay $' + total.toFixed(2);
+  if (payBtn) payBtn.style.display = cart.length > 0 ? 'block' : 'none';
+}
+
+function removeCartGroup(gi) {
+  const groups = window._cartGroups || [];
+  const group = groups[gi];
+  if (!group) return;
+  const mainIdx = cart.findIndex(c => c.name === group.name);
+  if (mainIdx === -1) return;
+  const removeCount = 1 + group.toppings.length;
+  cart.splice(mainIdx, removeCount);
+  updateCartBar();
+  buildCheckoutSummary();
+}
+
+function cartQty(name, delta) {
+  if (delta === -1) {
+    const idx = cart.findLastIndex ? cart.findLastIndex(i => i.name === name)
+                                   : [...cart].reverse().findIndex(i => i.name === name);
+    if (idx !== -1) {
+      const realIdx = cart.findLastIndex ? idx : cart.length - 1 - idx;
+      cart.splice(realIdx, 1);
+    }
+  } else {
+    const existing = cart.find(i => i.name === name);
+    if (existing) cart.push({ ...existing });
+  }
+  const total = cart.reduce((s, i) => s + i.price, 0);
+  const cc = document.getElementById('cart-count');
+  const ct = document.getElementById('cart-total');
+  const cb = document.getElementById('cart-bar');
+  if (cc) cc.textContent = cart.length + ' item' + (cart.length !== 1 ? 's' : '');
+  if (ct) ct.textContent = '$' + total.toFixed(2);
+  if (cb) cb.style.display = cart.length > 0 ? 'flex' : 'none';
+  if (cart.length === 0) { backToMenu(); return; }
+  buildCheckoutSummary();
+}
+
+function cartRemove(name) {
+  cart = cart.filter(i => i.name !== name);
+  const total = cart.reduce((s, i) => s + i.price, 0);
+  const cc = document.getElementById('cart-count');
+  const ct = document.getElementById('cart-total');
+  const cb = document.getElementById('cart-bar');
+  if (cc) cc.textContent = cart.length + ' item' + (cart.length !== 1 ? 's' : '');
+  if (ct) ct.textContent = '$' + total.toFixed(2);
+  if (cb) cb.style.display = cart.length > 0 ? 'flex' : 'none';
+  if (cart.length === 0) { backToMenu(); return; }
+  buildCheckoutSummary();
+}
+
+// ─────────────────────────────────
+// MENU
+// ─────────────────────────────────
+function buildMenu(tab) {
+  const list = document.getElementById('menu-list');
+  if (!list) return;
+  Array.from(list.children).forEach(child => { if (child.id !== 'photo-hint') child.remove(); });
+
+  let items = (window.firebaseMenuData && window.firebaseMenuData[tab])
+    ? window.firebaseMenuData[tab].map(savedItem => {
+        const builtIn = (menuData[tab] || []).find(m => m.n === savedItem.n);
+        const fixMultiSelect = (ms) => {
+          if (!ms) return null;
+          return ms.map(g => ({
+            ...g,
+            choices: Array.isArray(g.choices)
+              ? g.choices
+              : (typeof g.choices === 'string' ? g.choices.split('\n').map(s=>s.trim()).filter(Boolean) : [])
+          }));
+        };
+        if (builtIn) {
+          return {
+            ...builtIn,
+            ...savedItem,
+            multiSelect: fixMultiSelect(savedItem.multiSelect) || builtIn.multiSelect || null,
+            options:     savedItem.options || builtIn.options || null,
+          };
+        }
+        return { ...savedItem, multiSelect: fixMultiSelect(savedItem.multiSelect) };
+      })
+    : menuData[tab] || [];
+
+  // ── Hsu's Gourmet subcat map ──
+  const SUBCAT_MAP = {
+    lunch: {
+      apps:      ['Spring Rolls (2)','Vegetable Spring Rolls (2)','Shantung Dumplings (4)','Fried Chicken Dumplings (4)','Vegetable Steamed Dumplings (4)','Beef Satay (4)','Crab Angels (4)','Fried Calamari'],
+      soups:     ['Wonton Soup','Hot & Sour Soup','Egg Drop Soup'],
+      noodles:   ['House Special Lomein','Shrimp Lomein','Chicken Lomein','Vegetable Lomein',"Spicy Anna's Seafood Noodle Soup",'Shantung Black Noodles Jajangmyeon','Pan Fried Hong Kong Noodles','Vegetable Fried Rice','Chicken Fried Rice','Shrimp Fried Rice','Combination Fried Rice'],
+      entrees:   ['Curry Chicken','Spicy Basil Chicken','Hot Pepper Chicken',"General Tsu's Favorite Chicken",'Lemon Chicken','Fried Sesame Chicken','String Beans Szechwan Style with Ground Pork','String Beans Szechwan Style with Chicken','String Beans Szechwan Style with Shrimp','Spicy Basil Beef','Mongolian Beef','Beef with Broccoli','Shrimp with Light Garlic Sauce','Avocado Shrimp','Asparagus with Black Bean Sauce with Shrimp','Asparagus with Black Bean Sauce with Chicken','Walnut Shrimp','Grilled Fresh Salmon Filet','Salt & Pepper Shrimp','Fresh Chilean Sea Bass','Sea Scallop in Black Pepper Sauce','Mixed Vegetables with Fried Tofu',"General Tsu's Tofu with Broccoli"],
+      combo:     ['Imperial Chicken','Sweet & Sour Chicken','Chicken with Mixed Vegetables','Chicken with Broccoli'],
+      beverages: ['Coffee','Jasmine Tea','Sweet Iced Tea','Unsweet Iced Tea','Soft Drinks'],
+    },
+  };
+
+  if (SUBCAT_MAP[tab]) {
+    items = items.map(item => {
+      if (item.subcat) return item;
+      for (const [key, names] of Object.entries(SUBCAT_MAP[tab])) {
+        if (names.includes(item.n)) return { ...item, subcat: key };
+      }
+      return item;
+    });
+  }
+
+  const _sectionConfig =
+    (window._firebaseSections && window._firebaseSections[tab]) ||
+    JSON.parse(localStorage.getItem('prb_menu_sections') || 'null')?.[tab] ||
+    null;
+
+  if (_sectionConfig && _sectionConfig.length > 0) {
+    const _sectionOrder = _sectionConfig.map(s => s.key);
+    items = items.slice().sort((a, b) => {
+      const ai = a.subcat ? _sectionOrder.indexOf(a.subcat) : 9999;
+      const bi = b.subcat ? _sectionOrder.indexOf(b.subcat) : 9999;
+      if (ai !== bi) return ai - bi;
+      return 0;
+    });
+  }
+
+  const hint = document.getElementById('photo-hint');
+  if (hint) hint.style.display = items.some(i => i.img) ? 'block' : 'none';
+  const list2 = document.getElementById('menu-list');
+  if (list2) {
+    Array.from(list2.children).forEach(child => { if (child.id !== 'photo-hint') child.remove(); });
+  }
+
+  if (tab === 'lunch' && !window._lunchAccordion) { window._lunchAccordion = {}; }
+
+  const DEFAULT_SEC_CONFIG = {
+    lunch: [
+      { key:'apps',      emoji:'🥢', label:'Appetizers',      sub:'' },
+      { key:'soups',     emoji:'🍜', label:'Soup',            sub:'' },
+      { key:'noodles',   emoji:'🍚', label:'Noodles & Rice',  sub:'' },
+      { key:'entrees',   emoji:'🍛', label:'Entrees',         sub:'Served with steamed rice or fried rice' },
+      { key:'combo',     emoji:'🍱', label:'Combination',     sub:'Complete with steamed rice or fried rice, egg drop soup and crab angel · No substitution please' },
+      { key:'beverages', emoji:'☕', label:'Beverages',       sub:'' },
+    ],
+  };
+
+  items.forEach((item, idx) => {
+    if (item.subcat) {
+      const prevItem = items[idx - 1];
+      const prevSubcat = prevItem ? prevItem.subcat : null;
+      if (item.subcat !== prevSubcat) {
+        let secLabel = item.subcat;
+        let secEmoji = null;
+        let secSub = null;
+        const _fbSecs = (window._firebaseSections && window._firebaseSections[tab])
+          || JSON.parse(localStorage.getItem('prb_menu_sections') || 'null')?.[tab]
+          || null;
+        const secList = _fbSecs || DEFAULT_SEC_CONFIG[tab] || [];
+        const accSec = secList.find(s => s.key === item.subcat);
+        if (accSec) { secLabel = accSec.label; secEmoji = accSec.emoji; secSub = accSec.sub; }
+
+        const h = document.createElement('div');
+        h.className = 'menu-section-header';
+        h.textContent = (secEmoji ? secEmoji + ' ' : '') + secLabel;
+        if (secSub) {
+          const sub = document.createElement('div');
+          sub.style.cssText = 'font-size:11px;color:var(--muted);font-weight:400;margin-top:2px;';
+          sub.textContent = secSub;
+          h.appendChild(sub);
+        }
+        list.appendChild(h);
+      }
+    }
+
+    const inCart = cart.filter(c => c.name === item.n || c.name.startsWith(item.n + ' — ') || c.name.startsWith(item.n + ' (')).length;
+    const isSoldOut = item.soldOut === true;
+    const div = document.createElement('div');
+    if (isSoldOut) div.style.opacity = '0.55';
+
+    const thumbHtml = item.img
+      ? `<img class="mi-thumb" src="${item.img}" alt="${item.n}" onerror="this.style.display='none'" onclick="openImgModal(this.src,'${item.n.replace(/'/g,"\\'")}')" style="cursor:zoom-in;">`
+      : '<div class="mi-emoji">' + item.e + '</div>';
+
+    const priceDisplay = isSoldOut
+      ? 'SOLD OUT'
+      : item.p === 0
+        ? 'Market Price'
+        : item.options
+          ? 'from $' + Math.min(...item.options.map(o => o.p)).toFixed(2)
+          : '$' + parseFloat(item.p).toFixed(2);
+
+    const optionsHtml = item.options ? `
+      <div class="mi-options" style="display:none;">
+        ${item.options.map(opt =>
+          `<div class="mi-opt-row" data-name="${item.n} — ${opt.n}" data-price="${opt.p}" data-emoji="${item.e}">
+            <span class="mi-opt-name">${opt.n}</span>
+            <span class="mi-opt-price">$${opt.p.toFixed(2)}</span>
+            <button class="mi-opt-btn">+</button>
+          </div>`
+        ).join('')}
+      </div>` : '';
+
+    div.innerHTML =
+      '<div class="mi-main">' +
+        thumbHtml +
+        '<div class="mi-info">' +
+          '<div class="mi-name">' + item.n + '</div>' +
+          '<div class="mi-desc">' + (item.d || '') + '</div>' +
+          (isSoldOut ? '<div style="font-size:12px;font-weight:700;color:#e74c3c;letter-spacing:0.05em;">SOLD OUT</div>' : '<div class="mi-price">' + priceDisplay + '</div>') +
+        '</div>' +
+        (isSoldOut
+          ? '<button class="mi-add" disabled style="opacity:0.3;cursor:not-allowed;pointer-events:none;">✕</button>'
+          : item.options
+          ? '<button class="mi-expand-btn">▾</button>'
+          : inCart
+            ? '<button class="mi-add" style="position:relative;">+<span style="position:absolute;top:-6px;right:-6px;background:var(--gold);color:var(--ink);border-radius:50%;width:16px;height:16px;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;">' + inCart + '</span></button>'
+            : '<button class="mi-add">+</button>'
+        ) +
+      '</div>' +
+      optionsHtml;
+
+    if (!isSoldOut) {
+      if (item.toppings && item.toppings.length && !item.options) {
+        const addBtn = div.querySelector('.mi-add');
+        if (addBtn) addBtn.addEventListener('click', () => openToppingModal(item));
+      } else if (item.multiSelect) {
+        const addBtn = div.querySelector('.mi-add');
+        if (addBtn) addBtn.addEventListener('click', () => openMultiSelectModal(item));
+      } else if (item.options) {
+        const expandBtn = div.querySelector('.mi-expand-btn');
+        if (expandBtn) expandBtn.addEventListener('click', function() {
+          const opts = div.querySelector('.mi-options');
+          const isOpen = opts.style.display === 'block';
+          opts.style.display = isOpen ? 'none' : 'block';
+          this.textContent = isOpen ? '▾' : '▴';
+          this.classList.toggle('active', !isOpen);
+        });
+        div.querySelectorAll('.mi-opt-row').forEach(row => {
+          row.querySelector('.mi-opt-btn').addEventListener('click', function() {
+            if (item.toppings && item.toppings.length) {
+              const optItem = { ...item, n: row.dataset.name, p: parseFloat(row.dataset.price), e: row.dataset.emoji };
+              openToppingModal(optItem);
+            } else {
+              addToCart(row.dataset.name, parseFloat(row.dataset.price), row.dataset.emoji, null);
+              this.textContent = '✓'; this.classList.add('added');
+              setTimeout(() => { this.textContent = '+'; this.classList.remove('added'); }, 800);
+              updateCartBar();
+            }
+          });
+        });
+      } else {
+        const addBtn = div.querySelector('.mi-add');
+        if (addBtn) {
+          addBtn.addEventListener('click', () => {
+            addToCart(item.n, parseFloat(item.p), item.e, null);
+            updateCartBar();
+            buildMenu(document.querySelector('.menu-tab.active')?.getAttribute('onclick')?.match(/'(\w+)'/)?.[1] || 'appetizers');
+          });
+        }
+      }
+    }
+    list.appendChild(div);
+  });
+}
+
+function updateCartBar() {
+  const total = cart.reduce((s, i) => s + i.price, 0);
+  const cc = document.getElementById('cart-count');
+  const ct = document.getElementById('cart-total');
+  const cb = document.getElementById('cart-bar');
+  if (cc) cc.textContent = cart.length + ' item' + (cart.length !== 1 ? 's' : '');
+  if (ct) ct.textContent = '$' + total.toFixed(2);
+  if (cb) cb.style.display = cart.length > 0 ? 'flex' : 'none';
+}
+
+function isLunchHours() {
+  const now = new Date();
+  const day = now.getDay();
+  if (day === 0 || day === 6) return false;
+  const mins = now.getHours() * 60 + now.getMinutes();
+  return mins < 14 * 60;
+}
+
+window.buildGuestMenuTabs = function(cats) {
+  const container = document.getElementById('menu-tabs-container');
+  if (!container || !cats || !cats.length) return;
+  container.innerHTML = cats.map((cat, i) =>
+    `<div class="menu-tab${i===0?' active':''}" onclick="switchTab(this,'${cat.key}')">${cat.emoji} ${cat.name}</div>`
+  ).join('');
+  if (cats.length > 0) buildMenu(cats[0].key);
+};
+
+function switchTab(el, tab) {
+  if (tab === 'lunch' && !isLunchHours()) { showLunchClosedPopup(); return; }
+  document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  buildMenu(tab);
+  const notice = document.getElementById('lunch-notice');
+  if (notice) notice.style.display = tab === 'lunch' ? 'block' : 'none';
+}
+
+function openImgModal(src, name) {
+  let modal = document.getElementById('img-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'img-modal';
+    modal.style.cssText = 'display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;';
+    modal.onclick = () => { modal.style.display = 'none'; };
+    modal.innerHTML = `
+      <div style="position:relative;max-width:360px;width:100%;" onclick="event.stopPropagation()">
+        <img id="img-modal-img" src="" style="width:100%;border-radius:16px;display:block;box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+        <div id="img-modal-name" style="text-align:center;color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;margin-top:12px;"></div>
+        <button onclick="document.getElementById('img-modal').style.display='none'"
+          style="position:absolute;top:-12px;right:-12px;width:30px;height:30px;border-radius:50%;background:#fff;border:none;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);">✕</button>
+      </div>`;
+    document.body.appendChild(modal);
+  }
+  document.getElementById('img-modal-img').src = src;
+  document.getElementById('img-modal-name').textContent = name;
+  modal.style.display = 'flex';
+}
+
+function showLunchClosedPopup() {
+  const now = new Date();
+  const day = now.getDay();
+  const isWeekend = day === 0 || day === 6;
+  const msg = isWeekend
+    ? 'Lunch is served Monday–Friday only.\n\nWe\'re open for dinner tonight!'
+    : 'Lunch is served 11:30 AM – 2:00 PM,\nMonday through Friday.\n\nPlease check back during lunch hours!';
+  document.getElementById('lunch-closed-msg').textContent = msg;
+  const popup = document.getElementById('lunch-closed-popup');
+  if (popup) popup.style.display = 'flex';
+}
+
+function addToCart(name, price, emoji, btn) {
+  cart.push({ name, price, emoji });
+  if (btn) {
+    const count = cart.filter(c => c.name === name).length;
+    btn.classList.add('added');
+    btn.textContent = '✓ ' + count;
+  }
+  updateCartBar();
+}
+
+function prefillReservationForm() {
+  const user    = getUser();
+  const profile = loadProfile();
+  const name    = (user ? (user.firstName + ' ' + user.lastName).trim() : '') || (profile.firstName + ' ' + profile.lastName).trim();
+  const phone   = user?.phone || profile.phone || '';
+  const email   = user?.email || profile.email || '';
+  const nameEl  = document.getElementById('res-name');
+  const phoneEl = document.getElementById('res-phone');
+  const emailEl = document.getElementById('res-email');
+  if (nameEl && !nameEl.value)   nameEl.value  = name;
+  if (phoneEl && !phoneEl.value) phoneEl.value = phone;
+  if (emailEl && !emailEl.value) emailEl.value = email;
+}
+
+// ─────────────────────────────────
+// PROFILE
+// ─────────────────────────────────
+const PROFILE_KEY = 'prb_profile';
+
+function loadProfile() {
+  try { return JSON.parse(localStorage.getItem(PROFILE_KEY)) || {}; }
+  catch(e) { return {}; }
+}
+
+function saveProfile() {
+  const user = getUser();
+  const profile = {
+    firstName: document.getElementById('pf-firstname').value.trim(),
+    lastName:  document.getElementById('pf-lastname').value.trim(),
+    email:     document.getElementById('pf-email').value.trim() || user?.email || '',
+    phone:     document.getElementById('pf-phone').value.trim(),
+    address:   document.getElementById('pf-address').value.trim(),
+    city:      document.getElementById('pf-city').value.trim(),
+    state:     document.getElementById('pf-state').value.trim(),
+    zip:       document.getElementById('pf-zip').value.trim(),
+  };
+  localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+  const updated = { ...(user || {}), ...profile };
+  localStorage.setItem('prb_user', JSON.stringify(updated));
+  updateProfileUI();
+  updateAuthUI();
+  showToastMsg('✅ Profile saved!');
+  const fbUrl = window.location.origin + '/js/firebase-menu.js';
+  import(fbUrl).then(({ saveProfileToFirebase, savePointsToFirebase }) => {
+    saveProfileToFirebase(profile).then(ok => {
+      if (ok) showToastMsg('✅ Profile saved & synced!');
+    }).catch(() => {});
+    const u = getUser();
+    if (u?.email) {
+      savePointsToFirebase(u.email, u.points || 0, u.pointsLog || [], u.tierPoints || 0).catch(() => {});
+    }
+  }).catch(() => {});
+}
+
+function updateProfileUI() {
+  const user    = getUser();
+  const profile = loadProfile();
+  const data = {
+    firstName: profile.firstName || user?.firstName || '',
+    lastName:  profile.lastName  || user?.lastName  || '',
+    email:     profile.email     || user?.email     || '',
+    phone:     profile.phone     || user?.phone     || '',
+    address:   profile.address   || '',
+    city:      profile.city      || '',
+    state:     profile.state     || '',
+    zip:       profile.zip       || '',
+  };
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+  set('pf-firstname', data.firstName); set('pf-lastname',  data.lastName);
+  set('pf-email',     data.email);     set('pf-phone',     data.phone);
+  set('pf-address',   data.address);   set('pf-city',      data.city);
+  set('pf-state',     data.state);     set('pf-zip',       data.zip);
+  const fullName = [data.firstName, data.lastName].filter(Boolean).join(' ');
+  const avatarEl = document.getElementById('profile-avatar');
+  const nameEl   = document.getElementById('profile-name-display');
+  const emailEl  = document.getElementById('profile-email-display');
+  if (avatarEl) avatarEl.textContent = fullName ? fullName.slice(0,1).toUpperCase() : '👤';
+  if (nameEl)   nameEl.textContent   = fullName || 'Guest';
+  if (emailEl)  emailEl.textContent  = data.email || 'Not signed in';
+}
+
+function signOutAndClear() {
+  localStorage.removeItem('prb_user');
+  updateAuthUI();
+  goTo('home');
+  showToastMsg('Signed out');
+}
+
+function showToastMsg(msg) {
+  let t = document.getElementById('app-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'app-toast';
+    t.style.cssText = 'position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--gold);padding:10px 20px;border-radius:20px;font-size:13px;z-index:9999;transition:opacity 0.3s;';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  setTimeout(() => { t.style.opacity = '0'; }, 2500);
+}
+
+// ─────────────────────────────────
+// PICKUP TIME
+// ─────────────────────────────────
+const PICKUP_KEY = 'prb_pickup_settings';
+let selectedPickupTime = null;
+
+function getPickupSettings() {
+  try { return JSON.parse(localStorage.getItem(PICKUP_KEY)) || { prepTime:30, allowSchedule:true, maxAdvance:4, open:'11:30', close:'21:00' }; }
+  catch(e) { return { prepTime:30, allowSchedule:true, maxAdvance:4, open:'11:30', close:'21:00' }; }
+}
+
+function buildPickupSlots() {
+  const container = document.getElementById('pickup-time-slots');
+  if (!container) return;
+  container.innerHTML = '';
+  const s = getPickupSettings();
+  const now = new Date();
+  const prepMs = s.prepTime * 60 * 1000;
+  const earliest = new Date(now.getTime() + prepMs);
+  earliest.setMinutes(Math.ceil(earliest.getMinutes() / 15) * 15, 0, 0);
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:relative;';
+  const select = document.createElement('select');
+  select.id = 'pickup-time-select';
+  select.className = 'form-input';
+  select.style.cssText = 'width:100%;appearance:none;-webkit-appearance:none;padding-right:36px;cursor:pointer;';
+  const asapOpt = document.createElement('option');
+  asapOpt.value = 'ASAP (~' + s.prepTime + ' min)';
+  asapOpt.textContent = '⚡ ASAP (~' + s.prepTime + ' min)';
+  select.appendChild(asapOpt);
+  if (s.allowSchedule !== false) {
+    const windows = [
+      { open: 11 * 60 + 30, close: 14 * 60 },
+      { open: 17 * 60,      close: 21 * 60 + 15 },
+    ];
+    const nowMins = now.getHours() * 60 + now.getMinutes();
+    const isMorning  = nowMins < 11 * 60;
+    const isBreakTime = nowMins >= 14 * 60 && nowMins < 17 * 60;
+    if (isBreakTime) {
+      select.innerHTML = '';
+      const noAsap = document.createElement('option');
+      noAsap.value = ''; noAsap.textContent = '🕐 Select pickup time';
+      noAsap.disabled = true; noAsap.selected = true;
+      select.appendChild(noAsap);
+    }
+    let t;
+    if (isMorning) {
+      t = (() => { const d = new Date(now); d.setHours(11, 30, 0, 0); return d; })();
+    } else if (isBreakTime) {
+      t = (() => { const d = new Date(now); d.setHours(17, 0, 0, 0); return d; })();
+    } else {
+      t = new Date(earliest.getTime() + 15 * 60 * 1000);
+    }
+    while (true) {
+      const totalMins = t.getHours() * 60 + t.getMinutes();
+      const inWindow = windows.some(w => totalMins >= w.open && totalMins <= w.close);
+      if (inWindow) {
+        const opt = document.createElement('option');
+        const tEnd = new Date(t.getTime() + 15 * 60 * 1000);
+        const labelStart = t.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+        const labelEnd   = tEnd.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+        opt.value = labelStart + ' – ' + labelEnd;
+        opt.textContent = '🕐 ' + labelStart + ' – ' + labelEnd;
+        select.appendChild(opt);
+      }
+      t = new Date(t.getTime() + 15 * 60 * 1000);
+      if (t.getHours() >= 22) break;
+    }
+  }
+  select.addEventListener('change', () => { selectedPickupTime = { label: select.value }; });
+  const arrow = document.createElement('div');
+  arrow.style.cssText = 'position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none;color:var(--gold);font-size:14px;';
+  arrow.textContent = '▾';
+  wrap.appendChild(select); wrap.appendChild(arrow);
+  container.appendChild(wrap);
+  selectedPickupTime = { label: asapOpt.value };
+}
+
+// ─────────────────────────────────
+// RESERVATION
+// ─────────────────────────────────
+function buildDates() {
+  const grid = document.getElementById('date-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const today = new Date();
+  for (let i = 0; i < 30; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    const cell = document.createElement('div');
+    cell.className = 'date-cell' + (i === 0 ? ' selected' : '');
+    cell.dataset.date = d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+    cell.innerHTML =
+      '<div class="dc-day">' + d.toLocaleDateString('en-US',{weekday:'short'}) + '</div>' +
+      '<div class="dc-num">' + d.getDate() + '</div>' +
+      '<div class="dc-mon">' + d.toLocaleDateString('en-US',{month:'short'}) + '</div>';
+    cell.addEventListener('click', function() {
+      document.querySelectorAll('.date-cell').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+    grid.appendChild(cell);
+  }
+  buildTimeSlots();
+}
+
+function buildTimeSlots() {
+  const grid = document.getElementById('time-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+  const slots = [];
+  for (let h = 11; h <= 13; h++) {
+    for (let m = 0; m < 60; m += 15) {
+      if (h === 11 && m < 30) continue;
+      if (h === 13 && m > 30) continue;
+      slots.push({ h, m, period: 'Lunch' });
+    }
+  }
+  for (let h = 17; h <= 20; h++) {
+    for (let m = 0; m < 60; m += 15) {
+      if (h === 20 && m > 30) continue;
+      slots.push({ h, m, period: 'Dinner' });
+    }
+  }
+  let lastPeriod = '';
+  let firstChip = true;
+  slots.forEach(slot => {
+    if (slot.period !== lastPeriod) {
+      const header = document.createElement('div');
+      header.style.cssText = 'width:100%;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;padding:8px 0 4px;flex-basis:100%;';
+      header.textContent = slot.period;
+      grid.appendChild(header);
+      lastPeriod = slot.period;
+    }
+    const d = new Date(); d.setHours(slot.h, slot.m);
+    const label = d.toLocaleTimeString('en-US', { hour:'numeric', minute:'2-digit' });
+    const chip = document.createElement('div');
+    chip.className = 'time-chip' + (firstChip ? ' selected' : '');
+    chip.textContent = label;
+    chip.addEventListener('click', function() {
+      document.querySelectorAll('.time-chip').forEach(c => c.classList.remove('selected'));
+      this.classList.add('selected');
+    });
+    grid.appendChild(chip);
+    firstChip = false;
+  });
+}
+
+async function confirmReservation() {
+  const user    = getUser();
+  const profile = loadProfile();
+  const dateEl  = document.querySelector('.date-cell.selected');
+  const timeEl  = document.querySelector('.time-chip.selected');
+  const guests  = document.getElementById('guest-count')?.textContent || '2';
+  const special = document.getElementById('res-special')?.value || '';
+  const userFullName = user ? [user.firstName, user.lastName].filter(s => s && s !== 'undefined').join(' ').trim() : '';
+  const profileFullName = [profile?.firstName, profile?.lastName].filter(s => s && s !== 'undefined').join(' ').trim();
+  const resNameInput = document.getElementById('res-name')?.value.trim() || '';
+  const resName = resNameInput || userFullName || profileFullName || '';
+  if (!resName) { alert('Please enter your name'); return; }
+  const resPhone = document.getElementById('res-phone')?.value.trim() || user?.phone || (profile.phone !== 'undefined' ? profile.phone : '') || '';
+  const resEmail = document.getElementById('res-email')?.value.trim() || user?.email || (profile.email !== 'undefined' ? profile.email : '') || '';
+  const reservation = {
+    id: Date.now().toString(),
+    date: dateEl ? dateEl.dataset.date || dateEl.textContent.trim() : new Date().toLocaleDateString(),
+    time: timeEl ? timeEl.textContent.trim() : '6:00 PM',
+    guests: parseInt(guests),
+    special, name: resName, phone: resPhone, email: resEmail,
+    status: 'confirmed', createdAt: Date.now(),
+  };
+  try {
+    const existing = JSON.parse(localStorage.getItem('prb_reservations') || '[]');
+    existing.unshift(reservation);
+    localStorage.setItem('prb_reservations', JSON.stringify(existing));
+  } catch(e) {}
+  try {
+    const fbUrl = window.location.origin + '/js/firebase-menu.js';
+    import(fbUrl).then(({ saveReservationToFirebase }) => {
+      saveReservationToFirebase(reservation).catch(e => console.warn('Reservation save failed:', e));
+    });
+  } catch(e) {}
+  fetch('/api/notify-order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      orderItems: [{ name: 'Table for ' + reservation.guests + ' guests', price: 0, emoji: '🗓️' }],
+      subtotal: 0, tax: 0, tip: 0, total: 0,
+      customer: { name: reservation.name, email: reservation.email, phone: reservation.phone },
+      orderId: reservation.id,
+      pickupTime: reservation.date + ' at ' + reservation.time,
+      isReservation: true, special: reservation.special,
+      notifEmails: getNotifEmails(), notifPhones: getNotifPhones(),
+      guestSmsConsent: document.getElementById('sms-consent-res')?.checked || false,
+    }),
+  }).then(r => r.json()).then(d => console.log('Reservation notification sent:', d)).catch(e => console.warn(e));
+  showSuccess('reservation');
+}
+
+function buildMyReservations() {
+  const el = document.getElementById('my-reservations-list');
+  if (!el) return;
+  let reservations = [];
+  try { reservations = JSON.parse(localStorage.getItem('prb_reservations') || '[]'); } catch(e) {}
+  if (!reservations.length) {
+    el.innerHTML = '<div style="font-size:13px;color:var(--muted);padding:12px 0;text-align:center;">No reservations yet.</div>';
+    return;
+  }
+  el.innerHTML = reservations.map(r => {
+    const isUpcoming = new Date(r.createdAt) >= (Date.now() - 86400000 * 1);
+    return `<div style="background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div>
+          <div style="font-size:14px;font-weight:600;">${r.date}</div>
+          <div style="font-size:13px;color:var(--gold);margin-top:2px;">${r.time} · ${r.guests} guests</div>
+        </div>
+        <div style="font-size:11px;padding:4px 10px;border-radius:20px;background:${isUpcoming ? 'rgba(200,169,110,0.12)' : 'var(--bone)'};color:${isUpcoming ? 'var(--gold)' : 'var(--muted)'};">
+          ${isUpcoming ? '✦ Upcoming' : 'Past'}
+        </div>
+      </div>
+      ${r.special ? `<div style="font-size:12px;color:var(--muted);">📝 ${r.special}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function changeGuests(delta) {
+  guestCount = Math.max(1, Math.min(20, guestCount + delta));
+  const el = document.getElementById('guest-count');
+  if (el) el.textContent = guestCount;
+}
+
+function selectTime(el) {
+  document.querySelectorAll('.time-chip').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// ─────────────────────────────────
+// TIP
+// ─────────────────────────────────
+function selectTip(el, pct) {
+  document.querySelectorAll('.tip-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  const customWrap = document.getElementById('tip-custom-wrap');
+  if (el.id === 'tip-custom-btn') {
+    tipPercent = 0; tipCustom = 0;
+    if (customWrap) customWrap.style.display = 'flex';
+    const inp = document.getElementById('tip-custom-input');
+    if (inp) { inp.value = ''; inp.focus(); }
+  } else if (el.id === 'tip-no-btn') {
+    tipPercent = 0; tipCustom = null;
+    if (customWrap) customWrap.style.display = 'none';
+  } else {
+    tipPercent = pct; tipCustom = null;
+    if (customWrap) customWrap.style.display = 'none';
+  }
+  buildCheckoutSummary();
+}
+
+function setCustomTip(val) { tipCustom = parseFloat(val) || 0; buildCheckoutSummary(); }
+function getTipAmount(subtotal) { if (tipCustom !== null) return tipCustom; return subtotal * (tipPercent / 100); }
+
+function selectPM(el) {
+  document.querySelectorAll('.pm-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+function togglePoints() {
+  const user = getUser();
+  const pts = user ? (user.points || 0) : 0;
+  const needed = 500;
+  if (!usePoints && pts < needed) { showToastMsg('⚠️ You need 500 pts ($5) minimum to use points'); return; }
+  usePoints = !usePoints;
+  const t = document.getElementById('pt-toggle');
+  if (t) t.classList.toggle('on', usePoints);
+  buildCheckoutSummary();
+}
+
+// ─────────────────────────────────
+// REWARDS
+// ─────────────────────────────────
+const TIERS = [
+  { name:'Bronze',   icon:'🥉', min:0,    max:999,  rate:2,   color:'#cd7f32' },
+  { name:'Silver',   icon:'🥈', min:1000, max:1999, rate:2.5, color:'#a8a9ad' },
+  { name:'Gold',     icon:'🥇', min:2000, max:2999, rate:3,   color:'#c8a96e' },
+  { name:'Platinum', icon:'💎', min:3000, max:99999,rate:4,   color:'#5c6bc0' },
+];
+
+function getNotifEmails() {
+  try {
+    const s = JSON.parse(localStorage.getItem('prb_notif_settings') || '{}');
+    if (s.emails && s.emails.length) return s.emails;
+  } catch(e) {}
+  if (window._notifSettings?.emails?.length) return window._notifSettings.emails;
+  return ['yshahn@gmail.com', 'ymhahn@gmail.com'];
+}
+function getNotifPhones() {
+  try {
+    const s = JSON.parse(localStorage.getItem('prb_notif_settings') || '{}');
+    if (s.phones && s.phones.length) return s.phones;
+  } catch(e) {}
+  if (window._notifSettings?.phones?.length) return window._notifSettings.phones;
+  return ['7705008420', '6788629389'];
+}
+
+function getTierPoints(user) { return user?.tierPoints !== undefined ? user.tierPoints : (user?.points || 0); }
+function getTier(points) { return TIERS.slice().reverse().find(t => points >= t.min) || TIERS[0]; }
+function getEarnRate(user) { const tp = getTierPoints(user); return getTier(tp).rate; }
+
+function checkYearlyReset() {
+  const user = getUser();
+  if (!user) return;
+  const now = new Date();
+  const lastReset = user.lastReset ? new Date(user.lastReset) : null;
+  const needsReset = !lastReset || lastReset.getFullYear() < now.getFullYear();
+  if (needsReset) {
+    const prevTier = getTier(user.tierPoints || 0).name;
+    user.tierPoints = 0;
+    user.lastReset = now.toISOString();
+    user.pointsLog = user.pointsLog || [];
+    user.pointsLog.push({ desc: 'Annual Tier Reset (was ' + prevTier + ') → Bronze', pts: 0, date: Date.now() });
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+    const fbUrl = window.location.origin + '/js/firebase-menu.js';
+    import(fbUrl).then(({ savePointsToFirebase }) => {
+      savePointsToFirebase(user.email, user.points, user.pointsLog, user.tierPoints).catch(() => {});
+    }).catch(() => {});
+  }
+}
+
+function buildRewardsScreen() {
+  checkYearlyReset();
+  const user = getUser();
+  const points = user ? (user.points || 0) : 0;
+  const tierPts = user?.tierPoints !== undefined ? user.tierPoints : points;
+  const tier = getTier(tierPts);
+  const nextTier = TIERS.find(t => t.min > tierPts);
+  const rhPoints    = document.getElementById('rh-points');
+  const rhSub       = document.getElementById('rh-sub');
+  const rhCashValue = document.getElementById('rh-cash-value');
+  if (rhPoints)    rhPoints.textContent    = points.toLocaleString();
+  if (rhSub)       rhSub.textContent       = user ? tier.icon + ' ' + tier.name + ' · ' + tier.rate + '% earn rate' : 'Sign in to view your points';
+  if (rhCashValue) rhCashValue.textContent = '$' + (points / 100).toFixed(2);
+  const tiersEl = document.getElementById('rewards-tiers');
+  if (tiersEl) {
+    tiersEl.innerHTML = TIERS.map(t => {
+      const isActive = getTier(tierPts).name === t.name;
+      const pct = t.name === 'Platinum' ? 100 : Math.min(100, ((tierPts - t.min) / (t.max - t.min + 1)) * 100);
+      return '<div style="background:' + (isActive ? 'var(--ink)' : 'var(--card-bg)') + ';border:1px solid ' + (isActive ? 'var(--gold)' : 'var(--border)') + ';border-radius:12px;padding:14px 16px;margin-bottom:8px;">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:' + (isActive ? '8' : '0') + 'px;">' +
+          '<div style="display:flex;align-items:center;gap:8px;">' +
+            '<div style="font-size:20px;">' + t.icon + '</div>' +
+            '<div><div style="font-size:13px;font-weight:600;color:' + (isActive ? '#fff' : 'var(--ink)') + ';">' + t.name + '</div>' +
+            '<div style="font-size:11px;color:' + (isActive ? 'rgba(255,255,255,0.6)' : 'var(--muted)') + ';">' + (t.min === 0 ? '0' : t.min.toLocaleString()) + (t.name === 'Platinum' ? '+' : '–' + t.max.toLocaleString()) + ' pts</div></div>' +
+          '</div>' +
+          '<div style="font-size:15px;font-weight:700;color:var(--gold);">' + t.rate + '%</div>' +
+        '</div>' +
+        (isActive && nextTier ? '<div style="background:rgba(255,255,255,0.1);border-radius:4px;height:4px;overflow:hidden;"><div style="width:' + pct + '%;height:100%;background:var(--gold);border-radius:4px;"></div></div><div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:4px;">' + (nextTier.min - tierPts) + ' pts to ' + nextTier.name + '</div>' : '') +
+      '</div>';
+    }).join('');
+  }
+  const resetEl = document.getElementById('rewards-reset');
+  if (resetEl) {
+    const now = new Date();
+    const nextJan = new Date(now.getFullYear() + 1, 0, 1);
+    const daysLeft = Math.ceil((nextJan - now) / 86400000);
+    resetEl.textContent = '⏱ Tier resets to Bronze on Jan 1 · ' + daysLeft + ' days remaining';
+  }
+  const history = document.getElementById('points-history');
+  if (history && user) {
+    const log = user.pointsLog || [];
+    if (!log.length) {
+      history.innerHTML = '<div style="padding:20px;text-align:center;color:var(--muted);font-size:13px;">No activity yet. Place an order to earn points!</div>';
+    } else {
+      history.innerHTML = log.slice().reverse().map(entry =>
+        '<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);">' +
+          '<div><div style="font-size:13px;font-weight:500;">' + entry.desc + '</div>' +
+          '<div style="font-size:11px;color:var(--muted);">' + new Date(entry.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) + '</div></div>' +
+          '<div style="font-size:15px;font-weight:600;color:' + (entry.pts > 0 ? 'var(--gold)' : '#c0392b') + ';">' + (entry.pts > 0 ? '+' : '') + entry.pts + ' pts</div>' +
+        '</div>'
+      ).join('');
+    }
+  }
+}
+
+function rateStar(n) { document.querySelectorAll('.star').forEach((s,i) => s.classList.toggle('lit', i < n)); }
+function toggleRC(el) { el.classList.toggle('selected'); }
+
+// ─────────────────────────────────
+// STRIPE PAYMENT
+// ─────────────────────────────────
+async function startStripeCheckout() {
+  if (cart.length === 0) { alert('Your cart is empty.'); return; }
+  const nowMins = new Date().getHours() * 60 + new Date().getMinutes();
+  const isBreakTime = nowMins >= 14 * 60 && nowMins < 17 * 60;
+  const select = document.getElementById('pickup-time-select');
+  if (isBreakTime && select && (!select.value || select.value === '')) {
+    alert('Please select a pickup time to continue.');
+    select.focus(); return;
+  }
+  const user = getUser();
+  if (!user) {
+    const firstName = (document.getElementById('gi-firstname') || {}).value.trim();
+    const email     = (document.getElementById('gi-email')     || {}).value.trim();
+    const phone     = (document.getElementById('gi-phone')     || {}).value.trim();
+    if (!firstName) { alert('Please enter your first name to continue.'); document.getElementById('gi-firstname')?.focus(); return; }
+    if (!email || !email.includes('@')) { alert('Please enter a valid email address to continue.'); document.getElementById('gi-email')?.focus(); return; }
+    if (!phone || phone.replace(/\D/g,'').length < 10) { alert('Please enter a valid phone number to continue.'); document.getElementById('gi-phone')?.focus(); return; }
+  }
+  const payBtn = document.getElementById('pay-btn');
+  if (payBtn) { payBtn.textContent = 'Processing...'; payBtn.disabled = true; }
+  const firstName = (document.getElementById('gi-firstname') || {}).value || '';
+  const lastName  = (document.getElementById('gi-lastname')  || {}).value || '';
+  const email     = (document.getElementById('gi-email')     || {}).value || '';
+  const items = cart.map(item => ({ name: item.name, price: item.price, quantity: 1 }));
+  const subtotal    = cart.reduce((s, i) => s + i.price, 0);
+  const platformFee = 1.00;
+  const tax         = subtotal * 0.089;
+  const tip         = getTipAmount(subtotal);
+  const discount    = selectedPointsDiscount || 0;
+  const total       = Math.max(subtotal + platformFee + tax + tip - discount, 0.50);
+  try {
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items, customerEmail: email, customerName: (firstName + ' ' + lastName).trim(), usePoints, pointsDiscount: selectedPointsDiscount || 0, tip }),
+    });
+    const data = await res.json();
+    if (data.url) {
+      const smsConsent = document.getElementById('sms-consent')?.checked || false;
+      const specialRequest = document.getElementById('checkout-special-request')?.value.trim() || '';
+      const carModel = document.getElementById('car-model')?.value.trim() || '';
+      const carColor = document.getElementById('car-color')?.value.trim() || '';
+      localStorage.setItem('prb_pending_order', JSON.stringify({
+        orderItems: cart.map(i => ({ name: i.name, price: i.price, emoji: i.emoji })),
+        subtotal, tax, tip, total,
+        pickupTime: selectedPickupTime ? selectedPickupTime.label : 'ASAP',
+        customer: { name: (firstName + ' ' + lastName).trim(), email, phone: (document.getElementById('gi-phone') || {}).value || '' },
+        orderId: Date.now().toString().slice(-6),
+        smsConsent, specialRequest,
+        pointsDiscount: selectedPointsDiscount || 0,
+        pickupType: pickupType || 'instore',
+        carModel, carColor,
+      }));
+      window.location.href = data.url;
+    } else { throw new Error(data.error || 'Failed to create checkout session'); }
+  } catch (err) {
+    console.error('Payment error:', err);
+    alert('Payment error: ' + err.message);
+    if (payBtn) { payBtn.textContent = 'Pay $' + total.toFixed(2); payBtn.disabled = false; }
+  }
+}
+
+function checkPaymentResult() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('payment') === 'success') {
+    cart = [];
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('success-screen').classList.add('active');
+    document.getElementById('bottom-nav').style.display = 'none';
+    document.getElementById('success-icon').textContent  = '✅';
+    document.getElementById('success-title').textContent = 'Payment Complete!';
+    document.getElementById('success-msg').textContent   = 'Thank you for your order!\nWe will have it ready soon.';
+    document.getElementById('earned-pts').textContent    = '+pts earned';
+    const pendingOrder = localStorage.getItem('prb_pending_order');
+    if (pendingOrder) {
+      try {
+        const orderData = JSON.parse(pendingOrder);
+        if (orderData.pickupTime) {
+          document.getElementById('success-msg').textContent = 'Thank you for your order!\n🕐 Pickup ready: ' + orderData.pickupTime;
+        }
+        fetch('/api/notify-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            ...orderData,
+            notifEmails: getNotifEmails(), notifPhones: getNotifPhones(),
+            guestSmsConsent: orderData.smsConsent,
+            specialRequest: orderData.specialRequest || '',
+            pickupType: orderData.pickupType || 'instore',
+            carModel: orderData.carModel || '', carColor: orderData.carColor || '',
+          }),
+        }).then(r => r.json()).then(d => console.log('Notification sent:', d)).catch(e => console.warn('Notify error:', e));
+
+        checkYearlyReset();
+        const _user = getUser();
+        const _subtotal = parseFloat(orderData.subtotal) || 0;
+        if (_user && _user.email) {
+          const _earnRate = getEarnRate(_user);
+          const _earned = Math.floor(_subtotal * _earnRate);
+          const _used = orderData.pointsDiscount ? Math.round(parseFloat(orderData.pointsDiscount) * 100) : 0;
+          _user.points = Math.max(0, (_user.points || 0) - _used + _earned);
+          _user.tierPoints = (_user.tierPoints || 0) + _earned;
+          _user.pointsLog = _user.pointsLog || [];
+          if (_used > 0) _user.pointsLog.push({ desc: 'Points redeemed ($' + parseFloat(orderData.pointsDiscount).toFixed(2) + ' off)', pts: -_used, date: Date.now() });
+          if (_earned > 0) _user.pointsLog.push({ desc: 'Order #' + (orderData.orderId || ''), pts: _earned, date: Date.now() });
+          localStorage.setItem(USER_KEY, JSON.stringify(_user));
+          const _earnedEl = document.getElementById('earned-pts');
+          if (_earnedEl) {
+            if (_earned > 0 && _used > 0) { _earnedEl.textContent = '+' + _earned + ' pts earned · −' + _used + ' pts used'; }
+            else if (_earned > 0) { _earnedEl.textContent = '+' + _earned + ' pts earned'; }
+            else { _earnedEl.textContent = '−' + _used + ' pts used'; }
+          }
+          const _earnedBadge = document.querySelector('.earned-badge');
+          if (_earnedBadge) _earnedBadge.style.display = 'block';
+          updateAuthUI();
+          const _fbUrl = window.location.origin + '/js/firebase-menu.js';
+          const _savedPoints = _user.points;
+          const _savedLog    = [...(_user.pointsLog || [])];
+          const _savedTier   = _user.tierPoints;
+          const _saveWithRetry = (attempt) => {
+            import(_fbUrl).then(({ saveOrderToFirebase, savePointsToFirebase }) => {
+              saveOrderToFirebase(orderData).catch(() => {});
+              savePointsToFirebase(_user.email, _savedPoints, _savedLog, _savedTier)
+                .then(ok => { if (!ok && attempt < 3) setTimeout(() => _saveWithRetry(attempt + 1), 1000 * attempt); })
+                .catch(e => { if (attempt < 3) setTimeout(() => _saveWithRetry(attempt + 1), 1000 * attempt); });
+            }).catch(e => console.warn('Firebase import error:', e));
+          };
+          setTimeout(() => _saveWithRetry(1), 300);
+        } else {
+          const _earnedEl = document.getElementById('earned-pts');
+          if (_earnedEl) _earnedEl.textContent = 'Sign in to earn points!';
+          const _earnedBadge = document.querySelector('.earned-badge');
+          if (_earnedBadge) _earnedBadge.style.display = 'block';
+          const _fbUrl2 = window.location.origin + '/js/firebase-menu.js';
+          import(_fbUrl2).then(({ saveOrderToFirebase }) => {
+            saveOrderToFirebase(orderData).catch(e => console.warn('Guest order save failed:', e));
+          }).catch(() => {});
+        }
+        localStorage.removeItem('prb_pending_order');
+        history.replaceState({}, '', '/');
+        const arrivedSection = document.getElementById('arrived-section');
+        if (arrivedSection) {
+          arrivedSection.style.display = orderData.pickupType === 'curbside' ? 'block' : 'none';
+          window._lastOrder = orderData;
+        }
+      } catch(e) { console.error('Payment result error:', e); }
+    }
+  } else if (params.get('payment') === 'cancel') {
+    history.replaceState({}, '', '/');
+  }
+}
+
+function showSuccess(type) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('success-screen').classList.add('active');
+  document.getElementById('bottom-nav').style.display = 'none';
+  const total = cart.reduce((s,i) => s+i.price, 0);
+  const tax   = total * 0.08;
+  const finalTotal = (total + tax - (usePoints ? 5 : 0)).toFixed(2);
+  const configs = {
+    reservation: { icon:'🎋', title:'Reservation Confirmed!', msg:'Your table has been reserved.\nA confirmation will be sent to you.', pts:'' },
+    payment:     { icon:'✅', title:'Payment Complete!', msg:'$' + finalTotal + ' has been processed.\nThank you for dining with us!', pts:'+' + Math.round(total) + ' pts' },
+    review:      { icon:'🌟', title:'Thanks for your Review!', msg:'Your feedback means a lot to us.', pts:'+30 pts' },
+  };
+  const c = configs[type] || configs.payment;
+  document.getElementById('success-icon').textContent  = c.icon;
+  document.getElementById('success-title').textContent = c.title;
+  document.getElementById('success-msg').textContent   = c.msg;
+  document.getElementById('earned-pts').textContent = c.pts;
+  const earnedBadge = document.querySelector('.earned-badge');
+  if (earnedBadge) earnedBadge.style.display = (type === 'reservation' || !c.pts) ? 'none' : 'block';
+  if (type === 'payment') { cart = []; }
+}
+
+// ─────────────────────────────────
+// TOPPINGS MODAL
+// ─────────────────────────────────
+let _toppingItem = null;
+let _toppingQty  = 1;
+
+function openToppingModal(item) {
+  _toppingItem = item;
+  document.getElementById('topping-modal-title').textContent = item.e + ' ' + item.n;
+  document.getElementById('topping-modal-price').textContent = '$' + parseFloat(item.p).toFixed(2);
+  updateToppingConfirmBtn();
+  const body = document.getElementById('topping-modal-body');
+  body.innerHTML =
+    `<label style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f0ebe2;cursor:pointer;">
+      <input type="radio" name="topping-choice" value="none" checked style="width:20px;height:20px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;"/>
+      <span style="font-size:18px;">🚫</span>
+      <span style="flex:1;font-size:14px;font-weight:500;">No Topping</span>
+    </label>` +
+    item.toppings.map((t, ti) =>
+      `<label style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f0ebe2;cursor:pointer;">
+        <input type="checkbox" data-idx="${ti}" style="width:20px;height:20px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;"/>
+        <span style="font-size:18px;">${t.e || '🧂'}</span>
+        <span style="flex:1;font-size:14px;">${t.n}</span>
+        <span style="font-size:14px;font-weight:600;color:var(--gold);">${parseFloat(t.p) > 0 ? '+$' + parseFloat(t.p).toFixed(2) : 'Free'}</span>
+      </label>`
+    ).join('');
+  body.querySelectorAll('input[type="checkbox"]').forEach(chk => {
+    chk.addEventListener('change', () => {
+      const radio = body.querySelector('input[type="radio"]');
+      const anyChecked = [...body.querySelectorAll('input[type="checkbox"]')].some(c => c.checked);
+      if (radio) radio.checked = !anyChecked;
+      updateToppingConfirmBtn();
+    });
+  });
+  const radio = body.querySelector('input[type="radio"]');
+  if (radio) radio.addEventListener('change', () => {
+    body.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+    updateToppingConfirmBtn();
+  });
+  document.getElementById('topping-modal').style.display = 'flex';
+}
+
+function updateToppingConfirmBtn() {
+  const btn = document.getElementById('topping-confirm-btn');
+  if (!btn || !_toppingItem) return;
+  const checks = [...document.querySelectorAll('#topping-modal-body input[type="checkbox"]:checked')];
+  const toppingTotal = checks.reduce((sum, chk) => {
+    const t = _toppingItem.toppings[parseInt(chk.dataset.idx)];
+    return sum + (t ? parseFloat(t.p) || 0 : 0);
+  }, 0);
+  btn.textContent = `Add to Cart — $${(parseFloat(_toppingItem.p) + toppingTotal).toFixed(2)}`;
+}
+
+function closeToppingModal() { document.getElementById('topping-modal').style.display = 'none'; _toppingItem = null; }
+
+function confirmToppingCart() {
+  if (!_toppingItem) return;
+  const checks = [...document.querySelectorAll('#topping-modal-body input[type="checkbox"]:checked')];
+  addToCart(_toppingItem.n, parseFloat(_toppingItem.p), _toppingItem.e, null);
+  checks.forEach(chk => {
+    const t = _toppingItem.toppings[parseInt(chk.dataset.idx)];
+    if (t) addToCart(_toppingItem.n + ' + ' + t.n, parseFloat(t.p) || 0, t.e || '🧂', null);
+  });
+  closeToppingModal();
+  updateCartBar();
+  buildMenu(document.querySelector('.menu-tab.active')?.getAttribute('onclick')?.match(/'(\w+)'/)?.[1] || 'appetizers');
+}
+
+// ─────────────────────────────────
+// MULTI-SELECT MODAL
+// ─────────────────────────────────
+let _msItem = null;
+let _msSelections = {};
+
+function openMultiSelectModal(item) {
+  _msItem = item;
+  _msSelections = {};
+  item.multiSelect.forEach((_, i) => _msSelections[i] = []);
+  const modal = document.getElementById('ms-modal');
+  document.getElementById('ms-modal-title').textContent = item.e + ' ' + item.n;
+  document.getElementById('ms-modal-price').textContent = '$' + item.p.toFixed(2);
+  const body = document.getElementById('ms-modal-body');
+  body.innerHTML = '';
+  item.multiSelect.forEach((group, gi) => {
+    const section = document.createElement('div');
+    section.style.cssText = 'margin-bottom:20px;';
+    section.innerHTML = '<div style="font-size:12px;font-weight:600;color:var(--ink);margin-bottom:4px;">' + group.label +
+      '<span style="font-size:11px;color:var(--muted);font-weight:400;"> · Choose up to ' + group.max + ' · ' + (group.required ? 'Required' : 'Optional') + '</span></div>';
+    group.choices.forEach(choice => {
+      const btn = document.createElement('button');
+      btn.className = 'ms-choice-btn';
+      btn.textContent = choice;
+      btn.dataset.group = gi; btn.dataset.choice = choice;
+      btn.addEventListener('click', function() {
+        const sel = _msSelections[gi];
+        if (this.classList.contains('selected')) {
+          this.classList.remove('selected');
+          _msSelections[gi] = sel.filter(s => s !== choice);
+        } else {
+          if (sel.length >= group.max) {
+            if (group.max === 1) {
+              body.querySelectorAll('.ms-choice-btn[data-group="' + gi + '"].selected').forEach(b => b.classList.remove('selected'));
+              _msSelections[gi] = [];
+            } else { return; }
+          }
+          this.classList.add('selected');
+          _msSelections[gi] = [..._msSelections[gi], choice];
+        }
+        updateMsAddBtn();
+      });
+      section.appendChild(btn);
+    });
+    body.appendChild(section);
+  });
+  updateMsAddBtn();
+  modal.style.display = 'flex';
+}
+
+function updateMsAddBtn() {
+  const btn = document.getElementById('ms-add-btn');
+  const allRequired = _msItem.multiSelect.every((g, i) => !g.required || _msSelections[i].length >= Math.min(g.max, 1));
+  btn.disabled = !allRequired;
+  btn.style.opacity = allRequired ? '1' : '0.4';
+}
+
+function confirmMultiSelect() {
+  if (!_msItem) return;
+  const parts = _msItem.multiSelect.flatMap((g, i) => _msSelections[i]).filter(Boolean);
+  const name = _msItem.n + ' (' + parts.join(', ') + ')';
+  addToCart(name, _msItem.p, _msItem.e, null);
+  closeMultiSelectModal();
+  buildMenu('lunch');
+}
+
+function closeMultiSelectModal() { document.getElementById('ms-modal').style.display = 'none'; _msItem = null; }
+
+// ─────────────────────────────────
+// OPTIONS POPUP
+// ─────────────────────────────────
+function openOptionsPopup(item) {
+  const popup = document.getElementById('options-popup');
+  document.getElementById('options-popup-title').textContent = item.e + ' ' + item.n;
+  document.getElementById('options-popup-desc').textContent  = item.d;
+  const list = document.getElementById('options-popup-list');
+  list.innerHTML = '';
+  item.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = '<span class="option-name">' + opt.n + '</span><span class="option-price">$' + opt.p.toFixed(2) + '</span>';
+    btn.addEventListener('click', () => {
+      addToCart(item.n + ' — ' + opt.n, opt.p, item.e, null);
+      closeOptionsPopup();
+      buildMenu(document.querySelector('.menu-tab.active')?.getAttribute('onclick')?.match(/'(\w+)'/)?.[1] || 'entrees');
+    });
+    list.appendChild(btn);
+  });
+  popup.style.display = 'flex';
+}
+
+function closeOptionsPopup() { document.getElementById('options-popup').style.display = 'none'; }
+
+// ─────────────────────────────────
+// TODAY'S PICKS
+// ─────────────────────────────────
+const PICKS_KEY = 'prb_picks';
+
+function getDefaultPicks() {
+  return [
+    { name:'Peking Duck (3 Courses)', emoji:'🦆', label:"Chef's Signature", origPrice:95.95, salePrice:null },
+    { name:'Walnut Shrimp',           emoji:'🦐', label:'Guest Favorite',   origPrice:27.95, salePrice:null },
+  ];
+}
+
+function loadTodaysPicks() {
+  let picks;
+  try {
+    const raw = localStorage.getItem(PICKS_KEY);
+    picks = raw ? JSON.parse(raw) : null;
+    if (!picks || !Array.isArray(picks) || picks.length === 0) picks = getDefaultPicks();
+  } catch(e) { picks = getDefaultPicks(); }
+  const container = document.getElementById('todays-picks-container');
+  if (!container) return;
+  container.innerHTML = '';
+  picks.forEach(pick => {
+    const hasDiscount = pick.salePrice !== null && pick.salePrice !== undefined && pick.salePrice < pick.origPrice;
+    const div = document.createElement('div');
+    div.className = 'featured-item';
+    div.style.cursor = 'pointer';
+    div.innerHTML =
+      '<div>' +
+        '<div class="fi-label">' + pick.label + '</div>' +
+        '<div class="fi-name">' + pick.name + '</div>' +
+        (hasDiscount
+          ? '<div class="fi-price"><span class="fi-orig-price">$' + pick.origPrice.toFixed(2) + '</span> <span class="fi-sale-price">$' + pick.salePrice.toFixed(2) + '</span></div>'
+          : '<div class="fi-price">$' + pick.origPrice.toFixed(2) + '</div>'
+        ) +
+      '</div>' +
+      '<div class="fi-emoji">' + pick.emoji + '</div>';
+    div.addEventListener('click', () => {
+      addToCart(pick.name, pick.salePrice || pick.origPrice, pick.emoji, null);
+      goTo('order');
+      setTimeout(() => goToCheckout(), 300);
+    });
+    container.appendChild(div);
+  });
+}
+
+// ─────────────────────────────────
+// HOME SCREEN
+// ─────────────────────────────────
+function buildHomeScreen() {
+  const user = getUser();
+  const pts = user ? (user.points || 0) : 0;
+  const tier = user ? getTier(user.tierPoints !== undefined ? user.tierPoints : pts) : null;
+  const homePoints = document.getElementById('home-points');
+  const homeSub    = document.getElementById('home-points-sub');
+  const homeValue  = document.getElementById('home-points-value');
+  if (homePoints) homePoints.textContent = pts.toLocaleString();
+  if (homeValue)  homeValue.textContent  = '$' + (pts / 100).toFixed(2);
+  if (homeSub) {
+    homeSub.textContent = user
+      ? (tier.icon + ' ' + tier.name + ' · ' + tier.rate + '% earn rate')
+      : 'Sign in to earn points';
+  }
+}
+
+// ─────────────────────────────────
+// ORDER HISTORY
+// ─────────────────────────────────
+function reorderItems(orderIdx) {
+  const o = window._orderHistory?.[orderIdx];
+  if (!o) return;
+  const orderItems = o.orderItems || o.items || [];
+  if (!orderItems.length) { alert('No items found in this order.'); return; }
+  cart = [];
+  orderItems.forEach(i => {
+    const name  = i.name || i.n || '';
+    const price = parseFloat(i.price || i.p) || 0;
+    const emoji = i.emoji || i.e || '🍽️';
+    if (name) addToCart(name, price, emoji, null);
+  });
+  updateCartBar();
+  goTo('order');
+  goToCheckout();
+}
+
+function showOrderHistory() {
+  goTo('order-history');
+  const user = getUser();
+  const histEl = document.getElementById('order-history-list');
+  if (!histEl) return;
+  histEl.innerHTML = '<div style="padding:24px;text-align:center;color:var(--muted);font-size:13px;">Loading...</div>';
+  try {
+    const fbUrl = window.location.origin + '/js/firebase-menu.js';
+    import(fbUrl).then(({ loadOrdersFromFirebase }) => {
+      loadOrdersFromFirebase(20).then(orders => {
+        const myOrders = user?.email
+          ? orders.filter(o => o.customer?.email === user.email || o.customerEmail === user.email)
+          : [];
+        if (!myOrders.length) {
+          histEl.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);">No orders yet.</div>';
+          return;
+        }
+        window._orderHistory = myOrders;
+        histEl.innerHTML = myOrders.map((o, oi) => {
+          const date  = o.createdAt ? new Date(o.createdAt).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : '';
+          const orderItems = o.orderItems || o.items || [];
+          const itemNames  = orderItems.map(i => (i.emoji || i.e || '') + ' ' + (i.name || i.n)).join(', ');
+          const total = o.total ? '$' + parseFloat(o.total).toFixed(2) : '';
+          return `<div style="padding:14px 16px;border-bottom:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div style="font-size:13px;font-weight:600;">${date}</div>
+              <div style="font-size:13px;font-weight:600;color:var(--gold);">${total}</div>
+            </div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:10px;line-height:1.5;">${itemNames}</div>
+            <button onclick="reorderItems(${oi})"
+              style="width:100%;padding:10px;background:var(--ink);color:var(--gold);border:1px solid rgba(200,169,110,0.4);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.03em;">
+              🔁 Reorder
+            </button>
+          </div>`;
+        }).join('');
+      }).catch(() => { histEl.innerHTML = '<div style="padding:24px;text-align:center;color:var(--muted);">Could not load orders.</div>'; });
+    }).catch(() => {});
+  } catch(e) {}
+}
+
+// ─────────────────────────────────
+// INIT
+// ─────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  checkYearlyReset();
+  updateAuthUI();
+  loadTodaysPicks();
+  buildHomeScreen();
+
+  try {
+    const fbUrl = window.location.origin + '/js/firebase-menu.js';
+    import(fbUrl).then(async ({ db }) => {
+      if (!db) return;
+      const { doc, setDoc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+      const today = new Date().toISOString().slice(0, 10);
+      const statsDoc = doc(db, 'analytics', 'pageviews');
+      const snap = await getDoc(statsDoc);
+      const data = snap.exists() ? snap.data() : {};
+      data[today] = (data[today] || 0) + 1;
+      await setDoc(statsDoc, data, { merge: true });
+    }).catch(() => {});
+  } catch(e) {}
+
+  const _arrivedParam = new URLSearchParams(location.search).get('arrived');
+  if (_arrivedParam === '1') {
+    setTimeout(() => {
+      const orderId = new URLSearchParams(location.search).get('order') || '';
+      showArrivedScreen(orderId);
+    }, 1500);
+  }
+
+  history.replaceState({ screen: 'home' }, '', location.pathname + location.search);
+  window.addEventListener('popstate', (e) => {
+    const screen = e.state?.screen || 'home';
+    goTo(screen, false);
+  });
+
+  const _isPaymentReturn = new URLSearchParams(window.location.search).get('payment') === 'success';
+  if (_isPaymentReturn) {
+    checkPaymentResult();
+  } else {
+    goTo('home');
+  }
+
+  const _initUser = getUser();
+  if (_initUser?.email) {
+    const fbUrl2 = window.location.origin + '/js/firebase-menu.js';
+    if (_isPaymentReturn) {
+      setTimeout(() => {
+        import(fbUrl2).then(({ loadPointsFromFirebase }) => {
+          loadPointsFromFirebase(_initUser.email).then(fbPts => {
+            if (fbPts && fbPts.points !== undefined) {
+              const user = getUser();
+              if (user) console.log('Firebase points after payment:', fbPts.points, 'local:', user.points);
+            }
+          }).catch(() => {});
+        }).catch(() => {});
+      }, 3000);
+    } else {
+      import(fbUrl2).then(({ loadPointsFromFirebase, loadProfileFromFirebase }) => {
+        loadPointsFromFirebase(_initUser.email).then(fbPts => {
+          if (fbPts && fbPts.points !== undefined) {
+            const user = getUser();
+            if (user) {
+              user.points     = fbPts.points;
+              user.pointsLog  = fbPts.pointsLog || [];
+              user.tierPoints = fbPts.tierPoints || 0;
+              delete user._needsFirebaseSync;
+              localStorage.setItem('prb_user', JSON.stringify(user));
+              updateAuthUI();
+              buildHomeScreen();
+              if (document.getElementById('screen-rewards')?.classList.contains('active')) buildRewardsScreen();
+            }
+          }
+        }).catch(() => {});
+        loadProfileFromFirebase(_initUser.email).then(fbProfile => {
+          if (fbProfile) {
+            const user = getUser();
+            if (user) {
+              const merged = {
+                ...user,
+                firstName: fbProfile.firstName || user.firstName || '',
+                lastName:  fbProfile.lastName  || user.lastName  || '',
+                phone:     fbProfile.phone     || user.phone     || '',
+                address:   fbProfile.address   || '',
+                city:      fbProfile.city      || '',
+                state:     fbProfile.state     || '',
+                zip:       fbProfile.zip       || '',
+                points:    user.points,
+                pointsLog: user.pointsLog,
+                tierPoints: user.tierPoints,
+              };
+              localStorage.setItem('prb_user', JSON.stringify(merged));
+              localStorage.setItem('prb_profile', JSON.stringify(merged));
+              updateAuthUI();
+              buildHomeScreen();
+            }
+          }
+        }).catch(() => {});
+      }).catch(() => {});
+    }
+  }
+
+  const tabs = document.querySelector('.menu-tabs');
+  if (tabs) {
+    let isDown = false, startX, scrollLeft;
+    tabs.addEventListener('mousedown', e => { isDown = true; startX = e.pageX - tabs.offsetLeft; scrollLeft = tabs.scrollLeft; });
+    tabs.addEventListener('mouseleave', () => { isDown = false; });
+    tabs.addEventListener('mouseup', () => { isDown = false; });
+    tabs.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - tabs.offsetLeft; tabs.scrollLeft = scrollLeft - (x - startX); });
+  }
+});
