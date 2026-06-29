@@ -18,7 +18,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const db          = getFirestore(firebaseApp);
 const MENU_DOC    = doc(db, 'config', 'menu');
-export { db };
+export { db, firebaseApp };
 
 // ── Load menu from Firestore
 export async function loadMenuFromFirebase() {
