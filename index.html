@@ -636,12 +636,13 @@ style="width:100%;padding:16px;background:#27ae60;color:#fff;border:none;border-
   const data = await loadMenuFromFirebase();
   if (data) {
     window.firebaseMenuData = data;
-    const activeTab = document.querySelector('.menu-tab.active');
-    if (activeTab) {
-      const tabMatch = activeTab.getAttribute('onclick')?.match(/'(\w+)'/);
-      if (tabMatch && typeof buildMenu === 'function') buildMenu(tabMatch[1]);
-    }
-  }
+    setTimeout(() => {
+      const activeTab = document.querySelector('.menu-tab.active');
+      if (activeTab) {
+        const tabMatch = activeTab.getAttribute('onclick')?.match(/'(\w+)'/);
+        if (tabMatch && typeof buildMenu === 'function') buildMenu(tabMatch[1]);
+      }
+    }, 500);
 </script>
 
 <script type="module">
