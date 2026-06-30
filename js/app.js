@@ -2145,9 +2145,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ── Load Firebase menu and merge with local menuData
-  const _fbMenuUrl = window.location.origin + '/js/firebase-menu.js';
-  import(_fbMenuUrl).then(({ loadMenuFromFirebase }) => {
-    loadMenuFromFirebase().then(data => {
+  // Firebase menu는 이미 DOMContentLoaded 위쪽 module script에서 로드됨
+  // window.firebaseMenuData는 index.html의 module script에서 세팅
       if (data) {
         window.firebaseMenuData = data;
         // Re-render current tab with Firebase data
