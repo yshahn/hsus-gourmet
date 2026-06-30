@@ -2144,12 +2144,12 @@ document.addEventListener('DOMContentLoaded', () => {
     goTo(screen, false);
   });
 
-  // ── Load Firebase menu and merge with local menuData
-  // Firebase menu는 이미 DOMContentLoaded 위쪽 module script에서 로드됨
-  // window.firebaseMenuData는 index.html의 module script에서 세팅
+  // ── Firebase 메뉴 로드 — window.firebaseMenuData 세팅
+  import('/js/firebase-menu.js')
+    .then(({ loadMenuFromFirebase }) => loadMenuFromFirebase())
+    .then(data => {
       if (data) {
         window.firebaseMenuData = data;
-        // Re-render current tab with Firebase data
         const activeTab = document.querySelector('.menu-tab.active');
         if (activeTab) {
           const tabMatch = activeTab.getAttribute('onclick')?.match(/'(\w+)'/);
@@ -2157,7 +2157,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     }).catch(() => {});
-  }).catch(() => {});
   const _isPaymentReturn = new URLSearchParams(window.location.search).get('payment') === 'success';
   if (_isPaymentReturn) {
     checkPaymentResult();
