@@ -1250,8 +1250,8 @@ async function startOrderAlarmListener() {
     if (data) {
       // Only use Firebase menu if it"s Hsu's data, not Pacific Rim
       const allItems = Object.values(data).flat();
-      const isHsusMenu = allItems.some(i => i.n === "Peking Duck (3 Courses)' || i.n === 'Won Ton Soup' || i.n === 'Stuffed Lettuce (2)');
-      const isPacificRim = allItems.some(i => i.n === 'California Roll' || i.n === 'Tuna Tataki' || i.n === 'Spicy Tuna Roll");
+const isHsusMenu = allItems.some(i => i.n === "Peking Duck (3 Courses)" || i.n === "Won Ton Soup" || i.n === "Stuffed Lettuce (2)");
+      const isPacificRim = allItems.some(i => i.n === "California Roll" || i.n === "Tuna Tataki" || i.n === "Spicy Tuna Roll");
       if (isHsusMenu && !isPacificRim) {
         console.log("✅ Firebase has Hsu's menu:", allItems.length, "items');
         localStorage.setItem('prb_menu_data", JSON.stringify(data));
