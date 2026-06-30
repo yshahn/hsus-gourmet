@@ -821,6 +821,14 @@ function cartRemove(name) {
 function buildMenu(tab) {
   const list = document.getElementById('menu-list');
   if (!list) return;
+  // Firebase 데이터 머지
+  if (!window.firebaseMenuData) {
+    import('/js/firebase-menu.js')
+      .then(({ loadMenuFromFirebase }) => loadMenuFromFirebase())
+      .then(data => { if (data) { window.firebaseMenuData = data; buildMenu(tab); } })
+      .catch(() => {});
+    // 일단 로컬 데이터로 렌더링 계속
+  }
   Array.from(list.children).forEach(child => { if (child.id !== 'photo-hint') child.remove(); });
 
   // Always use local menuData as the source of truth for Hsu's Gourmet.
