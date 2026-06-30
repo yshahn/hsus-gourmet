@@ -1253,8 +1253,8 @@ async function startOrderAlarmListener() {
 const isHsusMenu = allItems.some(i => i.n === "Peking Duck (3 Courses)" || i.n === "Won Ton Soup" || i.n === "Stuffed Lettuce (2)");
       const isPacificRim = allItems.some(i => i.n === "California Roll" || i.n === "Tuna Tataki" || i.n === "Spicy Tuna Roll");
       if (isHsusMenu && !isPacificRim) {
-        console.log("✅ Firebase has Hsu's menu:", allItems.length, "items');
-        localStorage.setItem('prb_menu_data", JSON.stringify(data));
+console.log("✅ Firebase has Hsu's menu:", allItems.length, "items");
+        localStorage.setItem('prb_menu_data', JSON.stringify(data));
       } else if (isPacificRim) {
         console.warn("⚠️ Firebase has Pacific Rim menu — clearing, will use Hsu's local data");
         localStorage.removeItem("prb_menu_data");
@@ -1264,7 +1264,7 @@ const isHsusMenu = allItems.some(i => i.n === "Peking Duck (3 Courses)" || i.n =
         localStorage.setItem('prb_menu_data', JSON.stringify(data));
       }
     } else {
-      console.warn('⚠️ Firebase returned no data — using localStorage cache");
+      console.warn('⚠️ Firebase returned no data — using localStorage cache');
     }
 
     // ── FORCE RESET: Push Hsu's categories & sections to Firebase, overwriting Pacific Rim data ──
@@ -1284,7 +1284,7 @@ const isHsusMenu = allItems.some(i => i.n === "Peking Duck (3 Courses)" || i.n =
       localStorage.setItem('prb_menu_categories', JSON.stringify(hsusCategories));
       await saveCategoriesToFirebase(hsusCategories);
       if (typeof buildAdminCategoryTabs === 'function') buildAdminCategoryTabs();
-      console.log('✅ Hsu\'s categories pushed to Firebase");
+      console.log("✅ Hsu's categories pushed to Firebase");
 
       // Always use Hsu's sections — overwrite Pacific Rim sections in Firebase
       const hsusSections = {
