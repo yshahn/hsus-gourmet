@@ -2144,6 +2144,21 @@ document.addEventListener('DOMContentLoaded', () => {
     goTo(screen, false);
   });
 
+  // ── Load Firebase menu and merge with local menuData
+  const _fbMenuUrl = window.location.origin + '/js/firebase-menu.js';
+  import(_fbMenuUrl).then(({ loadMenuFromFirebase }) => {
+    loadMenuFromFirebase().then(data => {
+      if (data) {
+        window.firebaseMenuData = data;
+        // Re-render current tab with Firebase data
+        const activeTab = document.querySelector('.menu-tab.active');
+        if (activeTab) {
+          const tabMatch = activeTab.getAttribute('onclick')?.match(/'(\w+)'/);
+          if (tabMatch) buildMenu(tabMatch[1]);
+        }
+      }
+    }).catch(() => {});
+  }).catch(() => {});
   const _isPaymentReturn = new URLSearchParams(window.location.search).get('payment') === 'success';
   if (_isPaymentReturn) {
     checkPaymentResult();
