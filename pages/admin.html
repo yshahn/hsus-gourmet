@@ -11,9 +11,22 @@
   <style>
     @keyframes spin { to { transform: rotate(360deg); } }
     #mi-img-upload-box:hover { border-color: var(--gold) !important; background: #fef9ee; }
+    /* ── ORDER ALARM ── */
+@keyframes alarm-pulse { 0%,100% { opacity:1; } 50% { opacity:0.6; } }
+#order-alarm-banner {
+  display:none; position:fixed; top:0; left:0; right:0; z-index:99999;
+  background:#c0392b; color:#fff; padding:16px 20px;
+  font-family:'DM Sans',sans-serif; font-size:16px; font-weight:700;
+  text-align:center; cursor:pointer; animation:alarm-pulse 1s infinite;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5); letter-spacing:0.02em;
+}
   </style>
 </head>
 <body class="admin-body">
+  <!-- ══ ORDER ALARM BANNER ══ -->
+<div id="order-alarm-banner" onclick="stopAlarm()">
+  🔔 NEW ORDER! Tap here to dismiss
+</div>
 
 <!-- ══ ACCESS DENIED SCREEN ══ -->
 <div id="access-denied" style="display:none; position:fixed; inset:0; background:var(--ink); flex-direction:column; align-items:center; justify-content:center; z-index:9999;">
@@ -555,6 +568,8 @@ function showAdminPanel(email) {
   document.getElementById('admin-avatar').textContent=initials; document.getElementById('admin-user-email').textContent=email;
   document.getElementById('topbar-date').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   loadDashboard(); renderPicksList();
+  // ── Start order alarm listener after login
+  startOrderAlarmListener().catch(e => console.warn('Alarm listener error:', e));
 
 }
 function attemptAdminLogin() {
@@ -1144,6 +1159,83 @@ function saveMenuToStorage(){
   if(window._saveMenuToFirebase){
     window._saveMenuToFirebase(menuByCategory).then(ok=>{if(ok){showToast('✅ Saved & synced to Firebase!');}else{showToast('⚠️ Firebase sync failed!','error');}}).catch(e=>{showToast('🔴 Save failed! Check connection.','error');});
   }else{showToast('⚠️ Not connected to Firebase — saved locally only!','error');}
+}
+  // ─────────────────────────────────────────
+// ORDER ALARM SYSTEM
+// ─────────────────────────────────────────
+let _alarmInterval  = null;
+let _alarmUnlocked  = false;
+let _knownOrderIds  = new Set();
+
+function _unlockAudio() {
+  if (_alarmUnlocked) return;
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const buf = ctx.createBuffer(1, 1, 22050);
+    const src = ctx.createBufferSource();
+    src.buffer = buf; src.connect(ctx.destination); src.start(0); ctx.resume();
+  } catch(e) {}
+  _alarmUnlocked = true;
+}
+document.addEventListener('click',      _unlockAudio, { once: true });
+document.addEventListener('touchstart', _unlockAudio, { once: true });
+
+function _playBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    ctx.resume().then(() => {
+      const o1 = ctx.createOscillator(); const g1 = ctx.createGain();
+      o1.connect(g1); g1.connect(ctx.destination);
+      o1.type = 'sine'; o1.frequency.value = 880;
+      g1.gain.setValueAtTime(0.5, ctx.currentTime);
+      g1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+      o1.start(ctx.currentTime); o1.stop(ctx.currentTime + 0.3);
+
+      const o2 = ctx.createOscillator(); const g2 = ctx.createGain();
+      o2.connect(g2); g2.connect(ctx.destination);
+      o2.type = 'sine'; o2.frequency.value = 660;
+      g2.gain.setValueAtTime(0.5, ctx.currentTime + 0.35);
+      g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.65);
+      o2.start(ctx.currentTime + 0.35); o2.stop(ctx.currentTime + 0.65);
+    });
+  } catch(e) {}
+}
+
+function startAlarm(count) {
+  const banner = document.getElementById('order-alarm-banner');
+  if (banner) {
+    banner.textContent = '🔔 NEW ORDER' + (count > 1 ? 'S (' + count + ')' : '') + '! Tap here to dismiss';
+    banner.style.display = 'block';
+  }
+  if (_alarmInterval) return;
+  _playBeep();
+  _alarmInterval = setInterval(_playBeep, 5000);
+}
+
+function stopAlarm() {
+  if (_alarmInterval) { clearInterval(_alarmInterval); _alarmInterval = null; }
+  const banner = document.getElementById('order-alarm-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+async function startOrderAlarmListener() {
+  try {
+    const { listenOrders, loadOrdersFromFirebase } = await import('../js/firebase-menu.js');
+    const existing = await loadOrdersFromFirebase(200);
+    existing.forEach(o => _knownOrderIds.add(o.id));
+    console.log('🔔 Order alarm active — watching', _knownOrderIds.size, 'existing orders');
+
+    listenOrders(orders => {
+      const fresh = orders.filter(o => o.id && !_knownOrderIds.has(o.id) && o.status !== 'completed');
+      if (fresh.length > 0) {
+        fresh.forEach(o => _knownOrderIds.add(o.id));
+        startAlarm(fresh.length);
+        if (typeof loadDashboard === 'function') loadDashboard();
+      }
+    });
+  } catch(e) {
+    console.warn('Order alarm setup failed:', e);
+  }
 }
 </script>
 
