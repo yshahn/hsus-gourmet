@@ -833,20 +833,32 @@ function buildMenu(tab) {
 
   // Always use local menuData as the source of truth for Hsu's Gourmet.
   // Firebase data (soldOut, price overrides) is merged on top if available.
-  const localItems = menuData[tab] || [];
-  let items = localItems.map(localItem => {
-    const fbItem = (window.firebaseMenuData && window.firebaseMenuData[tab])
-      ? window.firebaseMenuData[tab].find(f => f.n === localItem.n)
-      : null;
-    if (fbItem) {
-      return {
-        ...localItem,
-        soldOut: fbItem.soldOut || false,
-        p: fbItem.p !== undefined ? fbItem.p : localItem.p,
-      };
-    }
-    return localItem;
+const localItems = menuData[tab] || [];
+const fbItems = (window.firebaseMenuData && window.firebaseMenuData[tab]) || [];
+
+// Firebase 아이템 기준으로 머지 — 신규 아이템도 포함
+let items;
+if (fbItems.length > 0) {
+  // Firebase 데이터를 기본으로 사용
+  items = fbItems.map(fbItem => {
+    const localItem = localItems.find(l => l.n === fbItem.n);
+    return {
+      e: fbItem.e || localItem?.e || '🍽️',
+      n: fbItem.n,
+      d: fbItem.d || localItem?.d || '',
+      p: fbItem.p !== undefined ? fbItem.p : (localItem?.p || 0),
+      img: fbItem.img || localItem?.img || null,
+      subcat: fbItem.subcat || localItem?.subcat || null,
+      soldOut: fbItem.soldOut || false,
+      options: fbItem.options || localItem?.options || null,
+      multiSelect: fbItem.multiSelect || localItem?.multiSelect || null,
+      toppings: fbItem.toppings || localItem?.toppings || null,
+    };
   });
+} else {
+  // Firebase 없으면 로컬 데이터 사용
+  items = localItems;
+}
 
   // ── Hsu's Gourmet subcat map ──
   const SUBCAT_MAP = {
