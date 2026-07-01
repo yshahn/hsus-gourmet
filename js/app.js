@@ -320,14 +320,19 @@ function showMenuStep() {
   if (ac) ac.style.display = 'none';
   document.getElementById('order-screen-title').textContent = 'Order';
   document.getElementById('order-screen-sub').textContent = 'Select your items';
-  // Default to Appetizers tab when entering order screen
-  const appsTab = [...document.querySelectorAll('.menu-tab')].find(t => t.getAttribute('onclick')?.includes("'appetizers'"));
-  if (appsTab) {
+// 시간에 따라 자동으로 탭 선택
+  const now = new Date();
+  const mins = now.getHours() * 60 + now.getMinutes();
+  const isLunchTime = now.getDay() !== 0 && now.getDay() !== 6 && mins >= 11 * 60 + 30 && mins < 14 * 60;
+
+  const defaultTab = isLunchTime ? 'lunch' : 'appetizers';
+  const defaultTab2 = [...document.querySelectorAll('.menu-tab')].find(t => t.getAttribute('onclick')?.includes("'" + defaultTab + "'"));
+  if (defaultTab2) {
     document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
-    appsTab.classList.add('active');
-    buildMenu('appetizers');
+    defaultTab2.classList.add('active');
+    buildMenu(defaultTab);
     const notice = document.getElementById('lunch-notice');
-    if (notice) notice.style.display = 'none';
+    if (notice) notice.style.display = isLunchTime ? 'block' : 'none';
   }
 }
 
