@@ -2010,7 +2010,7 @@ function closeOptionsPopup() { document.getElementById('options-popup').style.di
 // ─────────────────────────────────
 // TODAY'S PICKS
 // ─────────────────────────────────
-const PICKS_KEY = 'prb_picks';
+const PICKS_KEY = 'hsus_picks';
 
 function getDefaultPicks() {
   return [
