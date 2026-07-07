@@ -752,7 +752,7 @@ const ALL_MENU = [
   {e:'☕',n:'Coffee',p:3.95,cat:'Beverages'},{e:'🍵',n:'Jasmine Tea',p:3.95,cat:'Beverages'},{e:'🥤',n:'Soft Drinks',p:3.95,cat:'Beverages'},
 ];
 
-const PICKS_KEY='prb_picks';
+const PICKS_KEY='hsus_picks';
 function loadPicks(){try{return JSON.parse(localStorage.getItem(PICKS_KEY))||getDefaultPicks();}catch(e){return getDefaultPicks();}}
 function getDefaultPicks(){return [{name:'Peking Duck (3 Courses)',emoji:'🦆',label:"Chef's Signature",origPrice:95.95,salePrice:null},{name:'Walnut Shrimp',emoji:'🦐',label:'Guest Favorite',origPrice:27.95,salePrice:null}];}
 function savePicks(picks){
