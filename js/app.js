@@ -290,7 +290,7 @@ function goTo(id, pushState = true) {
     const fbUrl = window.location.origin + '/js/firebase-menu.js';
     import(fbUrl + '?v=' + Date.now()).then(({ loadPicksFromFirebase }) => {
       loadPicksFromFirebase().then(picks => {
-        if (picks) { localStorage.setItem('prb_picks', JSON.stringify(picks)); loadTodaysPicks(); }
+        if (picks) { localStorage.setItem('hsus_picks', JSON.stringify(picks)); loadTodaysPicks(); }
       }).catch(() => {});
     }).catch(() => {});
   }
