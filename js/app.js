@@ -323,7 +323,7 @@ function showMenuStep() {
 // 시간에 따라 자동으로 탭 선택
   const now = new Date();
   const mins = now.getHours() * 60 + now.getMinutes();
-  const isLunchTime = now.getDay() !== 0 && now.getDay() !== 6 && mins >= 11 * 60 + 30 && mins < 14 * 60;
+  const isLunchTime = now.getDay() !== 0 && now.getDay() !== 6 && mins < 14 * 60;
 
   const defaultTab = isLunchTime ? 'lunch' : 'appetizers';
   const defaultTab2 = [...document.querySelectorAll('.menu-tab')].find(t => t.getAttribute('onclick')?.includes("'" + defaultTab + "'"));
