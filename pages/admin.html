@@ -233,19 +233,38 @@
     </div>
   </div>
 </div>
-  <!-- ══ RESERVATIONS ══ -->
+<!-- ══ RESERVATIONS ══ -->
   <div class="tab-content" id="tab-reservations">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:var(--gold);" id="res-stat-total">—</div><div style="font-size:11px;color:var(--muted);">Total</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#27ae60;" id="res-stat-today">—</div><div style="font-size:11px;color:var(--muted);">Today</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#3498db;" id="res-stat-guests">—</div><div style="font-size:11px;color:var(--muted);">Total Guests</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#9b59b6;" id="res-stat-week">—</div><div style="font-size:11px;color:var(--muted);">This Week</div></div>
+    </div>
+    <div class="admin-card" style="margin-bottom:20px;">
+      <div class="card-header">
+        <div class="card-title">📈 Reservation Trends</div>
+        <div style="display:flex;gap:6px;">
+          <button class="period-btn active" onclick="setResPeriod('week',this)">Week</button>
+          <button class="period-btn" onclick="setResPeriod('month',this)">Month</button>
+          <button class="period-btn" onclick="setResPeriod('year',this)">Year</button>
+        </div>
+      </div>
+      <div style="position:relative;height:180px;margin-top:8px;"><canvas id="res-chart"></canvas></div>
+    </div>
     <div class="admin-card">
       <div class="card-header">
-        <div class="card-title">All Reservations</div>
-        <div style="display:flex;gap:8px">
+        <div class="card-title">🗓️ All Reservations</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <input type="text" class="filter-input" placeholder="Search name…" oninput="searchReservations(this.value)" id="res-search" style="width:140px;"/>
           <select class="filter-select" id="res-filter" onchange="filterReservations(this.value)">
-            <option value="all">All</option><option value="today">Today</option><option value="week">This Week</option>
+            <option value="all">All Time</option><option value="today">Today</option>
+            <option value="week">This Week</option><option value="month">This Month</option>
           </select>
           <button class="cta-btn-sm" onclick="loadReservations()">↻ Refresh</button>
         </div>
       </div>
-      <div id="res-stats" style="display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap;"></div>
+      <div id="res-stats" style="display:none;"></div>
       <div id="reservations-body"><div class="empty-state" style="padding:32px;text-align:center;">Loading...</div></div>
     </div>
   </div>
