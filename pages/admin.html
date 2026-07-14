@@ -269,19 +269,38 @@
     </div>
   </div>
 
-  <!-- ══ ORDERS ══ -->
+<!-- ══ ORDERS ══ -->
   <div class="tab-content" id="tab-orders">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:var(--gold);" id="ord-stat-revenue">—</div><div style="font-size:11px;color:var(--muted);">Total Revenue</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#27ae60;" id="ord-stat-today">—</div><div style="font-size:11px;color:var(--muted);">Today's Revenue</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#3498db;" id="ord-stat-count">—</div><div style="font-size:11px;color:var(--muted);">Total Orders</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#9b59b6;" id="ord-stat-avg">—</div><div style="font-size:11px;color:var(--muted);">Avg Order</div></div>
+    </div>
+    <div class="admin-card" style="margin-bottom:20px;">
+      <div class="card-header">
+        <div class="card-title">💰 Revenue Trends</div>
+        <div style="display:flex;gap:6px;">
+          <button class="period-btn active" onclick="setOrdPeriod('week',this)">Week</button>
+          <button class="period-btn" onclick="setOrdPeriod('month',this)">Month</button>
+          <button class="period-btn" onclick="setOrdPeriod('year',this)">Year</button>
+        </div>
+      </div>
+      <div style="position:relative;height:180px;margin-top:8px;"><canvas id="ord-chart"></canvas></div>
+    </div>
     <div class="admin-card">
       <div class="card-header">
-        <div class="card-title">All Orders</div>
-        <div style="display:flex;gap:8px;align-items:center;">
+        <div class="card-title">🍱 All Orders</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <input type="text" class="filter-input" placeholder="Search name…" oninput="searchOrders(this.value)" id="ord-search" style="width:140px;"/>
           <select class="filter-select" id="orders-filter" onchange="filterOrders(this.value)">
-            <option value="all">All Orders</option><option value="today">Today</option><option value="week">This Week</option>
+            <option value="all">All Time</option><option value="today">Today</option>
+            <option value="week">This Week</option><option value="month">This Month</option>
           </select>
           <button class="cta-btn-sm" onclick="loadOrders()">↻ Refresh</button>
         </div>
       </div>
-      <div id="orders-stats" style="display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap;"></div>
+      <div id="orders-stats" style="display:none;"></div>
       <div id="orders-body"><div class="empty-state" style="padding:32px;text-align:center;">Loading orders...</div></div>
     </div>
   </div>
