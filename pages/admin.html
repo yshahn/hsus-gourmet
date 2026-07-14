@@ -1292,32 +1292,7 @@ function updatePickupSummary(s){const el=document.getElementById('pickup-summary
 const pickupStyle=document.createElement('style');
 pickupStyle.textContent=`.prep-btn{padding:8px 16px;border:1.5px solid var(--border);border-radius:20px;background:var(--card-bg);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all 0.15s;color:var(--muted);}.prep-btn:hover{border-color:var(--gold);color:var(--ink);}.prep-btn.active{background:var(--ink);color:var(--gold);border-color:var(--ink);}`;
 document.head.appendChild(pickupStyle);
-
-// ── RESERVATIONS
-let allReservations=[];
-async function loadReservations(){const body=document.getElementById('reservations-body');if(body)body.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);">Loading...</div>';try{const{loadReservationsFromFirebase}=await import('../js/firebase-menu.js');allReservations=await loadReservationsFromFirebase(100);renderReservations(allReservations);}catch(e){if(body)body.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);">No reservations or Firebase error.</div>';}}
-function filterReservations(period){const now=Date.now();const DAY=86400000;renderReservations(allReservations.filter(r=>{if(period==='today')return(now-r.createdAt)<DAY;if(period==='week')return(now-r.createdAt)<7*DAY;return true;}));}
-function renderReservations(reservations){
-  const body=document.getElementById('reservations-body');const stats=document.getElementById('res-stats');if(!body)return;
-  const totalGuests=reservations.reduce((s,r)=>s+(r.guests||0),0);
-  if(stats){stats.innerHTML=`<div class="stat-card" style="flex:1;min-width:120px;padding:12px 16px;"><div class="stat-value" style="font-size:20px;">${reservations.length}</div><div class="stat-label">Reservations</div></div><div class="stat-card" style="flex:1;min-width:120px;padding:12px 16px;"><div class="stat-value" style="font-size:20px;">${totalGuests}</div><div class="stat-label">Total Guests</div></div>`;}
-  if(!reservations.length){body.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);">No reservations found.</div>';return;}
-  body.innerHTML='';
-  reservations.forEach(res=>{const date=new Date(res.createdAt).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});const card=document.createElement('div');card.style.cssText='border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;background:var(--card-bg);';card.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div><div style="font-weight:600;font-size:15px;">${res.name||'Guest'}</div><div style="font-size:12px;color:var(--muted);margin-top:3px;">Booked: ${date}</div></div><div style="text-align:right;"><div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;">${res.date}</div><div style="font-size:13px;color:var(--gold);">${res.time}</div></div></div><div style="display:flex;gap:16px;font-size:13px;margin-bottom:8px;"><span>👥 ${res.guests} guests</span>${res.special?'<span>📝 '+res.special+'</span>':''}</div><div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap;">${res.phone?'<span>📞 '+res.phone+'</span>':''}${res.email?'<span>✉️ '+res.email+'</span>':''}</div>`;body.appendChild(card);});
-}
-
-// ── ORDERS
-let allOrders=[];
-async function loadOrders(){const body=document.getElementById('orders-body');if(body)body.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);">Loading...</div>';try{const{loadOrdersFromFirebase}=await import('../js/firebase-menu.js');allOrders=await loadOrdersFromFirebase(100);renderOrders(allOrders);}catch(e){if(body)body.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);">No orders or Firebase error.</div>';}}
-function filterOrders(period){const now=Date.now();const DAY=86400000;renderOrders(allOrders.filter(o=>{if(period==='today')return(now-o.createdAt)<DAY;if(period==='week')return(now-o.createdAt)<7*DAY;return true;}));}
-function renderOrders(orders){
-  const body=document.getElementById('orders-body');const stats=document.getElementById('orders-stats');if(!body)return;
-  const totalRev=orders.reduce((s,o)=>s+(o.total||0),0);
-  if(stats){stats.innerHTML=`<div class="stat-card" style="flex:1;min-width:120px;padding:12px 16px;"><div class="stat-value" style="font-size:20px;">${orders.length}</div><div class="stat-label">Orders</div></div><div class="stat-card" style="flex:1;min-width:120px;padding:12px 16px;"><div class="stat-value" style="font-size:20px;">$${totalRev.toFixed(2)}</div><div class="stat-label">Revenue</div></div><div class="stat-card" style="flex:1;min-width:120px;padding:12px 16px;"><div class="stat-value" style="font-size:20px;">$${orders.length?(totalRev/orders.length).toFixed(2):'0.00'}</div><div class="stat-label">Avg Order</div></div>`;}
-  if(!orders.length){body.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);">No orders found.</div>';return;}
-  body.innerHTML='';
-  orders.forEach(order=>{const date=new Date(order.createdAt).toLocaleString('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});const itemList=(order.orderItems||[]).map(i=>(i.emoji||'🍽️')+' '+i.name).join('<br>');const card=document.createElement('div');card.style.cssText='border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:12px;background:var(--card-bg);';card.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;"><div><div style="font-weight:600;font-size:15px;">${order.customer?.name||'Guest'} <span style="color:var(--muted);font-size:12px;font-weight:400;">#${order.orderId||'—'}</span></div><div style="font-size:12px;color:var(--muted);margin-top:3px;">🕐 ${date}</div><div style="font-size:12px;color:var(--gold);margin-top:2px;">📦 Pickup: ${order.pickupTime||'ASAP'}</div></div><div style="text-align:right;"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);font-weight:600;">$${(order.total||0).toFixed(2)}</div></div></div><div style="font-size:12px;color:var(--ink);line-height:1.8;margin-bottom:10px;padding:10px;background:var(--bone);border-radius:8px;">${itemList}</div><div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap;">${order.customer?.phone?'<span>📞 '+order.customer.phone+'</span>':''}${order.customer?.email?'<span>✉️ '+order.customer.email+'</span>':''}</div>`;body.appendChild(card);});
-}
+ 
 
 function sendBroadcast(){showToast('✅ Notification sent!');}
 function fillTemplate(val){
