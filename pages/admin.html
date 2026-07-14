@@ -305,24 +305,37 @@
     </div>
   </div>
 
-  <!-- ══ MEMBERS ══ -->
+<!-- ══ MEMBERS ══ -->
   <div class="tab-content" id="tab-members">
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;" id="member-stats-row">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;" id="member-stats-row">
       <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:var(--gold);" id="ms-total">—</div><div style="font-size:11px;color:var(--muted);">Total Members</div></div>
       <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#c8a96e;" id="ms-gold">—</div><div style="font-size:11px;color:var(--muted);">🥇 Gold</div></div>
       <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#aaa;" id="ms-silver">—</div><div style="font-size:11px;color:var(--muted);">🥈 Silver</div></div>
       <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#cd7f32;" id="ms-bronze">—</div><div style="font-size:11px;color:var(--muted);">🥉 Bronze</div></div>
     </div>
+    <div class="admin-card" style="margin-bottom:20px;">
+      <div class="card-header"><div class="card-title">👤 Member Tier Distribution</div></div>
+      <div style="display:flex;align-items:center;gap:24px;padding:16px 0;flex-wrap:wrap;">
+        <div style="position:relative;width:140px;height:140px;flex-shrink:0;"><canvas id="mem-chart"></canvas></div>
+        <div id="mem-legend" style="display:flex;flex-direction:column;gap:8px;font-size:13px;"></div>
+      </div>
+    </div>
     <div class="admin-card">
       <div class="card-header">
         <div class="card-title">👤 Member Directory</div>
-        <div style="display:flex;gap:8px;align-items:center;">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
           <input type="text" class="filter-input" placeholder="Search name or email…" oninput="filterMembers(this.value)" id="member-search"/>
+          <select class="filter-select" id="member-sort" onchange="renderMembers()">
+            <option value="points">By Points</option>
+            <option value="name">By Name</option>
+            <option value="joined">By Join Date</option>
+          </select>
           <button class="cta-btn-sm" onclick="loadMembers()" style="white-space:nowrap;">↻ Refresh</button>
         </div>
       </div>
       <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap;">
         <button class="cat-filter-btn active" onclick="setMemberFilter('all',this)">All</button>
+        <button class="cat-filter-btn" onclick="setMemberFilter('platinum',this)">💎 Platinum</button>
         <button class="cat-filter-btn" onclick="setMemberFilter('gold',this)">🥇 Gold</button>
         <button class="cat-filter-btn" onclick="setMemberFilter('silver',this)">🥈 Silver</button>
         <button class="cat-filter-btn" onclick="setMemberFilter('bronze',this)">🥉 Bronze</button>
