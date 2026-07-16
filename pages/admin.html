@@ -1051,12 +1051,16 @@ function filterOrders(period) {
   else if (period === 'month') filtered = allOrders.filter(o => (now - o.createdAt) < 30 * DAY);
   const search = document.getElementById('ord-search')?.value?.toLowerCase() || '';
   if (search) filtered = filtered.filter(o => (o.customer?.name || '').toLowerCase().includes(search));
-  // Update filtered stats
+  // Update stat cards with filtered data
   const filteredRev = filtered.reduce((s, o) => s + (parseFloat(o.total) || 0), 0);
-  const filteredStats = document.getElementById('ord-filtered-stats');
-  if (filteredStats) {
-    filteredStats.textContent = filtered.length + ' orders · $' + filteredRev.toFixed(2);
-  }
+  const filteredAvg = filtered.length ? filteredRev / filtered.length : 0;
+  const periodLabel = period === 'today' ? "Today's" : period === 'week' ? "This Week's" : period === 'month' ? "This Month's" : 'Total';
+  document.getElementById('ord-stat-revenue').textContent = '$' + filteredRev.toFixed(2);
+  document.getElementById('ord-stat-count').textContent = filtered.length;
+  document.getElementById('ord-stat-avg').textContent = '$' + filteredAvg.toFixed(2);
+  // Update labels
+  document.querySelector('#tab-orders [id="ord-stat-revenue"]')?.closest('.admin-card')?.querySelector('div:last-child')&&
+    (document.querySelectorAll('#tab-orders .admin-card')[0].querySelector('div:last-child').textContent = periodLabel + ' Revenue');
   renderOrders(filtered);
 }
 
