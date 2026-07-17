@@ -1242,10 +1242,6 @@ function openMemberHistory(m, orders) {
   modal.querySelector('button').onclick = () => modal.remove();
   document.body.appendChild(modal);
 }  
-const custEmail = (order.customer?.email || '').toLowerCase();
-    const isMember = custEmail && _allMembers.some(m => (m.email||'').toLowerCase() === custEmail);
-
-    card.innerHTML = `
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
         <div style="flex:1;">
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
@@ -1267,7 +1263,11 @@ const custEmail = (order.customer?.email || '').toLowerCase();
         </div>
       </div>
       <div style="font-size:12px;color:var(--ink);line-height:1.8;margin-bottom:8px;padding:10px;background:var(--bone);border-radius:8px;">${itemList}</div>
-      <div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap;">${order.customer?.phone?'<span>📞 '+order.customer.phone+'</span>':''}${order.customer?.email?'<span>✉️ '+order.customer.email+'</span>':''}</div>`;
+<div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap;">${order.customer?.phone?'<span>📞 '+order.customer.phone+'</span>':''}${order.customer?.email?'<span>✉️ '+order.customer.email+'</span>':''}</div>`;
+    body.appendChild(card);
+  });
+}
+
 function renderMembers(searchQuery) {
   const body = document.getElementById('members-body');
   const search = (searchQuery ?? document.getElementById('member-search')?.value ?? '').toLowerCase();
