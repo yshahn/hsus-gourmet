@@ -265,7 +265,7 @@ export async function loadAllMembersFromFirebase() {
   try {
     const profilesCol = collection(db, 'profiles');
     const snap = await getDocs(profilesCol);
-    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    return snap.docs.map(d => ({ ...d.data(), id: d.id }));
   } catch(e) {
     console.error('Firebase members load error:', e);
     return [];
