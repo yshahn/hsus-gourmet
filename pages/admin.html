@@ -1812,17 +1812,25 @@ function stopAlarm() {
   if (_alarmInterval) { clearInterval(_alarmInterval); _alarmInterval = null; }
   const banner = document.getElementById('order-alarm-banner');
   if (banner) banner.style.display = 'none';
+  localStorage.setItem('hsus_alarm_dismissed', Date.now().toString());
 }
 
 async function startOrderAlarmListener() {
   try {
     const { listenOrders, loadOrdersFromFirebase } = await import('../js/firebase-menu.js');
-    const existing = await loadOrdersFromFirebase(200);
+const existing = await loadOrdersFromFirebase(200);
     existing.forEach(o => _knownOrderIds.add(o.id));
+    if (allOrders && allOrders.length) allOrders.forEach(o => _knownOrderIds.add(o.id));
     console.log('🔔 Order alarm active — watching', _knownOrderIds.size, 'existing orders');
-
+const todayStart = new Date().setHours(0,0,0,0);
+    const lastDismissed = parseInt(localStorage.getItem('hsus_alarm_dismissed') || '0');
     listenOrders(orders => {
-      const fresh = orders.filter(o => o.id && !_knownOrderIds.has(o.id) && o.status !== 'completed');
+      const fresh = orders.filter(o => {
+        if (!o.id || _knownOrderIds.has(o.id) || o.status === 'completed') return false;
+        if ((o.createdAt || 0) < todayStart) return false;
+        if ((o.createdAt || 0) <= lastDismissed) return false;
+        return true;
+      });
       if (fresh.length > 0) {
         fresh.forEach(o => _knownOrderIds.add(o.id));
         startAlarm(fresh.length);
