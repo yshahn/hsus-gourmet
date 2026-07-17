@@ -1242,15 +1242,6 @@ function openMemberHistory(m, orders) {
   modal.querySelector('button').onclick = () => modal.remove();
   document.body.appendChild(modal);
 }  
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;">
-        <div style="flex:1;">
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <div style="font-weight:600;font-size:15px;cursor:${custEmail?'pointer':'default'};${custEmail?'text-decoration:underline;text-decoration-color:rgba(0,0,0,0.2);':''}" 
-              onclick="${custEmail?`openOrderCustomerHistory('${order.customer?.name||'Guest'}','${custEmail}')`:''}">${order.customer?.name||'Guest'}</div>
-            <span style="color:var(--muted);font-size:12px;font-weight:400;">#${order.orderId||'—'}</span>
-            ${isMember?'<span style="font-size:10px;background:#fef9ee;color:#c8a96e;border-radius:4px;padding:2px 6px;border:1px solid #f0dca0;">✦ Member</span>':'<span style="font-size:10px;background:#f5f5f5;color:#888;border-radius:4px;padding:2px 6px;">Guest</span>'}
-            ${isCompleted?'<span style="font-size:10px;background:#d4edda;color:#155724;border-radius:4px;padding:2px 6px;">✅ Completed</span>':''}
-          </div>
           <div style="font-size:12px;color:var(--muted);margin-top:2px;">🕐 ${date}</div>
           <div style="font-size:12px;color:var(--gold);margin-top:2px;">📦 Pickup: ${order.pickupTime||'ASAP'}</div>
         </div>
