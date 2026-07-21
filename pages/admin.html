@@ -825,8 +825,8 @@ async function markOrderCompleted(orderId,idx){
     if (orderToUpdate) {
       orderToUpdate.status = 'completed';
       filterOrders(document.getElementById('orders-filter')?.value || 'all');
-    }
-  catch(e){showToast('⚠️ Could not update order status','error');}
+}
+  } catch(e){showToast('⚠️ Could not update order status','error');}
 }
 function renderDashboardReservations(reservations){
   const el=document.getElementById('dash-recent-reservations'); if(!el)return;
