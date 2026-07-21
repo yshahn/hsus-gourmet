@@ -1845,7 +1845,6 @@ function stopAlarm() {
     });
   }).catch(() => {});
 }
-
 async function startOrderAlarmListener() {
   try {
     const { listenOrders, loadOrdersFromFirebase } = await import('../js/firebase-menu.js');
