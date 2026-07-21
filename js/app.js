@@ -1698,13 +1698,8 @@ function buildRewardsScreen() {
       '</div>';
     }).join('');
   }
-  const resetEl = document.getElementById('rewards-reset');
-  if (resetEl) {
-    const now = new Date();
-    const nextJan = new Date(now.getFullYear() + 1, 0, 1);
-    const daysLeft = Math.ceil((nextJan - now) / 86400000);
-    resetEl.textContent = '⏱ Tier resets to Bronze on Jan 1 · ' + daysLeft + ' days remaining';
-  }
+const resetEl = document.getElementById('rewards-reset');
+  if (resetEl) resetEl.style.display = 'none';
   const history = document.getElementById('points-history');
   if (history && user) {
     const log = user.pointsLog || [];
