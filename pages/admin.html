@@ -1829,7 +1829,15 @@ function stopAlarm() {
   if (_alarmInterval) { clearInterval(_alarmInterval); _alarmInterval = null; }
   const banner = document.getElementById('order-alarm-banner');
   if (banner) banner.style.display = 'none';
-  localStorage.setItem('hsus_alarm_dismissed', Date.now().toString());
+  const now = Date.now();
+  localStorage.setItem('hsus_alarm_dismissed', now.toString());
+  // Sync dismiss to Firebase so other devices see it
+  import('../js/firebase-menu.js').then(({db}) => {
+    import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js').then(({doc, setDoc}) => {
+      setDoc(doc(db, 'config', 'alarm'), { dismissedAt: now }, { merge: true }).catch(() => {});
+    });
+  }).catch(() => {});
+}
 }
 
 async function startOrderAlarmListener() {
@@ -1840,7 +1848,24 @@ const existing = await loadOrdersFromFirebase(200);
     if (allOrders && allOrders.length) allOrders.forEach(o => _knownOrderIds.add(o.id));
     console.log('🔔 Order alarm active — watching', _knownOrderIds.size, 'existing orders');
 const todayStart = new Date().setHours(0,0,0,0);
-    const lastDismissed = parseInt(localStorage.getItem('hsus_alarm_dismissed') || '0');
+    let lastDismissed = parseInt(localStorage.getItem('hsus_alarm_dismissed') || '0');
+    // Check Firebase for dismiss time from other devices
+    try {
+      const { db } = await import('../js/firebase-menu.js');
+      const { doc, getDoc, onSnapshot } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+      const alarmRef = doc(db, 'config', 'alarm');
+      // Listen for dismiss from other devices
+      onSnapshot(alarmRef, (snap) => {
+        if (snap.exists()) {
+          const fbDismissed = snap.data().dismissedAt || 0;
+          if (fbDismissed > lastDismissed) {
+            lastDismissed = fbDismissed;
+            localStorage.setItem('hsus_alarm_dismissed', fbDismissed.toString());
+            stopAlarm();
+          }
+        }
+      });
+    } catch(e) {}
     listenOrders(orders => {
       const fresh = orders.filter(o => {
         if (!o.id || _knownOrderIds.has(o.id) || o.status === 'completed') return false;
