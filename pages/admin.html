@@ -818,7 +818,14 @@ function renderDashboardOrders(orders){
 }
 async function markOrderCompleted(orderId,idx){
   if(!orderId)return;
-  try{const{db}=await import('../js/firebase-menu.js');const{doc,updateDoc}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');await updateDoc(doc(db,'orders',orderId),{status:'completed'});showToast('✅ Order marked as completed');loadDashboard();}
+  try{const{db}=await import('../js/firebase-menu.js');const{doc,updateDoc}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');await updateDoc(doc(db, 'orders', orderId), { status: 'completed' });
+    showToast('✅ Order marked as completed');
+    loadDashboard();
+    const orderToUpdate = allOrders.find(o => o.id === orderId);
+    if (orderToUpdate) {
+      orderToUpdate.status = 'completed';
+      filterOrders(document.getElementById('orders-filter')?.value || 'all');
+    }
   catch(e){showToast('⚠️ Could not update order status','error');}
 }
 function renderDashboardReservations(reservations){
@@ -1837,7 +1844,6 @@ function stopAlarm() {
       setDoc(doc(db, 'config', 'alarm'), { dismissedAt: now }, { merge: true }).catch(() => {});
     });
   }).catch(() => {});
-}
 }
 
 async function startOrderAlarmListener() {
