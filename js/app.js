@@ -1622,6 +1622,7 @@ function getTier(points) { return TIERS.slice().reverse().find(t => points >= t.
 function getEarnRate(user) { const tp = getTierPoints(user); return getTier(tp).rate; }
 
 function checkYearlyReset() {
+  return; // Yearly reset disabled — points & tiers are permanent
   const user = getUser();
   if (!user) return;
   const now = new Date();
