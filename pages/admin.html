@@ -761,7 +761,7 @@ function showAdminPanel(email) {
   const initials = email.split('@')[0].slice(0,2).toUpperCase();
   document.getElementById('admin-avatar').textContent=initials; document.getElementById('admin-user-email').textContent=email;
   document.getElementById('topbar-date').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
-  loadDashboard(); renderPicksList();
+ loadDashboard(); loadServiceToggles(); renderPicksList();
   // ── Start order alarm listener after login
   startOrderAlarmListener().catch(e => console.warn('Alarm listener error:', e));
 
