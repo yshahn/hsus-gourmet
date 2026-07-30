@@ -142,6 +142,7 @@ body.admin-body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  max-width: calc(100vw - var(--sidebar-w));
 }
 
 /* ── Top Bar ── */
