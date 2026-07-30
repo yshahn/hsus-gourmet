@@ -216,7 +216,7 @@ body.admin-body {
 ══════════════════════════════════════ */
 .tab-content {
   display: none;
-  padding: 24px;
+  padding: 24px 32px;
   flex: 1;
 }
 
