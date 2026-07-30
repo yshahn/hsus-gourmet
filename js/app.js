@@ -1476,6 +1476,17 @@ const selectedDate = new Date(rawDate.getFullYear(), rawDate.getMonth(), rawDate
 }
 
 async function confirmReservation() {
+  // Check if reservations are enabled
+  try {
+    const fbUrl = window.location.origin + '/js/firebase-menu.js';
+    const { db } = await import(fbUrl);
+    const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+    const snap = await getDoc(doc(db, 'config', 'services'));
+    if (snap.exists() && snap.data().reservations === false) {
+      alert('We are temporarily not accepting reservations. Please call us at (404) 659-2788.');
+      return;
+    }
+  } catch(e) { console.warn('Could not check reservation status:', e); }
   const user    = getUser();
   const profile = loadProfile();
   const dateEl  = document.querySelector('.date-cell.selected');
