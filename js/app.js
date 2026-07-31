@@ -269,6 +269,19 @@ function fillUserInfo() {
 // NAVIGATION
 // ─────────────────────────────────
 function goTo(id, pushState = true) {
+  // Check if orders are paused when navigating to order tab
+  if (id === 'order') {
+    const fbUrl = window.location.origin + '/js/firebase-menu.js';
+    import(fbUrl).then(({ db }) => {
+      import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js').then(({ doc, getDoc }) => {
+        getDoc(doc(db, 'config', 'services')).then(snap => {
+          if (snap.exists() && snap.data().orders === false) {
+            showToast('⚠️ Online ordering is temporarily unavailable. Please call us at (404) 659-2788.', 'error');
+          }
+        });
+      });
+    }).catch(() => {});
+  }
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   const ss = document.getElementById('success-screen');
   if (ss) ss.classList.remove('active');
