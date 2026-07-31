@@ -276,7 +276,16 @@ function goTo(id, pushState = true) {
       import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js').then(({ doc, getDoc }) => {
         getDoc(doc(db, 'config', 'services')).then(snap => {
           if (snap.exists() && snap.data().orders === false) {
-           showToastMsg('⚠️ Online ordering is temporarily unavailable. Please call us at (404) 659-2788.');
+           // Show persistent banner
+            let banner = document.getElementById('order-paused-banner');
+            if (!banner) {
+              banner = document.createElement('div');
+              banner.id = 'order-paused-banner';
+              banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#c0392b;color:#fff;padding:16px 20px;text-align:center;font-size:15px;font-weight:600;line-height:1.5;';
+              banner.innerHTML = '⚠️ Online ordering is temporarily unavailable.<br>Please call us at <a href="tel:+14046592788" style="color:#fff;text-decoration:underline;">(404) 659-2788</a>';
+              document.body.appendChild(banner);
+            }
+            banner.style.display = 'block';
           }
         });
       });
