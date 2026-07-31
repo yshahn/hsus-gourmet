@@ -612,10 +612,13 @@ async function goToCheckout() {
     const { db } = await import(fbUrl);
     const { doc, getDoc } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
     const snap = await getDoc(doc(db, 'config', 'services'));
-    if (snap.exists() && snap.data().orders === false) {
+   if (snap.exists() && snap.data().orders === false) {
       alert('We are temporarily not accepting online orders. Please call us at (404) 659-2788.');
       return;
     }
+    // Hide banner if orders are back on
+    const banner = document.getElementById('order-paused-banner');
+    if (banner) banner.style.display = 'none';
   } catch(e) { console.warn('Could not check order status:', e); }
   const user = getUser();
   if (user) {
