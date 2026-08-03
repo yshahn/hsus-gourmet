@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         price_data: {
           currency: 'usd',
           product_data: {
-            name: 'Pacific Rim Bistro — Order (' + items.length + ' item' + (items.length !== 1 ? 's' : '') + ')' +
+            name: "Hsu's Gourmet — Order (" + items.length + ' item' + (items.length !== 1 ? 's' : '') + ')' +
                   (discount > 0 ? ' · $' + discount.toFixed(2) + ' Points Discount' : '') +
                   (tipAmount > 0 ? ' · Tip $' + tipAmount.toFixed(2) : ''),
           },
@@ -41,11 +41,11 @@ export default async function handler(req, res) {
       customer_email: customerEmail || undefined,
       metadata: {
         customerName: customerName || '',
-        restaurant: 'Pacific Rim Bistro',
+        restaurant: "Hsu's Gourmet",
       },
       automatic_tax: { enabled: false },
-      success_url: `${req.headers.origin || 'https://pacific-rim-six.vercel.app'}/?payment=success`,
-      cancel_url:  `${req.headers.origin || 'https://pacific-rim-six.vercel.app'}/?payment=cancel`,
+      success_url: `${req.headers.origin || 'https://hsusgourmet.com'}/?payment=success`,
+      cancel_url:  `${req.headers.origin || 'https://hsusgourmet.com'}/?payment=cancel`,
     });
 
     res.status(200).json({ url: session.url });
