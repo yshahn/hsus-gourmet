@@ -274,37 +274,43 @@
 </div>
 <!-- ══ RESERVATIONS ══ -->
   <div class="tab-content" id="tab-reservations">
+    <!-- Stats Row -->
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;">
-<div class="stat-card-sm"><div style="font-size:16px;font-weight:700;color:var(--gold);" id="ms-total">—</div><div style="font-size:10px;color:var(--muted);">Total</div></div>
-      <div class="stat-card-sm"><div style="font-size:16px;font-weight:700;color:#c8a96e;" id="ms-gold">—</div><div style="font-size:10px;color:var(--muted);">🥇 Gold</div></div>
-      <div class="stat-card-sm"><div style="font-size:16px;font-weight:700;color:#aaa;" id="ms-silver">—</div><div style="font-size:10px;color:var(--muted);">🥈 Silver</div></div>
-      <div class="stat-card-sm"><div style="font-size:16px;font-weight:700;color:#cd7f32;" id="ms-bronze">—</div><div style="font-size:10px;color:var(--muted);">🥉 Bronze</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:var(--gold);" id="res-stat-total">—</div><div style="font-size:11px;color:var(--muted);">Total</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#27ae60;" id="res-stat-today">—</div><div style="font-size:11px;color:var(--muted);">Today</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#3498db;" id="res-stat-guests">—</div><div style="font-size:11px;color:var(--muted);">Total Guests</div></div>
+      <div class="admin-card" style="padding:16px;text-align:center;"><div style="font-size:22px;font-weight:700;color:#9b59b6;" id="res-stat-week">—</div><div style="font-size:11px;color:var(--muted);">This Month</div></div>
     </div>
+    <!-- Calendar -->
     <div class="admin-card" style="margin-bottom:20px;">
       <div class="card-header">
-        <div class="card-title">📈 Reservation Trends</div>
-        <div style="display:flex;gap:6px;">
-          <button class="period-btn active" onclick="setResPeriod('week',this)">Week</button>
-          <button class="period-btn" onclick="setResPeriod('month',this)">Month</button>
-          <button class="period-btn" onclick="setResPeriod('year',this)">Year</button>
-        </div>
-      </div>
-      <div style="position:relative;height:180px;margin-top:8px;"><canvas id="res-chart"></canvas></div>
-    </div>
-    <div class="admin-card">
-      <div class="card-header">
-        <div class="card-title">🗓️ All Reservations</div>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          <input type="text" class="filter-input" placeholder="Search name…" oninput="searchReservations(this.value)" id="res-search" style="width:140px;"/>
-          <select class="filter-select" id="res-filter" onchange="filterReservations(this.value)">
-            <option value="all">All Time</option><option value="today">Today</option>
-            <option value="week">This Week</option><option value="month">This Month</option>
-          </select>
+        <div class="card-title">🗓️ Reservations Calendar</div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <button onclick="resCalPrev()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:16px;">‹</button>
+          <div id="res-cal-month" style="font-size:15px;font-weight:600;min-width:140px;text-align:center;">—</div>
+          <button onclick="resCalNext()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:16px;">›</button>
           <button class="cta-btn-sm" onclick="loadReservations()">↻ Refresh</button>
         </div>
       </div>
-      <div id="res-stats" style="display:none;"></div>
-      <div id="reservations-body"><div class="empty-state" style="padding:32px;text-align:center;">Loading...</div></div>
+      <!-- Day headers -->
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;">
+        <div style="text-align:center;font-size:11px;font-weight:600;color:var(--muted);padding:4px;">Sun</div>
+        <div style="text-align:center;font-size:11px;font-weight:600;color:var(--muted);padding:4px;">Mon</div>
+        <div style="text-align:center;font-size:11px;font-weight:600;color:var(--muted);padding:4px;">Tue</div>
+        <div style="text-align:center;font-size:11px;font-weight:600;color:var(--muted);padding:4px;">Wed</div>
+        <div style="text-align:center;font-size:11px;font-weight:600;color:var(--muted);padding:4px;">Thu</div>
+        <div style="text-align:center;font-size:11px;font-weight:600;color:var(--muted);padding:4px;">Fri</div>
+        <div style="text-align:center;font-size:11px;font-weight:600;color:var(--muted);padding:4px;">Sat</div>
+      </div>
+      <div id="res-calendar-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;"></div>
+    </div>
+    <!-- Selected Day Reservations -->
+    <div class="admin-card" id="res-day-card" style="display:none;">
+      <div class="card-header">
+        <div class="card-title" id="res-day-title">Reservations</div>
+        <button onclick="document.getElementById('res-day-card').style.display='none'" style="background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);">✕</button>
+      </div>
+      <div id="reservations-body"><div style="padding:32px;text-align:center;color:var(--muted);">Select a date</div></div>
     </div>
   </div>
 
@@ -920,21 +926,18 @@ async function loadChartJs() {
 
 // ── RESERVATIONS
 let allReservations = [];
-let _resChartInst = null;
-let _resPeriod = 'week';
+let _resCalYear = new Date().getFullYear();
+let _resCalMonth = new Date().getMonth();
+let _resSelectedDate = null;
 
 async function loadReservations() {
-  const body = document.getElementById('reservations-body');
-  if (body) body.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);">Loading...</div>';
   try {
     const { loadReservationsFromFirebase } = await import('../js/firebase-menu.js');
     allReservations = await loadReservationsFromFirebase(500);
     updateResStats();
-    filterReservations(document.getElementById('res-filter')?.value || 'all');
-    await loadChartJs();
-    renderResChart(_resPeriod);
+    renderResCalendar();
   } catch(e) {
-    if (body) body.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);">No reservations or Firebase error.</div>';
+    console.warn('Could not load reservations:', e);
   }
 }
 
@@ -942,71 +945,148 @@ function updateResStats() {
   const now = new Date();
   const todayStr = now.toLocaleDateString('en-CA');
   const weekAgo = Date.now() - 7 * 86400000;
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
   const todayCount = allReservations.filter(r => r.date === todayStr).length;
-  const weekCount = allReservations.filter(r => r.createdAt >= weekAgo).length;
+  const monthCount = allReservations.filter(r => r.createdAt >= monthStart).length;
   const totalGuests = allReservations.reduce((s, r) => s + (r.guests || 0), 0);
   document.getElementById('res-stat-total').textContent = allReservations.length;
   document.getElementById('res-stat-today').textContent = todayCount;
   document.getElementById('res-stat-guests').textContent = totalGuests;
-  document.getElementById('res-stat-week').textContent = weekCount;
+  document.getElementById('res-stat-week').textContent = monthCount;
 }
 
-function setResPeriod(period, btn) {
-  _resPeriod = period;
-  document.querySelectorAll('#tab-reservations .period-btn').forEach(b => b.classList.remove('active'));
-  if (btn) btn.classList.add('active');
-  renderResChart(period);
+function resCalPrev() {
+  _resCalMonth--;
+  if (_resCalMonth < 0) { _resCalMonth = 11; _resCalYear--; }
+  renderResCalendar();
 }
 
-function renderResChart(period) {
-  if (!window.Chart) return;
-  const canvas = document.getElementById('res-chart');
-  if (!canvas) return;
-  if (_resChartInst) { _resChartInst.destroy(); _resChartInst = null; }
-  const now = new Date();
-  let labels = [], data = [];
-  if (period === 'week') {
-    for (let i = 6; i >= 0; i--) {
-      const d = new Date(now); d.setDate(now.getDate() - i);
-      const str = d.toLocaleDateString('en-CA');
-      labels.push(d.toLocaleDateString('en-US', { weekday: 'short' }));
-      data.push(allReservations.filter(r => r.date === str).length);
+function resCalNext() {
+  _resCalMonth++;
+  if (_resCalMonth > 11) { _resCalMonth = 0; _resCalYear++; }
+  renderResCalendar();
+}
+
+function renderResCalendar() {
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('res-cal-month').textContent = monthNames[_resCalMonth] + ' ' + _resCalYear;
+
+  const grid = document.getElementById('res-calendar-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const firstDay = new Date(_resCalYear, _resCalMonth, 1).getDay();
+  const daysInMonth = new Date(_resCalYear, _resCalMonth + 1, 0).getDate();
+  const today = new Date();
+  const todayStr = today.toLocaleDateString('en-CA');
+
+  // Build reservation map by date
+  const resMap = {};
+  allReservations.forEach(r => {
+    if (!r.date) return;
+    // Normalize date to YYYY-MM-DD
+    let dateStr = r.date;
+    if (dateStr.includes(',')) {
+      // Convert "Jul 30, 2026" format to en-CA
+      const d = new Date(dateStr);
+      if (!isNaN(d)) dateStr = new Date(d.getFullYear(), d.getMonth(), d.getDate()).toLocaleDateString('en-CA');
     }
-  } else if (period === 'month') {
-    for (let i = 29; i >= 0; i--) {
-      const d = new Date(now); d.setDate(now.getDate() - i);
-      const str = d.toLocaleDateString('en-CA');
-      labels.push(i % 5 === 0 ? d.getDate() + '' : '');
-      data.push(allReservations.filter(r => r.date === str).length);
+    const [y, m] = dateStr.split('-').map(Number);
+    if (y === _resCalYear && m - 1 === _resCalMonth) {
+      if (!resMap[dateStr]) resMap[dateStr] = [];
+      resMap[dateStr].push(r);
     }
-  } else {
-    for (let i = 11; i >= 0; i--) {
-      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-      const nextM = new Date(now.getFullYear(), now.getMonth() - i + 1, 1);
-      labels.push(d.toLocaleDateString('en-US', { month: 'short' }));
-      data.push(allReservations.filter(r => { if(!r.date)return false; const rd=new Date(r.date); return rd>=d&&rd<nextM; }).length);
-    }
+  });
+
+  // Empty cells before first day
+  for (let i = 0; i < firstDay; i++) {
+    grid.appendChild(Object.assign(document.createElement('div'), { style: '' }));
   }
-  _resChartInst = new Chart(canvas.getContext('2d'), {
-    type: 'bar',
-    data: { labels, datasets: [{ label: 'Reservations', data, backgroundColor: 'rgba(201,168,76,0.7)', borderColor: '#c9a84c', borderWidth: 1, borderRadius: 4 }] },
-    options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 10 } }, grid: { color: 'rgba(0,0,0,0.05)' } }, x: { ticks: { font: { size: 10 } }, grid: { display: false } } } }
+
+  // Day cells
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = _resCalYear + '-' + String(_resCalMonth + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    const reses = resMap[dateStr] || [];
+    const isToday = dateStr === todayStr;
+    const isSelected = dateStr === _resSelectedDate;
+
+    const cell = document.createElement('div');
+    cell.style.cssText = `
+      min-height:56px;border-radius:8px;padding:6px;cursor:pointer;
+      border:1px solid ${isSelected ? 'var(--gold)' : isToday ? 'var(--ink)' : 'var(--border)'};
+      background:${isSelected ? 'var(--ink)' : isToday ? '#faf6ee' : '#fff'};
+      transition:all 0.15s;
+    `;
+    cell.innerHTML = `
+      <div style="font-size:13px;font-weight:${isToday?'700':'500'};color:${isSelected?'var(--gold)':isToday?'var(--ink)':'var(--ink)'};">${d}</div>
+      ${reses.length > 0 ? `
+        <div style="margin-top:4px;">
+          <div style="background:${isSelected?'rgba(201,168,76,0.3)':'#e8f4ff'};border-radius:4px;padding:2px 6px;font-size:11px;font-weight:600;color:${isSelected?'var(--gold)':'#2980b9'};text-align:center;">
+            ${reses.length} res
+          </div>
+          <div style="font-size:10px;color:${isSelected?'rgba(255,255,255,0.6)':'var(--muted)'};margin-top:2px;text-align:center;">
+            ${reses.reduce((s,r)=>s+(r.guests||0),0)} guests
+          </div>
+        </div>
+      ` : ''}
+    `;
+    cell.addEventListener('click', () => selectResDate(dateStr, reses));
+    cell.onmouseenter = () => { if (!isSelected) cell.style.background = '#faf6ee'; };
+    cell.onmouseleave = () => { if (!isSelected) cell.style.background = isToday ? '#faf6ee' : '#fff'; };
+    grid.appendChild(cell);
+  }
+}
+
+function selectResDate(dateStr, reses) {
+  _resSelectedDate = dateStr;
+  renderResCalendar();
+  const dayCard = document.getElementById('res-day-card');
+  const title = document.getElementById('res-day-title');
+  const body = document.getElementById('reservations-body');
+  if (!dayCard || !title || !body) return;
+
+  const d = new Date(dateStr + 'T00:00:00');
+  const label = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+  title.textContent = '🗓️ ' + label + ' · ' + reses.length + ' reservation' + (reses.length !== 1 ? 's' : '');
+  dayCard.style.display = 'block';
+
+  if (!reses.length) {
+    body.innerHTML = '<div style="padding:24px;text-align:center;color:var(--muted);">No reservations on this date.</div>';
+    return;
+  }
+
+  body.innerHTML = '';
+  reses.sort((a, b) => {
+    const timeA = a.time || ''; const timeB = b.time || '';
+    return timeA.localeCompare(timeB);
+  }).forEach(res => {
+    const bookedAt = res.createdAt ? new Date(res.createdAt).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—';
+    const card = document.createElement('div');
+    card.style.cssText = 'border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;background:var(--card-bg);';
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+        <div style="flex:1;">
+          <div style="font-weight:600;font-size:15px;">${res.name||'Guest'}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">Booked: ${bookedAt}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="text-align:right;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);">${res.time||'—'}</div>
+          </div>
+          <button onclick="deleteReservation('${res.firebaseId||res.id}')" style="padding:6px 10px;border:1px solid #fde8e8;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;">🗑</button>
+        </div>
+      </div>
+      <div style="display:flex;gap:16px;font-size:13px;margin-bottom:6px;">
+        <span>👥 ${res.guests||0} guests</span>
+        ${res.special?'<span>📝 '+res.special+'</span>':''}
+      </div>
+      <div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap;">
+        ${res.phone?'<span>📞 '+res.phone+'</span>':''}
+        ${res.email?'<span>✉️ '+res.email+'</span>':''}
+      </div>`;
+    body.appendChild(card);
   });
 }
-
-function filterReservations(period) {
-  const now = Date.now(); const DAY = 86400000;
-  const todayStr = new Date().toLocaleDateString('en-CA');
-  let filtered = allReservations;
-  if (period === 'today') filtered = allReservations.filter(r => r.date === todayStr);
-  else if (period === 'week') filtered = allReservations.filter(r => (now - r.createdAt) < 7 * DAY);
-  else if (period === 'month') filtered = allReservations.filter(r => (now - r.createdAt) < 30 * DAY);
-  const search = document.getElementById('res-search')?.value?.toLowerCase() || '';
-  if (search) filtered = filtered.filter(r => (r.name || '').toLowerCase().includes(search) || (r.phone || '').includes(search));
-  renderReservations(filtered);
-}
-
-function searchReservations(q) { filterReservations(document.getElementById('res-filter')?.value || 'all'); }
 
 async function deleteReservation(id) {
   try {
@@ -1015,32 +1095,22 @@ async function deleteReservation(id) {
     console.log('Deleting reservation:', id);
     await deleteDoc(fsDoc(db, 'reservations', id));
     allReservations = allReservations.filter(r => r.firebaseId !== id && r.id !== id);
-    updateResStats(); filterReservations(document.getElementById('res-filter')?.value || 'all');
+    updateResStats();
+    // Refresh selected date
+    if (_resSelectedDate) {
+      const reses = allReservations.filter(r => {
+        let dateStr = r.date;
+        if (dateStr && dateStr.includes(',')) {
+          const d = new Date(dateStr);
+          if (!isNaN(d)) dateStr = new Date(d.getFullYear(), d.getMonth(), d.getDate()).toLocaleDateString('en-CA');
+        }
+        return dateStr === _resSelectedDate;
+      });
+      selectResDate(_resSelectedDate, reses);
+    }
+    renderResCalendar();
     showToast('🗑️ Reservation deleted');
   } catch(e) { showToast('🔴 Failed to delete', 'error'); }
-}
-
-function renderReservations(reservations) {
-  const body = document.getElementById('reservations-body');
-  if (!body) return;
-  if (!reservations.length) { body.innerHTML = '<div style="padding:32px;text-align:center;color:var(--muted);">No reservations found.</div>'; return; }
-  body.innerHTML = '';
-  reservations.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).forEach(res => {
-    const date = res.createdAt ? new Date(res.createdAt).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '—';
-    const card = document.createElement('div');
-    card.style.cssText = 'border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;background:var(--card-bg);';
-    card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
-        <div style="flex:1;"><div style="font-weight:600;font-size:15px;">${res.name||'Guest'}</div><div style="font-size:12px;color:var(--muted);margin-top:2px;">Booked: ${date}</div></div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div style="text-align:right;"><div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;">${res.date||'—'}</div><div style="font-size:13px;color:var(--gold);">${res.time||'—'}</div></div>
-          <button onclick="deleteReservation('${res.firebaseId||res.id}')" style="padding:6px 10px;border:1px solid #fde8e8;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;">🗑</button>
-        </div>
-      </div>
-      <div style="display:flex;gap:16px;font-size:13px;margin-bottom:6px;"><span>👥 ${res.guests||0} guests</span>${res.special?'<span>📝 '+res.special+'</span>':''}</div>
-      <div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap;">${res.phone?'<span>📞 '+res.phone+'</span>':''}${res.email?'<span>✉️ '+res.email+'</span>':''}</div>`;
-    body.appendChild(card);
-  });
 }
 
 // ── ORDERS
