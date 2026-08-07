@@ -933,9 +933,21 @@ let _resSelectedDate = null;
 async function loadReservations() {
   try {
     const { loadReservationsFromFirebase } = await import('../js/firebase-menu.js');
-    allReservations = await loadReservationsFromFirebase(500);
+allReservations = await loadReservationsFromFirebase(500);
     updateResStats();
     renderResCalendar();
+    // Auto-select today
+    const todayStr = new Date().toLocaleDateString('en-CA');
+    const todayReses = allReservations.filter(r => {
+      let dateStr = r.date;
+      if (dateStr && dateStr.includes(',')) {
+        const d = new Date(dateStr);
+        if (!isNaN(d)) dateStr = new Date(d.getFullYear(), d.getMonth(), d.getDate()).toLocaleDateString('en-CA');
+      }
+      return dateStr === todayStr;
+    });
+    _resSelectedDate = todayStr;
+    selectResDate(todayStr, todayReses);
   } catch(e) {
     console.warn('Could not load reservations:', e);
   }
