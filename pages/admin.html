@@ -285,7 +285,7 @@
     <div class="admin-card" style="margin-bottom:20px;">
       <div class="card-header">
         <div class="card-title">🗓️ Reservations Calendar</div>
-        <div style="display:flex;align-items:center;gap:12px;">
+<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <button onclick="resCalPrev()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:16px;">‹</button>
           <div id="res-cal-month" style="font-size:15px;font-weight:600;min-width:140px;text-align:center;">—</div>
           <button onclick="resCalNext()" style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:16px;">›</button>
@@ -2102,9 +2102,14 @@ function printDayReservations() {
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { background: #f5f5f5; padding: 10px 8px; text-align: left; border-bottom: 2px solid #ddd; font-size: 12px; text-transform: uppercase; }
   .summary { margin-top: 20px; font-size: 13px; color: #444; }
-  @media print { body { padding: 0; } }
+  .no-print { margin-bottom: 16px; }
+  @media print { .no-print { display: none; } body { padding: 0; } }
 </style>
 </head><body>
+  <div class="no-print">
+    <button onclick="window.close()" style="padding:8px 20px;background:#1a1410;color:#c8a96e;border:none;border-radius:8px;font-size:13px;cursor:pointer;">← Back</button>
+    <button onclick="window.print()" style="padding:8px 20px;background:#f5f5f5;color:#333;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;margin-left:8px;">🖨️ Print</button>
+  </div>
   <h1>Hsu's Gourmet — Reservations</h1>
   <h2>${label}</h2>
   <table>
@@ -2160,10 +2165,15 @@ function printTodayOrders() {
   h2 { font-size: 14px; color: #666; margin-bottom: 20px; font-weight: normal; }
   table { width: 100%; border-collapse: collapse; font-size: 12px; }
   th { background: #f5f5f5; padding: 10px 8px; text-align: left; border-bottom: 2px solid #ddd; font-size: 11px; text-transform: uppercase; }
-  .summary { margin-top: 20px; font-size: 13px; color: #444; border-top: 2px solid #000; padding-top: 12px; }
-  @media print { body { padding: 0; } }
+.summary { margin-top: 20px; font-size: 13px; color: #444; border-top: 2px solid #000; padding-top: 12px; }
+  .no-print { margin-bottom: 16px; }
+  @media print { .no-print { display: none; } body { padding: 0; } }
 </style>
 </head><body>
+  <div class="no-print">
+    <button onclick="window.close()" style="padding:8px 20px;background:#1a1410;color:#c8a96e;border:none;border-radius:8px;font-size:13px;cursor:pointer;">← Back</button>
+    <button onclick="window.print()" style="padding:8px 20px;background:#f5f5f5;color:#333;border:1px solid #ddd;border-radius:8px;font-size:13px;cursor:pointer;margin-left:8px;">🖨️ Print</button>
+  </div>
   <h1>Hsu's Gourmet — Today's Orders</h1>
   <h2>${today}</h2>
   <table>
