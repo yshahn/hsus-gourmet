@@ -1165,8 +1165,10 @@ async function deleteReservation(id) {
     const { db } = await import('../js/firebase-menu.js');
     const { doc: fsDoc, deleteDoc } = await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
     console.log('Deleting reservation:', id);
-    await deleteDoc(fsDoc(db, 'reservations', id));
-    allReservations = allReservations.filter(r => r.firebaseId !== id && r.id !== id);
+await deleteDoc(fsDoc(db, 'reservations', id));
+    // Force reload from Firebase to ensure sync
+    const { loadReservationsFromFirebase } = await import('../js/firebase-menu.js');
+    allReservations = await loadReservationsFromFirebase(500);
     updateResStats();
     // Refresh selected date
     if (_resSelectedDate) {
