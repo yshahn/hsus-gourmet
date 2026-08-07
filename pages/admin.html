@@ -1007,18 +1007,20 @@ function renderResCalendar() {
   for (let d = 1; d <= daysInMonth; d++) {
     const dateStr = _resCalYear + '-' + String(_resCalMonth + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
     const reses = resMap[dateStr] || [];
-    const isToday = dateStr === todayStr;
+const isToday = dateStr === todayStr;
     const isSelected = dateStr === _resSelectedDate;
+    const isPast = dateStr < todayStr;
 
     const cell = document.createElement('div');
     cell.style.cssText = `
       min-height:56px;border-radius:8px;padding:6px;cursor:pointer;
       border:1px solid ${isSelected ? 'var(--gold)' : isToday ? 'var(--ink)' : 'var(--border)'};
-      background:${isSelected ? 'var(--ink)' : isToday ? '#faf6ee' : '#fff'};
+      background:${isSelected ? 'var(--ink)' : isToday ? '#faf6ee' : isPast ? '#f5f5f5' : '#fff'};
+      opacity:${isPast && !isSelected ? '0.6' : '1'};
       transition:all 0.15s;
     `;
     cell.innerHTML = `
-      <div style="font-size:13px;font-weight:${isToday?'700':'500'};color:${isSelected?'var(--gold)':isToday?'var(--ink)':'var(--ink)'};">${d}</div>
+      <div style="font-size:13px;font-weight:${isToday?'700':'500'};color:${isSelected?'var(--gold)':isPast?'#aaa':isToday?'var(--ink)':'var(--ink)'};">${d}</div>
       ${reses.length > 0 ? `
         <div style="margin-top:4px;">
           <div style="background:${isSelected?'rgba(201,168,76,0.3)':'#e8f4ff'};border-radius:4px;padding:2px 6px;font-size:11px;font-weight:600;color:${isSelected?'var(--gold)':'#2980b9'};text-align:center;">
@@ -1080,14 +1082,72 @@ function selectResDate(dateStr, reses) {
         <span>👥 ${res.guests||0} guests</span>
         ${res.special?'<span>📝 '+res.special+'</span>':''}
       </div>
-      <div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap;">
+<div style="display:flex;gap:16px;font-size:12px;color:var(--muted);flex-wrap:wrap;margin-bottom:10px;">
         ${res.phone?'<span>📞 '+res.phone+'</span>':''}
         ${res.email?'<span>✉️ '+res.email+'</span>':''}
-      </div>`;
+      </div>
+      <button onclick="sendResConfirmation('${res.firebaseId||res.id}','${res.name||'Guest'}','${res.phone||''}','${res.email||''}','${res.date||''}','${res.time||''}','${res.guests||0}')" 
+        style="width:100%;padding:10px;background:#e8f4ff;color:#2980b9;border:1px solid #bee3f8;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">
+        📨 Send Confirmation
+      </button>`;
     body.appendChild(card);
   });
 }
+async function sendResConfirmation(id, name, phone, email, date, time, guests) {
+  if (!email && !phone) {
+    showToast('⚠️ No contact info available', 'error');
+    return;
+  }
+  const firstName = name.split(' ')[0];
+  const confirmMsg = `Hi ${firstName}! This is Hsu's Gourmet confirming your reservation for ${guests} guest${guests > 1 ? 's' : ''} on ${date} at ${time}. We look forward to seeing you! Please call us at (404) 659-2788 if you need to make any changes.`;
+  
+  // Show preview modal
+  const modal = document.createElement('div');
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:16px;padding:28px;width:100%;max-width:480px;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:16px;">📨 Send Confirmation</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:8px;">To: ${name} ${email ? '· ' + email : ''} ${phone ? '· ' + phone : ''}</div>
+      <textarea id="confirm-msg-text" style="width:100%;padding:12px;border:1px solid var(--border);border-radius:8px;font-size:13px;line-height:1.6;resize:vertical;min-height:120px;box-sizing:border-box;">${confirmMsg}</textarea>
+      <div id="confirm-send-status" style="display:none;margin-top:8px;font-size:13px;"></div>
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button onclick="doSendConfirmation('${id}','${email}','${phone}','${name}')" style="flex:1;padding:12px;background:var(--ink);color:var(--gold);border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">Send</button>
+        <button onclick="this.closest('[style*=fixed]').remove()" style="padding:12px 20px;border:1px solid var(--border);border-radius:8px;background:none;cursor:pointer;font-size:13px;">Cancel</button>
+      </div>
+    </div>`;
+  modal.addEventListener('click', e => { if(e.target === modal) modal.remove(); });
+  document.body.appendChild(modal);
+}
 
+async function doSendConfirmation(id, email, phone, name) {
+  const msg = document.getElementById('confirm-msg-text')?.value || '';
+  const statusEl = document.getElementById('confirm-send-status');
+  if (statusEl) { statusEl.style.display = 'block'; statusEl.textContent = 'Sending...'; statusEl.style.color = 'var(--muted)'; }
+  
+  try {
+    // Send email if available
+    if (email) {
+      await fetch('/api/notify-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'reservation_confirmation',
+          guestEmail: email,
+          guestName: name,
+          message: msg,
+          notifEmails: [],
+        }),
+      });
+    }
+    if (statusEl) { statusEl.textContent = '✅ Confirmation sent!'; statusEl.style.color = '#27ae60'; }
+    showToast('✅ Confirmation sent to ' + name);
+    setTimeout(() => { document.querySelector('[style*=fixed][style*=10000]')?.remove(); }, 1500);
+  } catch(e) {
+    if (statusEl) { statusEl.textContent = '🔴 Failed to send'; statusEl.style.color = '#c0392b'; }
+    showToast('🔴 Failed to send', 'error');
+  }
+}
+  
 async function deleteReservation(id) {
   try {
     const { db } = await import('../js/firebase-menu.js');
