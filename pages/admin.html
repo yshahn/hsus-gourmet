@@ -1098,7 +1098,7 @@ function selectResDate(dateStr, reses) {
         ${res.phone?'<span>📞 '+res.phone+'</span>':''}
         ${res.email?'<span>✉️ '+res.email+'</span>':''}
       </div>
-      <button onclick="sendResConfirmation('${res.firebaseId||res.id}','${res.name||'Guest'}','${res.phone||''}','${res.email||''}','${res.date||''}','${res.time||''}','${res.guests||0}')" 
+<button id="confirm-btn-${res.firebaseId||res.id}" onclick="sendResConfirmation('${res.firebaseId||res.id}','${res.name||'Guest'}','${res.phone||''}','${res.email||''}','${res.date||''}','${res.time||''}','${res.guests||0}')" 
         style="width:100%;padding:10px;background:#e8f4ff;color:#2980b9;border:1px solid #bee3f8;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">
         📨 Send Confirmation
       </button>`;
@@ -1152,7 +1152,17 @@ async function doSendConfirmation(id, email, phone, name) {
       });
     }
     if (statusEl) { statusEl.textContent = '✅ Confirmation sent!'; statusEl.style.color = '#27ae60'; }
-    showToast('✅ Confirmation sent to ' + name);
+showToast('✅ Confirmation sent to ' + name);
+    // Mark button as sent
+    const confirmBtn = document.getElementById('confirm-btn-' + id);
+    if (confirmBtn) {
+      confirmBtn.textContent = '✅ Confirmation Sent';
+      confirmBtn.style.background = '#e8f5e9';
+      confirmBtn.style.color = '#27ae60';
+      confirmBtn.style.borderColor = '#a8d5b5';
+      confirmBtn.disabled = true;
+      confirmBtn.style.cursor = 'not-allowed';
+    }
     setTimeout(() => { document.querySelector('[style*=fixed][style*=10000]')?.remove(); }, 1500);
   } catch(e) {
     if (statusEl) { statusEl.textContent = '🔴 Failed to send'; statusEl.style.color = '#c0392b'; }
