@@ -1113,8 +1113,7 @@ async function sendResConfirmation(id, name, phone, email, date, time, guests) {
     return;
   }
   const firstName = name.split(' ')[0];
-  const confirmMsg = `Hi ${firstName}! This is Hsu's Gourmet confirming your reservation for ${guests} guest${guests > 1 ? 's' : ''} on ${date} at ${time}. We look forward to seeing you! Please call us at (404) 659-2788 if you need to make any changes.`;
-  
+  const confirmMsg = `Hi ${firstName}! This is Hsu's Gourmet. We wanted to reach out to confirm your reservation for ${guests} guest${guests > 1 ? 's' : ''} on ${date} at ${time}. Could you please confirm that you will still be joining us? Please reply or call us at (404) 659-2788. Thank you!`;
   // Show preview modal
   const modal = document.createElement('div');
   modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;';
