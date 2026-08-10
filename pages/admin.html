@@ -1138,20 +1138,25 @@ async function doSendConfirmation(id, email, phone, name) {
   if (statusEl) { statusEl.style.display = 'block'; statusEl.textContent = 'Sending...'; statusEl.style.color = 'var(--muted)'; }
   
   try {
-    // Send email if available
-    if (email) {
-      await fetch('/api/notify-order', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'reservation_confirmation',
-          guestEmail: email,
-          guestName: name,
-          message: msg,
-          notifEmails: [],
-        }),
-      });
-    }
+// Send via notify-order API (email + SMS with Yes/No links)
+    const customer = { name, email: email || '', phone: phone || '' };
+    await fetch('/api/notify-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        isReservation: true,
+        isConfirmationRequest: true,
+        orderId: id,
+        customer,
+        pickupTime: '',
+        orderItems: [{ name: msg }],
+        special: '',
+        notifEmails: [],
+        notifPhones: [],
+        guestSmsConsent: true,
+        confirmationMessage: msg,
+      }),
+    });
     if (statusEl) { statusEl.textContent = '✅ Confirmation sent!'; statusEl.style.color = '#27ae60'; }
 showToast('✅ Confirmation sent to ' + name);
     // Mark button as sent
