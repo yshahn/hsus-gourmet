@@ -229,7 +229,7 @@ module.exports = async function handler(req, res) {
 
   if (isReservation) {
     // ── RESERVATION
-    adminSmsText = `🗓️ New Reservation!\n${customer?.name || 'Guest'} · ${pickup}\n👥 ${orderItems[0]?.name || ''}\n📞 ${phone}\n${special ? '📝 ' + special : ''}`;
+    adminSmsText = `🗓️ New Reservation! — Hsu's Gourmet\n${customer?.name || 'Guest'} · ${pickup}\n👥 ${orderItems[0]?.name || ''}\n📞 ${phone}\n${special ? '📝 ' + special : ''}`;
     guestSmsText = `Hi ${firstName}! Your reservation at Hsu's Gourmet is confirmed.\n📅 ${pickup}\n${orderItems[0]?.name || ''}\n${special ? '📝 ' + special : ''}\nSee you soon! 🥢`;
     adminEmailSubject = `🗓️ New Reservation — ${customer?.name || 'Guest'} · ${pickup}`;
     guestEmailSubject = `Your Reservation at Hsu's Gourmet is Confirmed! 🗓️`;
