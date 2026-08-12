@@ -1151,7 +1151,7 @@ async function doSendConfirmation(id, email, phone, name, date, time) {
       }),
     });
     if (statusEl) { statusEl.textContent = '✅ Confirmation sent!'; statusEl.style.color = '#27ae60'; }
-    showToastMsg('✅ Confirmation sent to ' + name);
+    showToast('✅ Confirmation sent to ' + name);
     const confirmBtn = document.getElementById('confirm-btn-' + id);
     if (confirmBtn) {
       confirmBtn.textContent = '✅ Confirmation Sent';
@@ -1173,7 +1173,7 @@ async function doSendConfirmation(id, email, phone, name, date, time) {
     else document.querySelectorAll('[style*="position:fixed"][style*="z-index:10000"]').forEach(m => m.remove());
   } catch(e) {
     if (statusEl) { statusEl.textContent = '🔴 Failed to send'; statusEl.style.color = '#c0392b'; }
-    showToastMsg('🔴 Failed to send');
+    showToast('🔴 Failed to send', 'error');
   }
 }
 
