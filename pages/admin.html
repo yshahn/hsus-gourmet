@@ -1361,7 +1361,11 @@ function renderOrders(orders) {
   body.innerHTML = '';
   orders.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).forEach(order => {
     const date = new Date(order.createdAt).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
-    const itemList = (order.orderItems || []).map(i => (i.emoji || '🍽️') + ' ' + i.name).join('<br>');
+   const itemList = (order.orderItems || []).map(i => {
+      const price = i.price ? ' — $' + parseFloat(i.price).toFixed(2) : '';
+      return i.name + price;
+    }).join('<br>');
+    const netTotal = (order.orderItems || []).reduce((s, i) => s + (parseFloat(i.price) || 0), 0);
     const isCompleted = order.status === 'completed';
     const card = document.createElement('div');
     card.style.cssText = 'border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:10px;background:var(--card-bg);';
