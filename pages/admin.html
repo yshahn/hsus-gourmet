@@ -1401,7 +1401,7 @@ const custEmail = (order.customer?.email || '').toLowerCase();
         </div>
       </div>
       <div style="font-size:14px;font-weight:600;color:var(--ink);line-height:1.8;margin-bottom:8px;padding:10px;background:var(--bone);border-radius:8px;">${itemList}</div>
-      <div style="font-size:16px;font-weight:700;color:var(--ink);text-align:right;margin-bottom:8px;padding:6px 10px;background:var(--bone);border-radius:8px;">Net Total: $${netTotal.toFixed(2)}</div>
+     '      <div style="font-size:16px;font-weight:700;color:var(--ink);text-align:left;margin-bottom:8px;padding:6px 10px;background:var(--bone);border-radius:8px;">Total: $${netTotal.toFixed(2)}</div>\n
       <div style="display:flex;gap:16px;font-size:14px;font-weight:600;color:var(--muted);flex-wrap:wrap;">${order.customer?.phone?'<span>📞 '+formatPhone(order.customer.phone)+'</span>':''}${order.customer?.email?'<span>✉️ '+order.customer.email+'</span>':''}</div>`;
     body.appendChild(card);
   });
