@@ -865,7 +865,7 @@ let ADMIN_EMAILS = (function(){
   try { const cached = JSON.parse(localStorage.getItem(ADMIN_EMAILS_KEY) || 'null'); if (cached && cached.length) return cached; } catch(e) {}
   return DEFAULT_ADMIN_EMAILS.slice();
 })();
-const ADMIN_KEY    = 'prb_admin_session';
+const ADMIN_KEY    = 'hsus_admin_session';
 
 async function refreshAdminEmailsFromFirebase() {
   try {
