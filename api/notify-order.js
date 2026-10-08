@@ -15,6 +15,28 @@ function formatPhoneDisplay(raw) {
   return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
 }
 
+// Group orders: each item may carry a `guest` number (1, 2, 3 …) from the
+// "Add guest" feature. Returns [{ guest, items, subtotal }, …] sorted by guest
+// when the order has MORE THAN ONE guest, or null for a normal single-guest
+// order (items without a guest field count as guest 1) — null means "render
+// exactly as before".
+function groupItemsByGuest(items) {
+  const byGuest = new Map();
+  (items || []).forEach(i => {
+    const g = parseInt(i && i.guest) || 1;
+    if (!byGuest.has(g)) byGuest.set(g, []);
+    byGuest.get(g).push(i);
+  });
+  if (byGuest.size <= 1) return null;
+  return [...byGuest.entries()]
+    .sort((a, b) => a[0] - b[0])
+    .map(([guest, list]) => ({
+      guest,
+      items: list,
+      subtotal: list.reduce((s, i) => s + (parseFloat(i.price) || 0), 0),
+    }));
+}
+
 module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -327,16 +349,31 @@ module.exports = async function handler(req, res) {
     // through. Plain GSM-7 text keeps even large (20+ item) orders safely
     // within that limit. For unusually large orders, the list is truncated
     // with a "+N more, see email" note rather than risking rejection.
+    // Group orders ("Add guest"): items are listed under "Guest N ($subtotal):"
+    // headers. Same length cap as before; if the cut lands right after a header
+    // it's dropped so a guest never shows up with no items under it.
+    const guestGroups = groupItemsByGuest(orderItems);
     function buildSafeItemLines(items, maxChars) {
-      const lines = items.map(i => `  - ${i.name} - $${parseFloat(i.price || 0).toFixed(2)}`);
+      const itemLine = i => ({ text: `  - ${i.name} - $${parseFloat(i.price || 0).toFixed(2)}`, isItem: true });
+      let lines = [];
+      if (guestGroups) {
+        guestGroups.forEach(g => {
+          lines.push({ text: `Guest ${g.guest} ($${g.subtotal.toFixed(2)}):`, isItem: false });
+          g.items.forEach(i => lines.push(itemLine(i)));
+        });
+      } else {
+        lines = items.map(itemLine);
+      }
       let used = 0, shown = 0;
       for (; shown < lines.length; shown++) {
-        used += lines[shown].length + 1;
+        used += lines[shown].text.length + 1;
         if (used > maxChars) break;
       }
-      if (shown >= lines.length) return lines.join('\n');
-      const remaining = lines.length - shown;
-      return lines.slice(0, shown).join('\n') + `\n  ...+${remaining} more item${remaining === 1 ? '' : 's'} (see email for full list)`;
+      if (shown >= lines.length) return lines.map(l => l.text).join('\n');
+      let end = shown;
+      while (end > 0 && !lines[end - 1].isItem) end--;
+      const remaining = lines.slice(end).filter(l => l.isItem).length;
+      return lines.slice(0, end).map(l => l.text).join('\n') + `\n  ...+${remaining} more item${remaining === 1 ? '' : 's'} (see email for full list)`;
     }
 
     const adminItemLines = buildSafeItemLines(orderItems, 900);
@@ -344,6 +381,7 @@ module.exports = async function handler(req, res) {
     adminSmsText = [
       `New order - Hsu's Gourmet`,
       `${customer?.name || 'Guest'} (${phoneDisplay})`,
+      guestGroups ? `GROUP ORDER - ${guestGroups.length} guests` : '',
       `Pickup: ${pickup}${curbsideTxt}`,
       adminItemLines,
       `${adminPtsTxt ? adminPtsTxt + '\n' : ''}Total: $${(total || 0).toFixed(2)}`,
@@ -365,7 +403,7 @@ module.exports = async function handler(req, res) {
       specialReq ? `Note: ${specialReq}` : '',
       `Questions? (404) 577-0888${arrivedLink}`,
     ].filter(Boolean).join('\n');
-    adminEmailSubject = `🥢 New Order — ${customer?.name || 'Guest'} · $${(total || 0).toFixed(2)} · ${pickup}`;
+    adminEmailSubject = `🥢 New Order${guestGroups ? ' (GROUP · ' + guestGroups.length + ' guests)' : ''} — ${customer?.name || 'Guest'} · $${(total || 0).toFixed(2)} · ${pickup}`;
     guestEmailSubject = `Your Hsu's Gourmet Order is Confirmed! 🥢`;
 
     const orderRows = `
@@ -374,11 +412,20 @@ module.exports = async function handler(req, res) {
       <tr><td style="padding:5px 0;color:#888;">Phone</td><td style="font-weight:500;">${phoneDisplay}</td></tr>
       <tr><td style="padding:5px 0;color:#888;">Email</td><td style="font-weight:500;">${guestEmail || '—'}</td></tr>`;
 
-    const itemsHtml = orderItems.map((item, i) =>
-      `<div style="padding:10px 16px;${i < orderItems.length - 1 ? 'border-bottom:1px solid #eee;' : ''}display:flex;justify-content:space-between;">
+    const itemRowHtml = (item, last) =>
+      `<div style="padding:10px 16px;${last ? '' : 'border-bottom:1px solid #eee;'}display:flex;justify-content:space-between;">
         <span>${item.emoji || '🍽️'} ${item.name}</span>
-        <span style="font-weight:600;color:#c8a96e;">$${item.price.toFixed(2)}</span>
-      </div>`).join('');
+        <span style="font-weight:600;color:#c8a96e;">$${parseFloat(item.price || 0).toFixed(2)}</span>
+      </div>`;
+    // Group order: a header row per guest (with that guest's subtotal) so the
+    // organizer can split the bill and the kitchen can pack per guest.
+    const itemsHtml = guestGroups
+      ? guestGroups.map(g =>
+          `<div style="padding:8px 16px;background:#f7f3ea;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#8a6d2f;">
+            <span>Guest ${g.guest}</span><span>$${g.subtotal.toFixed(2)}</span>
+          </div>` + g.items.map(item => itemRowHtml(item, false)).join('')
+        ).join('')
+      : orderItems.map((item, i) => itemRowHtml(item, i === orderItems.length - 1)).join('');
 
     const pointsDiscountAmt = parseFloat(pointsDiscount) || 0;
     const totalsHtml = `
