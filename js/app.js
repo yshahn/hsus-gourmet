@@ -529,6 +529,12 @@ function showMenuStep() {
   const mins = now.getHours() * 60 + now.getMinutes();
   const isLunchTime = now.getDay() !== 0 && now.getDay() !== 6 && mins < 14 * 60;
 
+  // Hide lunch tab on weekends
+  const todayDay = now.getDay();
+  const isWeekendNow = todayDay === 0 || todayDay === 6;
+  const lunchTabEl = [...document.querySelectorAll('.menu-tab')].find(t => t.getAttribute('onclick')?.includes("'lunch'"));
+  if (lunchTabEl) lunchTabEl.style.display = isWeekendNow ? 'none' : '';
+
   const defaultTab = isLunchTime ? 'lunch' : 'appetizers';
   const defaultTab2 = [...document.querySelectorAll('.menu-tab')].find(t => t.getAttribute('onclick')?.includes("'" + defaultTab + "'"));
   if (defaultTab2) {
@@ -2105,12 +2111,14 @@ async function startStripeCheckout() {
     (((window.firebaseMenuData || {}).lunch) || menuData.lunch || []).map(i => i.n)
   );
   const staleLunchItems = cart.filter(item => lunchNames.has(item.name));
-  if (staleLunchItems.length > 0 && !isLunchHours()) {
+  const nowDay = new Date().getDay();
+  const isWeekendDay = nowDay === 0 || nowDay === 6;
+  if (staleLunchItems.length > 0 && (!isLunchHours() || isWeekendDay)) {
     const names = [...new Set(staleLunchItems.map(i => i.name))].join(', ');
-    alert(
-      `Sorry, lunch is only served during lunch hours, and it's outside those hours now.\n\n` +
-      `Please remove from your cart: ${names}`
-    );
+    const msg = isWeekendDay
+      ? `Sorry, lunch is only available Monday through Friday.\n\nPlease remove from your cart: ${names}`
+      : `Sorry, lunch is only served during lunch hours, and it's outside those hours now.\n\nPlease remove from your cart: ${names}`;
+    alert(msg);
     return;
   }
 
