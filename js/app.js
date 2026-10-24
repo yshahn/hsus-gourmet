@@ -1588,7 +1588,8 @@ function buildPickupSlots() {
   // still slipped through and let guests order during the closed window
   // between lunch and dinner service.
   const isBreakTime = nowMins >= 14 * 60 && nowMins < 17 * 60;
-  const asapBlocked = pastClosing || isBreakTime;
+  const isWeekendBeforeDinner = (now.getDay() === 0 || now.getDay() === 6) && nowMins < 17 * 60;
+  const asapBlocked = pastClosing || isBreakTime || isWeekendBeforeDinner;
 
   const wrap = document.createElement('div');
   wrap.style.cssText = 'position:relative;';
@@ -1608,11 +1609,11 @@ function buildPickupSlots() {
   }
 
   if (s.allowSchedule !== false) {
-    const windows = [
-      { open: 11 * 60 + 30, close: 14 * 60 },
-      { open: 17 * 60,      close: 21 * 60 + 15 },
-    ];
-    const isMorning  = nowMins < 11 * 60;
+    const isWeekendToday = now.getDay() === 0 || now.getDay() === 6;
+    const windows = isWeekendToday
+      ? [{ open: 17 * 60, close: 21 * 60 + 15 }]
+      : [{ open: 11 * 60 + 30, close: 14 * 60 }, { open: 17 * 60, close: 21 * 60 + 15 }];
+    const isMorning = nowMins < (isWeekendToday ? 17 * 60 : 11 * 60);
     if (isBreakTime || pastClosing) {
       if (select.options.length === 0) {
         const noAsap = document.createElement('option');
@@ -1624,7 +1625,7 @@ function buildPickupSlots() {
     let t;
     if (isMorning) {
       t = (() => { const d = new Date(now); d.setHours(11, 30, 0, 0); return d; })();
-    } else if (isBreakTime) {
+    } else if (isBreakTime || (isWeekendToday && nowMins < 17 * 60)) {
       t = (() => { const d = new Date(now); d.setHours(17, 0, 0, 0); return d; })();
     } else {
       t = new Date(earliest.getTime() + 15 * 60 * 1000);
