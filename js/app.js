@@ -2110,16 +2110,16 @@ async function startStripeCheckout() {
   const lunchNames = new Set(
     (((window.firebaseMenuData || {}).lunch) || menuData.lunch || []).map(i => i.n)
   );
-  const staleLunchItems = cart.filter(item => lunchNames.has(item.name));
   const nowDay = new Date().getDay();
   const isWeekendDay = nowDay === 0 || nowDay === 6;
-  if (staleLunchItems.length > 0 && (!isLunchHours() || isWeekendDay)) {
-    const names = [...new Set(staleLunchItems.map(i => i.name))].join(', ');
-    const msg = isWeekendDay
-      ? `Sorry, lunch is only available Monday through Friday.\n\nPlease remove from your cart: ${names}`
-      : `Sorry, lunch is only served during lunch hours, and it's outside those hours now.\n\nPlease remove from your cart: ${names}`;
-    alert(msg);
-    return;
+  // Only check stale lunch items on weekdays outside lunch hours
+  if (!isWeekendDay) {
+    const staleLunchItems = cart.filter(item => lunchNames.has(item.name));
+    if (staleLunchItems.length > 0 && !isLunchHours()) {
+      const names = [...new Set(staleLunchItems.map(i => i.name))].join(', ');
+      alert(`Sorry, lunch is only served during lunch hours, and it's outside those hours now.\n\nPlease remove from your cart: ${names}`);
+      return;
+    }
   }
 
   const select = document.getElementById('pickup-time-select');
