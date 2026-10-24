@@ -1753,11 +1753,16 @@ const selectedDateEl = document.querySelector('.date-cell.selected');
 const rawDate = selectedDateEl ? new Date(selectedDateEl.dataset.date) : new Date();
 const selectedDate = new Date(rawDate.getFullYear(), rawDate.getMonth(), rawDate.getDate());
   const slots = [];
-  for (let h = 11; h <= 13; h++) {
-    for (let m = 0; m < 60; m += 15) {
-      if (h === 11 && m < 30) continue;
-      if (h === 13 && m > 30) continue;
-      slots.push({ h, m, period: 'Lunch' });
+  const dayOfWeek = selectedDate.getDay(); // 0=Sun, 6=Sat
+  const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+  // Lunch only Mon-Fri
+  if (!isWeekend) {
+    for (let h = 11; h <= 13; h++) {
+      for (let m = 0; m < 60; m += 15) {
+        if (h === 11 && m < 30) continue;
+        if (h === 13 && m > 30) continue;
+        slots.push({ h, m, period: 'Lunch' });
+      }
     }
   }
   for (let h = 17; h <= 20; h++) {
