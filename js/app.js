@@ -1750,8 +1750,13 @@ async function buildTimeSlots() {
   grid.innerHTML = '';
   const blackouts = await loadBlackoutDates();
 const selectedDateEl = document.querySelector('.date-cell.selected');
-const rawDate = selectedDateEl ? new Date(selectedDateEl.dataset.date) : new Date();
-const selectedDate = new Date(rawDate.getFullYear(), rawDate.getMonth(), rawDate.getDate());
+const selectedDate = (() => {
+  if (selectedDateEl && selectedDateEl.dataset.date) {
+    const [y, m, d] = selectedDateEl.dataset.date.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  }
+  const n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+})();
   const slots = [];
   const dayOfWeek = selectedDate.getDay(); // 0=Sun, 6=Sat
   const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
