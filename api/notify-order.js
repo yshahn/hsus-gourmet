@@ -377,6 +377,7 @@ module.exports = async function handler(req, res) {
     }
 
     const adminItemLines = buildSafeItemLines(orderItems, 900);
+    const netTotal = (orderItems || []).reduce((s, i) => s + (parseFloat(i.price) || 0), 0);
     const adminPtsTxt = (parseFloat(pointsDiscount) || 0) > 0 ? `\n  Rewards: -$${parseFloat(pointsDiscount).toFixed(2)}` : '';
     adminSmsText = [
       `New order - Hsu's Gourmet`,
@@ -384,7 +385,7 @@ module.exports = async function handler(req, res) {
       guestGroups ? `GROUP ORDER - ${guestGroups.length} guests` : '',
       `Pickup: ${pickup}${curbsideTxt}`,
       adminItemLines,
-      `${adminPtsTxt ? adminPtsTxt + '\n' : ''}Total: $${(total || 0).toFixed(2)}`,
+      `${adminPtsTxt ? adminPtsTxt + '\n' : ''}Total: $${netTotal.toFixed(2)}`,
       specialReq ? `Note: ${specialReq}` : '',
     ].filter(Boolean).join('\n');
     const carModelEnc = encodeURIComponent(req.body.carModel || '');
@@ -399,7 +400,7 @@ module.exports = async function handler(req, res) {
       `Hi ${firstName}! Pickup: ${pickup}${curbsideTxt}`,
       guestItemLines,
       guestPtsTxt,
-      `Total: $${(total || 0).toFixed(2)}`,
+      `Total: $${netTotal.toFixed(2)}`,
       specialReq ? `Note: ${specialReq}` : '',
       `Questions? (404) 577-0888${arrivedLink}`,
     ].filter(Boolean).join('\n');
