@@ -1100,6 +1100,7 @@ function cartRemove(name) {
 // MENU
 // ─────────────────────────────────
 function buildMenu(tab) {
+  window._currentMenuTab = tab; // used to tag lunch items added to cart
   const list = document.getElementById('menu-list');
   if (!list) return;
   // Firebase 데이터 머지
@@ -1400,8 +1401,9 @@ function showLunchClosedPopup() {
   if (popup) popup.style.display = 'flex';
 }
 
-function addToCart(name, price, emoji, btn) {
-  cart.push({ name, price, emoji, guest: currentGuest });
+function addToCart(name, price, emoji, btn, lunchFlag) {
+  const lunch = (typeof lunchFlag === 'boolean') ? lunchFlag : (window._currentMenuTab === 'lunch');
+  cart.push({ name, price, emoji, guest: currentGuest, lunch });
   if (btn) {
     const count = cart.filter(c => c.name === name && cartGuest(c) === currentGuest).length;
     btn.classList.add('added');
@@ -2108,19 +2110,14 @@ async function startStripeCheckout() {
   // could add a lunch item at 1pm, keep browsing, and check out at 6pm with
   // it still in the cart. Re-validate every cart item against the CURRENT
   // menu availability right before payment, not just at add-to-cart time.
-  const lunchNames = new Set(
-    (((window.firebaseMenuData || {}).lunch) || menuData.lunch || []).map(i => i.n)
-  );
-  const nowDay = new Date().getDay();
-  const isWeekendDay = nowDay === 0 || nowDay === 6;
-  // Only check stale lunch items on weekdays outside lunch hours
-  if (!isWeekendDay) {
-    const staleLunchItems = cart.filter(item => lunchNames.has(item.name));
-    if (staleLunchItems.length > 0 && !isLunchHours()) {
-      const names = [...new Set(staleLunchItems.map(i => i.name))].join(', ');
-      alert(`Sorry, lunch is only served during lunch hours, and it's outside those hours now.\n\nPlease remove from your cart: ${names}`);
-      return;
-    }
+  // Items are tagged item.lunch when added from the Lunch tab. (Matching by name
+  // missed options like "Item \u2014 Option" and wrongly matched dinner items that
+  // share a lunch item's name, which is also why weekends needed a special skip.)
+  const staleLunchItems = cart.filter(item => item.lunch);
+  if (staleLunchItems.length > 0 && !isLunchHours()) {
+    const names = [...new Set(staleLunchItems.map(i => i.name))].join(', ');
+    alert(`Sorry, lunch is only served Monday\u2013Friday during lunch hours, and it's outside those hours now.\n\nPlease remove from your cart: ${names}`);
+    return;
   }
 
   const select = document.getElementById('pickup-time-select');
@@ -2575,6 +2572,19 @@ function buildHomeScreen() {
 // ─────────────────────────────────
 // ORDER HISTORY
 // ─────────────────────────────────
+// Reorders come from order history (no menu-tab info), so decide by name + price:
+// lunch only if the base name AND price match a lunch item and not a dinner item.
+function isLunchPricedItem(name, price) {
+  const base = String(name).split(' \u2014 ')[0].replace(/\s*\(.*\)\s*$/, '').trim();
+  const src = window.firebaseMenuData || menuData;
+  const priceSet = i => [i.p, ...((i.options || []).map(o => o.p))].map(Number);
+  const lunchItem = (Array.isArray(src.lunch) ? src.lunch : menuData.lunch || []).find(i => i.n === base);
+  if (!lunchItem || !priceSet(lunchItem).includes(Number(price))) return false;
+  const dinnerHas = Object.keys(src).filter(k => k !== 'lunch').some(k =>
+    Array.isArray(src[k]) && src[k].some(i => i.n === base && priceSet(i).includes(Number(price))));
+  return !dinnerHas;
+}
+
 function reorderItems(orderIdx) {
   const o = window._orderHistory?.[orderIdx];
   if (!o) return;
@@ -2587,7 +2597,7 @@ function reorderItems(orderIdx) {
     const price = parseFloat(i.price || i.p) || 0;
     const emoji = i.emoji || i.e || '🍽️';
     currentGuest = parseInt(i.guest) || 1;   // group order: back to the guest it was ordered for
-    if (name) addToCart(name, price, emoji, null);
+    if (name) addToCart(name, price, emoji, null, isLunchPricedItem(name, price));
   });
   currentGuest = 1;
   updateCartBar();
