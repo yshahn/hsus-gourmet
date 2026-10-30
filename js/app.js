@@ -1560,6 +1560,11 @@ async function initPickupSettingsSync() {
   } catch(e) { console.warn('Pickup settings sync error:', e); }
 }
 
+// ASAP pickup becomes available at these times. (Scheduled slots still follow the
+// service windows below; the Admin "Open" time no longer delays ASAP.)
+const ASAP_LUNCH_START  = 11 * 60;        // Mon-Fri, 11:00 AM
+const ASAP_DINNER_START = 16 * 60 + 30;   // every day, 4:30 PM
+
 function buildPickupSlots() {
   const container = document.getElementById('pickup-time-slots');
   if (!container) return;
@@ -1584,13 +1589,16 @@ function buildPickupSlots() {
   const closeMins = closeH * 60 + closeM;
   const openMins = openH * 60 + openM;
   const nowMins = now.getHours() * 60 + now.getMinutes();
-  const pastClosing = nowMins >= closeMins || nowMins < openMins;
+  // ASAP opens 11:00 AM on weekdays (lunch) and 4:30 PM otherwise (dinner)
+  const isWeekdayNow = now.getDay() >= 1 && now.getDay() <= 5;
+  const asapOpenMins = isWeekdayNow ? ASAP_LUNCH_START : ASAP_DINNER_START;
+  const pastClosing = nowMins >= closeMins || nowMins < asapOpenMins;
   // Lunch/dinner break — e.g. 2PM–5PM. ASAP must be blocked here too: this
   // used to only gate the "no slots yet" placeholder further down, so ASAP
   // still slipped through and let guests order during the closed window
   // between lunch and dinner service.
-  const isBreakTime = nowMins >= 14 * 60 && nowMins < 17 * 60;
-  const isWeekendBeforeDinner = (now.getDay() === 0 || now.getDay() === 6) && nowMins < 17 * 60;
+  const isBreakTime = nowMins >= 14 * 60 && nowMins < ASAP_DINNER_START;
+  const isWeekendBeforeDinner = (now.getDay() === 0 || now.getDay() === 6) && nowMins < ASAP_DINNER_START;
   const asapBlocked = pastClosing || isBreakTime || isWeekendBeforeDinner;
 
   const wrap = document.createElement('div');
