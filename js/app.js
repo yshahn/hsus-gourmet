@@ -2121,8 +2121,15 @@ async function startStripeCheckout() {
   }
 
   const select = document.getElementById('pickup-time-select');
-  if (select && (select.disabled || !select.value)) {
+  if (select && select.disabled) {
+    // Picker is only disabled when the store is genuinely closed for online orders
     alert('We are closed for online orders right now. Please check our hours or call us at (404) 659-2788.');
+    return;
+  }
+  if (select && !select.value) {
+    // Open, but the guest hasn't picked a time yet (ASAP unavailable -> "Select pickup time")
+    alert('Please select a pickup time.');
+    try { select.scrollIntoView({ block: 'center', behavior: 'smooth' }); select.focus(); } catch(e) {}
     return;
   }
   const user = getUser();
